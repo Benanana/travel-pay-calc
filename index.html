@@ -247,6 +247,11 @@ header::before{content:'';display:block;height:3px;
 .lm-paint .lm-c2{fill:var(--lm3)}
 .lm-paint .lm-c3{fill:var(--lm3b)}
 .lm-paint .lm-near{fill:var(--lm4)}
+/* 陶土 spot color：北欧/波罗的海那张卡上一半的辨识点都是"红"（法卢红木屋、
+   红陶锥顶、砖红屋顶），而 nordic 的 8 档色版全是青蓝系 —— 拿不出红。
+   做法是让 band2 混 58% 的陶土色：既落在暖色相上，又天然带主题色的余韵，
+   所以 11 套皮肤都不会跳色。只做小面积点缀（屋顶 / 车体 / 屋墙），不承字。 */
+.lm-paint .lm-clay{fill:color-mix(in oklab,var(--tone-band2) 42%,#C1653E)}
 /* 飞鸟：只描边不填充 */
 .lm-paint .lm-bird{fill:none;stroke:var(--lm3);stroke-width:.85;stroke-linecap:round;opacity:.62}
 /* 斜撑 / 线脚：**开放路径必须用 stroke**。
@@ -1307,6 +1312,15 @@ const LANDMARKS={
   georgia:`<path d="M0 78 L24 44 L44 62 L70 20 L96 58 L118 40 L140 66 L164 26 L190 60 L214 40 L238 64 L262 34 L286 60 L300 48 L300 78 Z"/><path d="M0 78 L14 66 L28 78 Z"/><path d="M64 78 L64 52 L80 52 L80 78 Z"/><path d="M60 52 L72 38 L84 52 Z"/><path d="M96 78 L96 44 L104 44 L108 30 L112 44 L120 44 L120 78 Z"/><rect x="100" y="56" width="16" height="3"/><path d="M190 78 Q192 60 196 56"/><path d="M196 56 Q208 52 216 62"/><path d="M250 78 L250 56 L272 56 L272 78 Z"/><path d="M246 56 L260 42 L276 56 Z"/>`,
   azerbaijan:`<path d="M0 78 L0 52 L26 52 L26 78 Z"/><path d="M12 52 L28 32 L44 52 Z"/><path d="M64 78 L66 40 L74 40 L76 78 Z"/><path d="M64 40 L70 28 L76 40 Z"/><path d="M96 78 L104 30 L112 78 Z"/><path d="M124 78 L134 22 L146 78 Z"/><path d="M118 78 C124 54 130 38 134 22 C140 40 146 58 152 78 Z"/><path d="M162 78 L170 34 L178 78 Z"/><path d="M198 78 L204 42 L212 78 Z"/><path d="M194 78 C200 58 206 46 208 42 C214 52 220 64 224 78 Z"/><path d="M240 78 L240 52 L262 52 L262 78 Z"/><path d="M246 52 L254 38 L262 52 Z"/><path d="M278 78 L278 56 L296 56 L296 78 Z"/>`,
   armenia:`<path d="M0 78 L28 38 L52 60 L84 18 L118 58 L146 34 L178 64 L208 24 L242 58 L272 40 L300 78 Z"/><path d="M0 78 L12 68 L26 78 Z"/><path d="M96 78 L96 54 L134 54 L134 78 Z"/><path d="M104 54 L112 40 L118 40 L126 54 Z"/><path d="M112 40 L115 30 L118 40 Z"/><path d="M150 78 L150 60 L174 60 L174 78 Z"/><path d="M156 60 L162 50 L168 60 Z"/><path d="M162 50 L164 42 L166 50 Z"/><path d="M192 78 L192 58 L214 58 L214 78 Z"/><path d="M198 58 L204 48 L210 58 Z"/><path d="M240 78 L240 62 L262 62 L262 78 Z"/><path d="M246 62 L252 52 L258 62 Z"/>`,
+  /* 北欧 · 波罗的海（round 5） */
+  switzerland:`<path d="M0 78 L26 30 L46 52 L72 16 L98 48 L120 34 L146 78 Z"/><path d="M156 78 L156 54 L172 54 L172 78 Z"/><path d="M164 54 L178 40 L192 54 Z"/><path d="M170 40 L178 28 L186 40 Z"/><path d="M204 78 L230 26 L256 78 Z"/><path d="M262 78 L262 56 L286 56 L286 78 Z"/><path d="M268 56 L274 42 L280 56 Z"/>`,
+  iceland:`<path d="M0 78 L18 42 L36 78 Z"/><path d="M40 78 L54 52 L68 78 Z"/><path d="M74 78 L74 40 L94 40 L94 78 Z"/><path d="M100 78 L100 34 L118 34 L118 78 Z"/><path d="M128 78 L146 30 L164 78 Z"/><path d="M172 78 L172 44 L194 44 L194 78 Z"/><path d="M204 78 L220 24 L238 78 Z"/><path d="M246 78 L246 38 L268 38 L268 78 Z"/><path d="M276 78 L290 46 L304 78 Z"/>`,
+  sweden:`<path d="M0 78 L0 50 L22 50 L22 78 Z"/><path d="M24 50 L36 34 L48 50 Z"/><path d="M50 78 L50 44 L72 44 L72 78 Z"/><path d="M74 44 L86 28 L98 44 Z"/><path d="M100 78 L100 52 L120 52 L120 78 Z"/><path d="M122 52 L134 36 L146 52 Z"/><path d="M146 78 L146 46 L168 46 L168 78 Z"/><path d="M170 46 L182 30 L194 46 Z"/><path d="M196 78 L196 50 L218 50 L218 78 Z"/><path d="M228 78 L232 40 L236 40 L240 78 Z"/><path d="M248 78 L262 42 L276 78 Z"/><path d="M284 78 L284 54 L304 54 L304 78 Z"/>`,
+  finland:`<path d="M0 78 L8 46 L16 60 L24 46 L32 78 Z"/><path d="M34 78 L40 40 L46 60 L52 40 L58 78 Z"/><path d="M62 78 L68 50 L74 66 L80 50 L86 78 Z"/><path d="M90 78 L96 44 L102 62 L108 44 L114 78 Z"/><path d="M120 78 L120 58 L144 58 L144 78 Z"/><path d="M128 58 L140 44 L152 58 Z"/><path d="M158 78 L164 48 L170 64 L176 48 L182 78 Z"/><path d="M188 78 L194 40 L200 60 L206 40 L212 78 Z"/><path d="M218 78 L224 52 L230 68 L236 52 L242 78 Z"/><path d="M248 78 L256 46 L264 62 L272 46 L280 78 Z"/><path d="M286 78 L292 54 L298 68 L304 54 L304 78 Z"/>`,
+  denmark:`<path d="M0 78 L0 52 L20 52 L20 78 Z"/><path d="M22 52 L32 38 L42 52 Z"/><path d="M44 78 L44 44 L64 44 L64 78 Z"/><path d="M66 44 L76 30 L86 44 Z"/><path d="M88 78 L88 54 L106 54 L106 78 Z"/><path d="M100 54 L96 26 L100 26 L104 54 Z"/><path d="M108 54 L96 40 L108 40 Z"/><path d="M112 78 L112 48 L132 48 L132 78 Z"/><path d="M134 48 L144 34 L154 48 Z"/><path d="M158 78 L158 50 L178 50 L178 78 Z"/><path d="M180 50 L190 36 L200 50 Z"/><path d="M204 78 L204 52 L224 52 L224 78 Z"/><path d="M226 52 L236 38 L246 52 Z"/><path d="M250 78 L250 56 L272 56 L272 78 Z"/><path d="M278 78 L278 46 L296 46 L296 78 Z"/>`,
+  estonia:`<path d="M0 78 L0 46 L20 46 L20 78 Z"/><path d="M4 46 L10 32 L16 46 Z"/><path d="M26 78 L26 40 L48 40 L48 78 Z"/><path d="M28 40 L37 24 L46 40 Z"/><path d="M50 78 L50 56 L74 56 L74 72 L50 72 Z"/><path d="M78 78 L78 44 L98 44 L98 78 Z"/><path d="M80 44 L88 28 L96 44 Z"/><path d="M100 78 L100 58 L128 58 L128 72 L100 72 Z"/><path d="M132 78 L132 36 L152 36 L152 78 Z"/><path d="M136 36 L142 18 L148 36 Z"/><path d="M154 78 L154 42 L176 42 L176 78 Z"/><path d="M158 42 L165 26 L172 42 Z"/><path d="M180 78 L180 54 L206 54 L206 72 L180 72 Z"/><path d="M212 78 L212 46 L232 46 L232 78 Z"/><path d="M214 46 L222 30 L230 46 Z"/><path d="M238 78 L238 58 L262 58 L262 72 L238 72 Z"/><path d="M268 78 L268 44 L288 44 L288 78 Z"/><path d="M272 44 L278 28 L284 44 Z"/>`,
+  latvia:`<path d="M0 78 L0 50 L18 50 L18 78 Z"/><path d="M0 50 L12 34 L24 50 Z"/><path d="M24 78 L24 44 L46 44 L46 78 Z"/><path d="M24 44 L35 28 L46 44 Z"/><path d="M48 78 L48 52 L70 52 L70 78 Z"/><path d="M48 52 L59 36 L70 52 Z"/><path d="M72 78 L72 46 L94 46 L94 78 Z"/><path d="M72 46 L83 30 L94 46 Z"/><path d="M96 78 L96 54 L118 54 L118 78 Z"/><path d="M96 54 L107 38 L118 54 Z"/><path d="M124 78 L128 20 L132 20 L136 78 Z"/><path d="M126 34 L130 26 L134 34 Z"/><path d="M144 78 L144 52 L166 52 L166 78 Z"/><path d="M144 52 L155 36 L166 52 Z"/><path d="M170 78 L170 44 L192 44 L192 78 Z"/><path d="M170 44 L181 28 L192 44 Z"/><path d="M198 78 L198 56 L220 56 L220 78 Z"/><path d="M198 56 L209 40 L220 56 Z"/><path d="M228 78 L232 28 L236 28 L240 78 Z"/><path d="M248 78 L248 50 L270 50 L270 78 Z"/><path d="M248 50 L259 34 L270 50 Z"/><path d="M274 78 L274 44 L296 44 L296 78 Z"/><path d="M274 44 L285 28 L296 44 Z"/>`,
+  lithuania:`<path d="M0 78 L0 62 L18 54 L36 50 L54 48 L72 50 L90 54 L108 62 L108 78 Z"/><path d="M10 52 L10 40 L14 40 L14 52 Z"/><path d="M12 46 L8 46 L8 44 L24 44 L24 46 L20 46 L20 44 L12 44 Z"/><path d="M28 50 L28 34 L32 34 L32 50 Z"/><path d="M24 44 L36 44 L36 42 L24 42 Z"/><path d="M46 48 L46 32 L50 32 L50 48 Z"/><path d="M42 42 L54 42 L54 40 L42 40 Z"/><path d="M66 48 L66 34 L70 34 L70 48 Z"/><path d="M62 42 L74 42 L74 40 L62 40 Z"/><path d="M86 52 L86 40 L90 40 L90 52 Z"/><path d="M82 46 L94 46 L94 44 L82 44 Z"/><path d="M116 78 L116 58 L140 58 L140 78 Z"/><path d="M136 58 L136 40 L160 40 L160 58 Z"/><path d="M142 40 L148 22 L154 40 Z"/><path d="M116 52 L116 44 L130 44 L130 52 Z"/><path d="M164 58 L164 46 L188 46 L188 58 Z"/><path d="M166 46 L176 34 L186 46 Z"/><path d="M204 78 L204 54 L228 54 L228 78 Z"/><path d="M208 54 L216 38 L224 54 Z"/><path d="M204 42 L232 42 L232 38 L204 38 Z"/><path d="M240 78 L240 62 L262 62 L262 78 Z"/><path d="M244 62 L251 48 L258 62 Z"/><path d="M268 78 L268 58 L292 58 L292 78 Z"/><path d="M272 58 L280 44 L288 58 Z"/>`,
   tropical:`<path d="M0 78 L0 58 Q20 48 40 58 Q60 68 80 58 Q100 48 120 58 Q140 68 160 58 Q180 48 200 58 Q220 68 240 58 Q260 48 280 58 L280 78 Z"/><path d="M28 56 Q32 40 40 36"/><path d="M40 36 Q56 32 66 42"/><path d="M40 36 Q30 26 20 32"/><path d="M150 56 Q154 40 162 36"/><path d="M162 36 Q178 32 188 42"/><path d="M162 36 Q152 26 142 32"/><path d="M256 56 Q260 42 268 38"/><path d="M268 38 Q282 34 292 44"/>`,
 };
 
@@ -1486,6 +1500,87 @@ function _onion(cx,b,r,cls){
    +` L${f(cx)} ${f(b-hh)}`
    +` C${f(cx+r*1.2)} ${f(b-hh*.6)} ${f(cx+r*1.34)} ${f(b-hh*.3)} ${f(cx+r)} ${f(b)} Z"/>`;
 }
+/* ==================== round 5 新增通用件（北欧 + 波罗的海）==================== */
+
+/* 玄武岩柱崖（冰岛）：**一整块崖体 + 竖向节理**。
+   第一版画成"一排互相分离、高低错落的柱子"，缩到卡片尺寸立刻读成**城市天际线**
+   —— 分离的竖条 + 高低落差，人眼只会解释成楼群，而且这个误读极难靠调色救回来。
+   正解是反过来：崖体必须**连成一体**（顶缘只做小幅锯齿隆起），
+   "柱状节理"改用压在崖面上的细竖缝表达 —— 缝隙是崖体内部的纹理，不会被读成缝隙以外的东西。
+   锯齿幅度也必须小（<=7 单位）：起伏一大，"一堵崖"又会碎成"几根柱子"。 */
+function _basalt(x,b,w,n,top,cls){
+  const f=v=>v.toFixed(1), cw=w/n, C=cls||'lm-c0b';
+  /* 顶缘用三支不同周期的正弦叠加：既不规则、又保证**相邻点高差很小**
+     （离散随机表会一高一低地跳，画出来就是尖齿 —— 读成城垛或一排帐篷）。 */
+  const jag=i=>3.0+2.1*Math.sin(i*.72)+1.15*Math.sin(i*1.73+1.1)+.55*Math.sin(i*2.9+2.4);
+  let d=`M${f(x)} ${f(b)} L${f(x)} ${f(b-top-jag(0))}`;
+  for(let i=1;i<=n;i++) d+=` L${f(x+i*cw)} ${f(b-top-jag(i))}`;
+  d+=` L${f(x+w)} ${f(b)} Z`;
+  let g='';
+  for(let i=1;i<n;i++){
+    // 缝隙要从顶缘下方一点起笔，否则会把顶缘的锯齿"切开"，又读成柱子
+    const y0=b-top-jag(i)+2.2;
+    g+=`<rect class="lm-c2" opacity=".42" x="${f(x+i*cw-.5)}" y="${f(y0)}" width="1" height="${f(b-y0)}"/>`;
+  }
+  return `<path class="${C}" d="${d}"/>`+g;
+}
+
+/* 北欧山墙屋（斯德哥尔摩老城 / 哥本哈根新港）：窄面宽 + 陡山墙。
+   三种山墙（三角 / 折肩 / 阶梯）**必须轮换** —— 一排同款三角顶会立刻读成
+   "儿童画的一排房子"，这是"老城屋列"最容易翻车的地方。
+   k：0 三角 · 1 折肩 · 2 阶梯。 */
+function _gableHouse(cx,b,w,h,cls,gableCls,k){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0b', G=gableCls||'lm-c0h';
+  const hw=w/2, top=b-h, gh=w*.54, ov=1.2;
+  let out=`<rect class="${C}" x="${f(cx-hw)}" y="${f(top)}" width="${f(w)}" height="${f(h)}"/>`;
+  if(k===1){
+    out+=`<path class="${G}" d="M${f(cx-hw-ov)} ${f(top)} L${f(cx-hw-ov)} ${f(top-gh*.36)}`
+        +` L${f(cx-hw*.3)} ${f(top-gh)} L${f(cx+hw*.3)} ${f(top-gh)}`
+        +` L${f(cx+hw+ov)} ${f(top-gh*.36)} L${f(cx+hw+ov)} ${f(top)} Z"/>`;
+  } else if(k===2){
+    for(let i=0;i<4;i++){
+      const sw=w+ov*2-i*(w+ov*2)/4.8;
+      out+=`<rect class="${G}" x="${f(cx-sw/2)}" y="${f(top-gh*(i+1)/4.7)}" width="${f(sw)}" height="${f(gh/4.7+.7)}"/>`;
+    }
+  } else {
+    out+=`<path class="${G}" d="M${f(cx-hw-ov)} ${f(top)} L${f(cx)} ${f(top-gh)} L${f(cx+hw+ov)} ${f(top)} Z"/>`;
+  }
+  out+=`<g class="lm-c3" opacity=".46">`
+    +`<rect x="${f(cx-hw*.64)}" y="${f(top+h*.14)}" width="${f(w*.23)}" height="${f(h*.19)}"/>`
+    +`<rect x="${f(cx+hw*.16)}" y="${f(top+h*.14)}" width="${f(w*.23)}" height="${f(h*.19)}"/>`
+    +`<rect x="${f(cx-hw*.26)}" y="${f(top+h*.56)}" width="${f(w*.5)}" height="${f(h*.22)}"/>`
+    +`</g>`;
+  return out;
+}
+
+/* 单桅小帆船（丹麦新港 / 瑞典水岸）：船体 + 细桅 + 两片三角帆。
+   新港的辨识点其实是"屋列 + 水边密密麻麻的桅杆"，船本身不用画细 ——
+   桅一粗、帆一宽，就会把整排屋列挡掉。所以桅只给 1.1 单位宽。 */
+function _sloop(x,b,h,cls,sailCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c2', S=sailCls||'lm-c0h';
+  return `<path class="${C}" d="M${f(x-h*.2)} ${f(b)} Q${f(x)} ${f(b+2.6)} ${f(x+h*.2)} ${f(b)}`
+   +` Q${f(x+h*.1)} ${f(b-1.4)} ${f(x)} ${f(b-1.6)} Q${f(x-h*.1)} ${f(b-1.4)} ${f(x-h*.2)} ${f(b)} Z"/>`
+   +`<rect class="${C}" x="${f(x-.55)}" y="${f(b-h)}" width="1.1" height="${f(h)}"/>`
+   +`<path class="${S}" d="M${f(x-.7)} ${f(b-h*.9)} L${f(x-h*.5)} ${f(b-2)} L${f(x-.7)} ${f(b-2)} Z"/>`
+   +`<path class="${S}" d="M${f(x+.7)} ${f(b-h*.6)} L${f(x+h*.42)} ${f(b-2)} L${f(x+.7)} ${f(b-2)} Z"/>`;
+}
+
+/* 十字架山（立陶宛）：坡地上一片高低参差的十字架。
+   读点全在"数量 + 参差" —— 三五个十字读成"墓地一角"，十几个以上才读成"一座山"。
+   十字架必须比坡地**亮**（深底上的暗剪影会整片消失）。*/
+function _crosses(x0,x1,peakY,drop,n,cls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0h';
+  let out='';
+  for(let i=0;i<n;i++){
+    const t=i/(n-1), cx=x0+t*(x1-x0);
+    const by=peakY+drop*(1-Math.sin(t*Math.PI));
+    const h=5.4+((i*37)%23)/10+(i%4===0?3.4:0);
+    out+=`<rect class="${C}" x="${f(cx-.6)}" y="${f(by-h)}" width="1.2" height="${f(h)}"/>`
+      +`<rect class="${C}" x="${f(cx-h*.37)}" y="${f(by-h+h*.22)}" width="${f(h*.74)}" height="${f(1.06)}"/>`;
+  }
+  return out;
+}
+
 /* 泰式/缅式多层收分尖塔 */
 function _spire(x,b,w,h,layers,cls){
   const f=v=>v.toFixed(1); let out='', y=b;
@@ -1915,10 +2010,10 @@ function _sail(x,b,w,h,cls,flip){
 /* 带垛口的长墙：老城 / 要塞的横向底座。
    一条光板横带会被读成"阴影"或"地面"，垛口是它唯一的身份，**不能省**，
    且垛口宽度要接近墙厚，太小就成锯齿噪声。 */
-function _merlons(x,b,w,h,cls,n){
-  const f=v=>v.toFixed(1), C=cls||'lm-c1', mw=w/(n*2-1);
+function _merlons(x,b,w,h,cls,n,mc){
+  const f=v=>v.toFixed(1), C=cls||'lm-c1', M=mc||C, mw=w/(n*2-1);
   let out=`<rect class="${C}" x="${f(x)}" y="${f(b-h)}" width="${f(w)}" height="${f(h)}"/>`;
-  for(let i=0;i<n;i++) out+=`<rect class="${C}" x="${f(x+i*2*mw)}" y="${f(b-h-h*.3)}" width="${f(mw)}" height="${f(h*.32)}"/>`;
+  for(let i=0;i<n;i++) out+=`<rect class="${M}" x="${f(x+i*2*mw)}" y="${f(b-h-h*.3)}" width="${f(mw)}" height="${f(h*.32)}"/>`;
   return out;
 }
 
@@ -4171,7 +4266,345 @@ const LM_SCENE={
       +`<g class="lm-c0h" opacity=".24">`
         +`<path d="M30 64 q22 -2.6 44 0 q-22 2.6 -44 0 Z"/>`
         +`<path d="M62 70 q18 -2.2 36 0 q-18 2.2 -36 0 Z"/>`
-      +`</g>` + _pine(38,62,14) },/* ==================== 热带兜底 ==================== */
+      +`</g>` + _pine(38,62,14) },
+
+  /* ==================== round 5 · 北欧 + 波罗的海 + 阿尔卑斯 ==================== */
+
+  /* 瑞士：马特洪峰 —— 全站唯一的"独立金字塔尖峰"。
+     主体必须落 x[139,217]：左不越 110（避开被强制锚在 (100,46) 的日头方块），
+     右不越 240（右上角是币种徽章）。三个明度才立得住一座雪山：
+     左坡受光 c0b、右坡背光 c1、雪帽 + 雪槽 c0h。
+     山脚那条陶土色的山地小火车是全卡唯一的暖色 —— 一公里外就认得出瑞士。 */
+  switzerland:{ sun:[120,13,9.5], clouds:[[176,11,10,2.3],[232,8.6,8,1.9]],
+    far:
+      `<path d="M-14 62 L44 55 L104 62 L104 64 L-14 64 Z"/>`
+     +`<path d="M198 62 L252 56 L314 62 L314 64 L198 64 Z"/>`,
+    mid:
+      _snowpeak(178,54,78,45,'lm-c0b',.29)
+      // 右坡背光面（从顶点 165.5,9 一路拉到山脚）
+     +`<path class="lm-c1" d="M165.5 9 L217 54 L165.5 54 Z" opacity=".5"/>`
+      // 雪槽：必须整条落在左坡**以内**。
+      // 注意 _snowpeak 的左坡是「(cx-w/2, b) → (顶点右偏 hw*.2, top)」那条**线段**，
+      // 比"顶点连底边"陡得多：x(y)=139+(54-y)*0.9528。
+      // 前两版都按错的那条算，于是雪槽整条飘在坡外，成了天空里一块白色浮片。
+     +`<path class="lm-c0h" opacity=".5" d="M171 24 L175 28 L158 46 L154 42 Z"/>`
+      // 山脚针叶林带（暗）—— 没有它，雪山会直接"插"在湖岸上
+     +`<path class="lm-c3" d="M106 54 Q142 50 178 52 Q214 54 240 51 L240 57 L106 57 Z" opacity=".42"/>`
+      // 湖岸台地
+     +`<path class="lm-c1" d="M-12 64 L-12 55 L302 53.6 L302 64 Z" opacity=".9"/>`,
+    fore:
+      _water(59)
+      // 山地小火车：车体 + 一排亮窗 + 暗底盘与车轮，沿湖岸慢慢爬坡
+     +`<g>`
+       +`<rect class="lm-clay" x="117" y="50.6" width="13" height="4.6" rx="1.5"/>`
+       +`<rect class="lm-clay" x="131.6" y="50.6" width="11" height="4.6" rx="1.3"/>`
+       +`<rect class="lm-clay" x="144.2" y="50.6" width="11" height="4.6" rx="1.3"/>`
+       +`<g class="lm-c0h" opacity=".82">`
+         +`<rect x="119.8" y="51.8" width="2.6" height="2.3" rx=".5"/>`
+         +`<rect x="123.8" y="51.8" width="2.6" height="2.3" rx=".5"/>`
+         +`<rect x="134.2" y="51.8" width="2.4" height="2.3" rx=".5"/>`
+         +`<rect x="138" y="51.8" width="2.4" height="2.3" rx=".5"/>`
+         +`<rect x="146.8" y="51.8" width="2.4" height="2.3" rx=".5"/>`
+         +`<rect x="150.6" y="51.8" width="2.4" height="2.3" rx=".5"/>`
+       +`</g>`
+       +`<path class="lm-c3" d="M116 55.2 h40.4 v1.1 h-40.4 Z"/>`
+       +`<g class="lm-c3">`
+         +`<circle cx="120.4" cy="56.9" r=".95"/><circle cx="125.6" cy="56.9" r=".95"/>`
+         +`<circle cx="136.4" cy="56.9" r=".95"/><circle cx="141.6" cy="56.9" r=".95"/>`
+         +`<circle cx="148.6" cy="56.9" r=".95"/><circle cx="153.4" cy="56.9" r=".95"/>`
+       +`</g>`
+     +`</g>`
+     +_pine(28,64,15)+_pine(46,64,11.5)+_pine(258,62,13)+_bush(276,63,12) },
+
+  /* 冰岛：极光 + 玄武岩柱崖 + 黑沙滩。
+     天空**没有太阳**（sun:null 会让 paintSvg 跳过日盘与日晕）——
+     极光和日头互斥，硬留一个日盘会把整张卡读成白天。
+     极光用"填充缎带"而不是 stroke：三条横向波浪带 + 八条竖向帘幕。
+     极光青正好由主题色直接派生（nordic 的 band2 本身就是 #47847A 青绿），
+     一个额外色值都不用加。 */
+  iceland:{ sun:null,
+    far:
+      `<path d="M-10 62 L20 47 L42 44 L62 47 L92 62 L92 64 L-10 64 Z"/>`
+      // 远处火山锥（右侧，低于币种徽章）
+     +`<path d="M198 62 L218 48 L238 48 L256 62 Z"/>`,
+    mid:
+      // 极光主带：三条横向缎带，整体带一个"斜向流动"的走势
+      `<path class="lm-c0b" opacity=".42" d="M-14 27 Q40 13 104 21 Q172 29 236 15 Q276 6 314 12 L314 18 Q276 12 236 21 Q172 35 104 27 Q40 19 -14 33 Z"/>`
+     +`<path class="lm-c0h" opacity=".36" d="M-14 20 Q46 6 110 15 Q178 24 244 10 Q282 1 314 6 L314 10 Q282 5 244 14 Q178 28 110 19 Q46 10 -14 24 Z"/>`
+     +`<path class="lm-c1" opacity=".28" d="M-14 34 Q52 22 118 30 Q186 38 250 25 Q284 18 314 23 L314 26 Q284 21 250 28 Q186 41 118 33 Q52 25 -14 37 Z"/>`
+      // 竖向帘幕：极光的第二个特征（竖直条纹），八条就够
+     +`<g class="lm-c0b" opacity=".26">`
+       +`<path d="M26 12 L29 12 L27 30 L24 30 Z"/>`
+       +`<path d="M62 8 L65 8 L63 27 L60 27 Z"/>`
+       +`<path d="M98 14 L101 14 L99 32 L96 32 Z"/>`
+       +`<path d="M140 18 L143 18 L141 34 L138 34 Z"/>`
+       +`<path d="M186 11 L189 11 L187 29 L184 29 Z"/>`
+       +`<path d="M228 6 L231 6 L229 24 L226 24 Z"/>`
+       +`<path d="M268 9 L271 9 L269 27 L266 27 Z"/>`
+       +`<path d="M300 14 L303 14 L301 31 L298 31 Z"/>`
+     +`</g>`
+      // 玄武岩柱崖（一体化崖体 + 竖向节理）+ 崖顶黑土带
+     +_basalt(116,58,62,13,20,'lm-c0b')
+      // 中间留一道豁口（x180~200）—— 一整条等高的横带无论怎么调顶缘都还是"一堵墙"，
+      // 豁口一开，人眼立刻把它读成"一片海岸岩崖"而不是一段建筑立面
+     +_basalt(200,58,40,9,14,'lm-c0b')
+      // 崖顶黑土带（只压在崖体上，不覆盖豁口）
+     +`<path class="lm-c2" d="M116 58 Q146 55 178 58 L178 60.4 L116 60.4 Z" opacity=".7"/>`
+     +`<path class="lm-c2" d="M200 58 Q220 55 240 58 L240 60.4 L200 60.4 Z" opacity=".7"/>`
+      // 海蚀柱（此时日头位置是空的，正好用左侧 x84~112）
+     +`<path class="lm-c0b" d="M84 58 L90 34 L96 58 Z"/>`
+     +`<path class="lm-c1" d="M100 58 L104 42 L109 58 Z"/>`
+     +`<path class="lm-c0b" d="M240 58 L246 40 L252 58 Z"/>`,
+    fore:
+      _water(58)
+      // 黑沙滩：暗色沙面 + 四道白色浪沫（深底上的亮弧是"沙滩"唯一读得出来的一笔）
+     +`<path class="lm-near" d="M-12 78 L-12 66 Q60 63 150 65 Q230 67 302 64 L302 78 Z"/>`
+     +`<g class="lm-c0h" opacity=".5">`
+       +`<path d="M-10 63.4 q40 -2.8 80 0 q-40 2.8 -80 0 Z"/>`
+       +`<path d="M40 68.6 q30 -2.4 60 0 q-30 2.4 -60 0 Z"/>`
+       +`<path d="M96 66.8 q54 -3.2 108 0 q-54 3.2 -108 0 Z"/>`
+       +`<path d="M188 71 q46 -2.8 92 0 q-46 2.8 -92 0 Z"/>`
+     +`</g>`
+     +`<g class="lm-c3" opacity=".6">`
+       +`<ellipse cx="46" cy="72.4" rx="7.4" ry="3.6"/><ellipse cx="256" cy="70.4" rx="8.2" ry="4"/>`
+     +`</g>` },
+
+  /* 瑞典：斯德哥尔摩老城 —— 陡山墙屋列 + 从屋列正中升起的高瘦教堂尖顶 + 水岸。
+     和丹麦新港的区别靠两点：① 屋列**更窄更高**，山墙以尖三角为主；
+     ② 尖塔"从屋列里长出来"，而新港那边是桅杆挤满水面。 */
+  sweden:{ sun:[118,13,9.5], clouds:[[176,11,10,2.3],[232,8.6,8,1.9]],
+    far:`<path d="M-14 62 L52 55 L118 62 L118 64 L-14 64 Z"/><path d="M200 62 L258 56 L314 62 L314 64 L200 64 Z"/>`,
+    mid:
+      // 教堂尖塔：立在屋列**正中间**（先画，让屋列压住塔基）
+      // —— 塔身必须比天空亮，暗塔在深色天幕上会整根消失
+      `<path class="lm-c0b" d="M160 54 v-14 h11 v14 Z"/>`
+     +`<rect class="lm-c0h" x="158.6" y="36" width="13.8" height="4.2"/>`
+     +`<path class="lm-c0b" d="M159.4 36 L166 10 L172.6 36 Z"/>`
+     +`<path class="lm-c2" d="M166 10 L172.6 36 L166 36 Z" opacity=".42"/>`
+     +`<rect class="lm-c0h" x="165.3" y="6.2" width="1.5" height="4.2"/>`
+     +`<rect class="lm-c0h" x="164" y="7.4" width="4.2" height="1.4"/>`
+      // 老城屋列（8 幢，山墙三种形状轮换、墙面四档明度交替）
+     +_gableHouse(118,52,15,21,'lm-c0h','lm-c1',0)
+     +_gableHouse(133,52,15,25,'lm-c0b','lm-c0h',1)
+     +_gableHouse(148,52,15,19,'lm-c1','lm-c0h',2)
+     +_gableHouse(163,52,15,27,'lm-c0','lm-c0h',0)
+     +_gableHouse(178,52,15,22,'lm-c0h','lm-c1',2)
+     +_gableHouse(193,52,15,26,'lm-c0b','lm-c0h',1)
+     +_gableHouse(208,52,15,20,'lm-c2','lm-c0h',0)
+     +_gableHouse(223,52,15,24,'lm-c0h','lm-c1',2)
+      // 码头岸线
+     +`<path class="lm-c2" d="M100 54 L100 50 L246 49 L246 54 Z"/>`,
+    fore:
+      _water(56)
+     +_sloop(212,69,17,'lm-c2','lm-c0b')
+     +`<g class="lm-c0h" opacity=".3">`
+       +`<path d="M120 66 q14 -2 28 0 q-14 2 -28 0 Z"/>`
+       +`<path d="M164 72 q13 -1.8 26 0 q-13 1.8 -26 0 Z"/>`
+     +`</g>` },
+
+  /* 芬兰：千湖 + 红木小屋 + 针叶林 + 桑拿烟囱。
+     "千湖"没法真画一千个湖，能画出来的是**破碎的水岸** ——
+     湖面上压两块半岛，水面立刻从"一条河"变成"一片湖"。
+     半岛必须是**亮色**：暗色半岛压在暗色湖面上等于没画（第一版就栽在这），
+     所以改成"亮岩岛 + 岛上的暗针叶树"，一层套一层。
+     中景针叶林一律从 x≥110 起排（x<110 是日头方块，压上去会把日头吃掉）。 */
+  finland:{ sun:[112,13,9], clouds:[[176,11,10,2.3],[232,8.6,8,1.9]],
+    far:`<path d="M-14 60 L58 53 L130 60 L130 62 L-14 62 Z"/><path d="M196 60 L262 54 L314 60 L314 62 L196 62 Z"/>`,
+    mid:
+      // 针叶林：后暗 c2 / 前亮 c0b —— 两层拉开才不像"一片雾"，中间给小屋留空档
+      `<g class="lm-c1">`
+        +_pine(118,55,19)+_pine(150,55,17)+_pine(200,55,15)+_pine(230,55,17)
+      +`</g>`
+     +`<g class="lm-c0b">`
+        +_pine(112,54,15)+_pine(126,54,11)+_pine(140,54,16)+_pine(210,54,14)+_pine(224,54,11)+_pine(236,54,13)
+      +`</g>`
+      // 红木小屋（桑拿房）：陶土色墙体 + 暗色双坡顶 + 冒烟的烟囱
+     +`<rect class="lm-clay" x="160" y="42" width="26" height="12"/>`
+     +`<path class="lm-c3" d="M156 42 L173 33 L190 42 Z"/>`
+     +`<rect class="lm-c3" x="180.6" y="30" width="3.4" height="7"/>`
+     +`<g class="lm-c0b" opacity=".48">`
+       +`<circle cx="182.3" cy="26.4" r="2.6"/><circle cx="184" cy="21.4" r="3.2"/><circle cx="181.2" cy="16.6" r="2.6"/>`
+     +`</g>`
+     +`<rect class="lm-c0h" x="164" y="45" width="4.4" height="4.4" opacity=".8"/>`
+     +`<rect class="lm-near" x="173" y="46" width="5" height="8"/>`
+      // 湖岸台地
+     +`<path class="lm-c1" d="M-12 62 L-12 55 L302 53.6 L302 62 Z" opacity=".85"/>`,
+    fore:
+      _water(58)
+      // 两块亮色半岛把水面切碎
+     +`<path class="lm-c0b" d="M84 64 Q114 52 154 60 Q126 72 92 74 Z"/>`
+     +`<path class="lm-c0b" d="M200 62 Q234 52 278 61 Q242 72 206 74 Z"/>`
+      // 岛上的暗针叶树 —— 亮岛 + 暗树才成"林岛"
+     +`<g class="lm-c3">`
+        +_pine(118,58,10)+_pine(131,58,8.4)+_pine(144,58,9.4)
+        +_pine(222,60,10)+_pine(236,60,8.4)+_pine(252,60,9.4)
+      +`</g>`
+     +`<g class="lm-c0h" opacity=".42">`
+       +`<path d="M160 66 q15 -2.2 30 0 q-15 2.2 -30 0 Z"/>`
+       +`<path d="M172 72 q16 -2.4 32 0 q-16 2.4 -32 0 Z"/>`
+       +`<path d="M56 76 q13 -1.8 26 0 q-13 1.8 -26 0 Z"/>`
+       +`<path d="M196 68 q13 -1.8 26 0 q-13 1.8 -26 0 Z"/>`
+     +`</g>`
+     +`<g opacity=".7">${_tuft(52,76,7)}${_tuft(176,76,6)}${_tuft(186,77,5)}</g>`
+     +_pine(24,66,14)+_bush(288,64,12) },
+
+  /* 丹麦：新港（Nyhavn）—— 彩色屋列 + 运河 + **三条帆船**。
+     和瑞典那张最容易撞（都是山墙屋列），区分全靠：① 房子更矮更宽（面宽 16、高 15~23）；
+     ② 屋列前横着三条帆船、桅杆一直顶到码头线 —— 新港的辨识点其实是"桅杆挤满水面"。
+     小美人鱼**没有画**：78 单位画布里她只有 4 个单位高（≈6.6px），
+     一定读成一个墨点 —— 形状信息不足时换主体，不要硬塞。 */
+  denmark:{ sun:[116,13,9.5], clouds:[[176,11,10,2.3],[232,8.6,8,1.9]],
+    far:`<path d="M-14 60 L48 54 L112 60 L112 62 L-14 62 Z"/><path d="M204 60 L266 55 L314 60 L314 62 L204 62 Z"/>`,
+    mid:
+      _gableHouse(118,49,16,17,'lm-c0h','lm-c1',2)
+     +_gableHouse(134,49,16,21,'lm-c0b','lm-c0h',0)
+     +_gableHouse(150,49,16,15,'lm-c1','lm-c0h',1)
+     +_gableHouse(166,49,16,22,'lm-c0h','lm-c1',2)
+     +_gableHouse(182,49,16,18,'lm-c0b','lm-c0h',1)
+     +_gableHouse(198,49,16,23,'lm-c0','lm-c0h',0)
+     +_gableHouse(214,49,16,16,'lm-c0h','lm-c1',2)
+     +_gableHouse(230,49,16,20,'lm-c1','lm-c0h',1)
+      // 码头岸线
+     +`<path class="lm-c2" d="M100 51 L100 47 L246 46 L246 51 Z"/>`,
+    fore:
+      _water(53)
+     +_sloop(128,64,18,'lm-c2','lm-c0b')
+     +_sloop(176,69,23,'lm-c2','lm-c0b')
+     +_sloop(220,66,19,'lm-c2','lm-c0b')
+     +`<g class="lm-c0h" opacity=".3">`
+       +`<path d="M108 60 q14 -2 28 0 q-14 2 -28 0 Z"/>`
+       +`<path d="M204 66 q14 -2 28 0 q-14 2 -28 0 Z"/>`
+       +`<path d="M152 74 q16 -2.2 32 0 q-16 2.2 -32 0 Z"/>`
+     +`</g>` },
+
+  /* 爱沙尼亚：塔林老城 —— 带垛口的老城墙 + 三座圆塔（红陶锥顶）+ 圣奥拉夫尖塔。
+     三样缺一就读成"某座要塞"：圆塔（不是方塔）+ 红陶圆锥顶 + 城墙上一排方垛口。
+     "圆塔"要靠**外挑檐口**才立得住 —— 光一个圆角矩形缩到卡片尺寸就是方块，
+     檐口（比塔身宽出去的一圈平檐）才是圆塔与方屋的分界线。 */
+  estonia:{ sun:[114,13,9.5], clouds:[[176,11,10,2.3],[232,8.6,8,1.9]],
+    far:`<path d="M-14 60 L52 54 L120 60 L120 62 L-14 62 Z"/><path d="M202 60 L262 55 L314 60 L314 62 L202 62 Z"/>`,
+    mid:
+      // 圣奥拉夫尖塔（先画，让城墙压住塔基）
+      `<path class="lm-c0b" d="M146 50 v-14 h10 v14 Z"/>`
+     +`<rect class="lm-c0h" x="144.6" y="31.4" width="12.8" height="4"/>`
+     +`<path class="lm-c0b" d="M145.6 31.4 L151 8 L156.4 31.4 Z"/>`
+     +`<path class="lm-c2" d="M151 8 L156.4 31.4 L151 31.4 Z" opacity=".4"/>`
+     +`<rect class="lm-c0h" x="150.2" y="4.6" width="1.6" height="4"/>`
+     +`<rect class="lm-c0h" x="149.2" y="5.8" width="3.6" height="1.3"/>`
+      // 城墙 + 一排垛口（垛口是老城墙唯一的身份，不能省）
+      // 城墙：亮墙身 + 一排高垛口 + 墙walk暗线
+     +`<rect class="lm-c0b" x="108" y="49" width="132" height="7"/>`
+     +`<g class="lm-c0b">`
+       +`<rect x="109" y="44.6" width="8.8" height="4.6"/><rect x="126.6" y="44.6" width="8.8" height="4.6"/>`
+       +`<rect x="144.2" y="44.6" width="8.8" height="4.6"/><rect x="161.8" y="44.6" width="8.8" height="4.6"/>`
+       +`<rect x="179.4" y="44.6" width="8.8" height="4.6"/><rect x="197" y="44.6" width="8.8" height="4.6"/>`
+       +`<rect x="214.6" y="44.6" width="8.8" height="4.6"/><rect x="232.2" y="44.6" width="8.8" height="4.6"/>`
+     +`</g>`
+     +`<path class="lm-c2" d="M108 49 h132 v1.5 h-132 Z" opacity=".45"/>`
+      // 三座圆塔：塔身 + 外挑檐口 + 红陶锥顶
+     +`<g class="lm-c0h">`
+       +`<rect x="108" y="38" width="19" height="18" rx="3.4"/>`
+       +`<rect x="105.4" y="35.4" width="24.2" height="2.8"/>`
+       +`<rect x="173" y="36" width="20" height="20" rx="3.6"/>`
+       +`<rect x="170.2" y="33.4" width="25.6" height="2.8"/>`
+       +`<rect x="216" y="40" width="17" height="16" rx="3.2"/>`
+       +`<rect x="213.8" y="37.6" width="21.4" height="2.6"/>`
+     +`</g>`
+     +`<path class="lm-clay" d="M105.4 35.4 L117.5 17 L129.6 35.4 Z"/>`
+     +`<path class="lm-clay" d="M170.2 33.4 L183 14 L195.8 33.4 Z"/>`
+     +`<path class="lm-clay" d="M213.8 37.6 L224.5 22 L235.2 37.6 Z"/>`
+      // 塔身箭孔
+     +`<g class="lm-c3" opacity=".55">`
+       +`<rect x="115" y="44" width="2" height="5"/><rect x="118.4" y="44" width="2" height="5"/>`
+       +`<rect x="181" y="42" width="2" height="5"/><rect x="184.4" y="42" width="2" height="5"/>`
+       +`<rect x="222.6" y="46" width="2" height="5"/><rect x="226" y="46" width="2" height="5"/>`
+     +`</g>`
+      // 城墙脚下的基座暗带 + 草坡
+     +`<path class="lm-c3" d="M106 56 h136 v2.2 h-136 Z" opacity=".5"/>`
+     +`<path class="lm-c1" d="M-12 64 L-12 56 L302 54.6 L302 64 Z" opacity=".85"/>`,
+    fore:_ground()+_pine(34,64,15)+_bush(268,63,13) },
+
+  /* 拉脱维亚：里加 —— 黑头宫（带钟的阶梯尖山墙）+ 老城屋列 + 圣彼得教堂尖塔。
+     里加和斯德哥尔摩同为"山墙屋列"，区分点全在黑头宫：
+     一座**带钟的尖山墙**、两侧各一尊小尖柱、正中一根顶饰；
+     再加上圣彼得教堂那根"细到不合理的八角尖顶 + 公鸡风信标"。 */
+  latvia:{ sun:[112,13,9.5], clouds:[[176,11,10,2.3],[232,8.6,8,1.9]],
+    far:`<path d="M-14 60 L54 54 L122 60 L122 62 L-14 62 Z"/><path d="M198 60 L258 55 L314 60 L314 62 L198 62 Z"/>`,
+    mid:
+      // 圣彼得教堂：细高的塔身 → 方形钟层 → 修长的八角尖顶 → 公鸡风信标
+      `<path class="lm-c0b" d="M214 52 v-18 h10 v18 Z"/>`
+     +`<rect class="lm-c0h" x="212" y="30.4" width="14" height="4.2"/>`
+     +`<rect class="lm-c3" x="216.8" y="31.6" width="4.6" height="4.2" opacity=".5"/>`
+     +`<path class="lm-c0b" d="M212.8 30.4 L214 21 L224 21 L225.2 30.4 Z"/>`
+     +`<path class="lm-c1" d="M213.5 21 L219 6 L224.5 21 Z"/>`
+      // 尖顶基座两侧的小尖柱（必须贴着尖顶底边 —— 第一版有两尊飘在空气里）
+     +`<g class="lm-c0h">`
+       +`<rect x="211" y="26" width="2.2" height="5.4"/><rect x="224.8" y="26" width="2.2" height="5.4"/>`
+     +`</g>`
+      // 公鸡风信标（圣彼得教堂塔顶那只是里加的地标）
+     +`<path class="lm-clay" d="M218.2 6 q1.8 -2.2 3.6 -1.2 q-1.4 .4 -1.6 1.8 q-1.1 .5 -2 -.6 Z"/>`
+      // 老城屋列（5 幢）
+     +_gableHouse(117,54,20,17,'lm-c0b','lm-c0h',2)
+     +_gableHouse(137,54,20,21,'lm-c0h','lm-c1',0)
+     +_gableHouse(157,54,20,19,'lm-c1','lm-c0h',0)
+     +_gableHouse(177,54,20,23,'lm-c0b','lm-c0h',1)
+     +_gableHouse(197,54,20,18,'lm-c0','lm-c0h',2)
+      // 黑头宫（中央那座）：加大门、加钟、加两侧小尖柱、加正中顶饰
+     +`<path class="lm-near" d="M154 54 v-9 h6 v9 Z"/>`
+     +`<circle class="lm-c3" cx="157" cy="30" r="3.1"/>`
+     +`<circle class="lm-c0h" cx="157" cy="30" r="1.2"/>`
+     +`<g class="lm-c0h">`
+       +`<rect x="147.2" y="29.4" width="2.2" height="6.4"/><rect x="164.6" y="29.4" width="2.2" height="6.4"/>`
+       +`<rect x="156.2" y="21.2" width="1.6" height="5"/>`
+     +`</g>`
+      // 街面
+     +`<path class="lm-c1" d="M-12 64 L-12 56 L302 54.6 L302 64 Z" opacity=".85"/>`,
+    fore:_ground()+_bush(30,64,14)+_pine(52,65,12)+_bush(272,63,13) },
+
+  /* 立陶宛：十字架山（左）+ 特拉凯湖中红砖城堡（右）。
+     两个符号缺一不可 —— 只画城堡就分不出"某座欧洲湖心堡"，
+     只画十字架山又认不出是立陶宛。左丘必须压到 y≥44（避开国名文字带），
+     右堡必须收在 x≤240（右上角是币种徽章）。 */
+  lithuania:{ sun:[116,13,9.5], clouds:[[176,11,10,2.3],[232,8.6,8,1.9]],
+    far:`<path d="M-14 62 L40 56 L96 62 L96 64 L-14 64 Z"/>`,
+    mid:
+      // 十字架山：先坡地，后十字架（十字架必须比坡地亮）
+      `<path class="lm-c2" d="M12 66 Q34 49 56 48 Q78 48 102 66 Z"/>`
+     +`<path class="lm-c1" d="M14 66 Q36 51 56 50 Q76 50 100 66 Z" opacity=".5"/>`
+     +_crosses(26,88,50,5,17,'lm-c0h')
+      // 特拉凯城堡：湖心岛 → 城墙 → 三座塔（中央主塔最高，红陶锥顶）
+     +`<path class="lm-c1" d="M118 54 Q160 51 202 53 Q226 54 240 56 L240 60 L118 60 Z"/>`
+     +`<rect class="lm-c0b" x="130" y="41" width="86" height="13"/>`
+     +`<path class="lm-c0h" d="M128 41 h90 v-2.6 h-90 Z"/>`
+     +`<g class="lm-c3" opacity=".5">`
+       +`<rect x="140" y="45" width="3" height="6"/><rect x="152" y="45" width="3" height="6"/>`
+       +`<rect x="164" y="45" width="3" height="6"/><rect x="194" y="45" width="3" height="6"/>`
+       +`<rect x="204" y="45" width="3" height="6"/>`
+     +`</g>`
+     +`<rect class="lm-c0h" x="126" y="34" width="13" height="19" rx="1.6"/>`
+     +`<path class="lm-clay" d="M124.6 34 L132.5 26 L140.4 34 Z"/>`
+     +`<rect class="lm-c0h" x="207" y="34" width="13" height="19" rx="1.6"/>`
+     +`<path class="lm-clay" d="M205.6 34 L213.5 26 L221.4 34 Z"/>`
+     +`<rect class="lm-c0h" x="164" y="27" width="20" height="26"/>`
+     +`<path class="lm-clay" d="M162 27 L174 13 L186 27 Z"/>`
+     +`<rect class="lm-c0h" x="173.4" y="10.4" width="1.6" height="3.4"/>`,
+    fore:
+      _water(58)
+      // 城堡在湖面上的倒影（必须画在 _water 之后，否则被水面盖掉）
+     +`<g class="lm-c0b" opacity=".22">`
+       +`<rect x="130" y="60" width="86" height="4.2"/>`
+       +`<rect x="164" y="60" width="20" height="7"/>`
+       +`<rect x="126" y="60" width="13" height="5"/>`
+       +`<rect x="207" y="60" width="13" height="5"/>`
+     +`</g>`
+     +`<g class="lm-c0h" opacity=".3">`
+       +`<path d="M32 66 q14 -2 28 0 q-14 2 -28 0 Z"/>`
+       +`<path d="M198 70 q15 -2.2 30 0 q-15 2.2 -30 0 Z"/>`
+       +`<path d="M108 74 q13 -1.8 26 0 q-13 1.8 -26 0 Z"/>`
+     +`</g>`
+     +_bush(30,68,11)+_bush(250,62,13) },
+
+  /* ==================== 热带兜底 ==================== */
   tropical:{ sun:[152,14,10], clouds:[[112,12,11,2.5]], birds:[214,21,2.7],
     far:`<path d="M-14 62 L24 50 L62 62 Z"/><path d="M198 62 L242 43 L288 62 Z"/>`,
     mid:
@@ -4260,7 +4693,7 @@ const DEST_THEME={
   NL:{tone:'tone-tropical',lm:'nl',tag:'运河、风车与郁金香'},
   BE:{tone:'tone-euro',lm:'be',tag:'巧克力、啤酒与中世纪广场'},
   LU:{tone:'tone-euro',lm:'lu',tag:'小而富的峡谷之城'},
-  CH:{tone:'tone-nordic',lm:'nordic',tag:'雪山、湖泊与准点到秒'},
+  CH:{tone:'tone-nordic',lm:'switzerland',tag:'雪山、湖泊与准点到秒'},
   AT:{tone:'tone-euro',lm:'austria',tag:'音乐之都与阿尔卑斯'},
   GR:{tone:'tone-nordic',lm:'greece',tag:'爱琴海的白与蓝'},
   HR:{tone:'tone-nordic',lm:'croatia',tag:'亚得里亚海的红顶古城'},
@@ -4272,16 +4705,16 @@ const DEST_THEME={
   RO:{tone:'tone-euro',lm:'romania',tag:'喀尔巴阡的传说'},
   BG:{tone:'tone-euro',lm:'bulgaria',tag:'玫瑰与黑海'},
   RS:{tone:'tone-euro',lm:'serbia',tag:'巴尔干的心脏'},
-  EE:{tone:'tone-nordic',lm:'nordic',tag:'中世纪老城'},
-  LV:{tone:'tone-nordic',lm:'nordic',tag:'波罗的海的明珠'},
-  LT:{tone:'tone-nordic',lm:'nordic',tag:'十字架山冈'},
+  EE:{tone:'tone-nordic',lm:'estonia',tag:'中世纪老城'},
+  LV:{tone:'tone-nordic',lm:'latvia',tag:'波罗的海的明珠'},
+  LT:{tone:'tone-nordic',lm:'lithuania',tag:'十字架山冈'},
   MT:{tone:'tone-tropical',lm:'malta',tag:'地中海骑士团故地'},
   CY:{tone:'tone-tropical',lm:'cyprus',tag:'地中海的阳光岛'},
-  IS:{tone:'tone-nordic',lm:'nordic',tag:'冰川、极光与黑沙滩'},
+  IS:{tone:'tone-nordic',lm:'iceland',tag:'冰川、极光与黑沙滩'},
   NO:{tone:'tone-nordic',lm:'nordic',tag:'峡湾与午夜太阳'},
-  SE:{tone:'tone-nordic',lm:'nordic',tag:'森林、设计与极简'},
-  FI:{tone:'tone-nordic',lm:'nordic',tag:'千湖之国与圣诞老人'},
-  DK:{tone:'tone-nordic',lm:'nordic',tag:'童话与新北欧设计'},
+  SE:{tone:'tone-nordic',lm:'sweden',tag:'森林、设计与极简'},
+  FI:{tone:'tone-nordic',lm:'finland',tag:'千湖之国与圣诞老人'},
+  DK:{tone:'tone-nordic',lm:'denmark',tag:'童话与新北欧设计'},
   RU:{tone:'tone-imperial',lm:'russia',tag:'红场、洋葱顶与广袤'},
   BY:{tone:'tone-euro',lm:'belarus',tag:'森林与湖泊'},
   UA:{tone:'tone-euro',lm:'ukraine',tag:'黑土地与金色圆顶'},
