@@ -362,8 +362,14 @@ header::before{content:'';display:block;height:3px;
 /* 表单 */
 label.fl{font-size:var(--fs-2xs);color:var(--ink2);font-weight:650;margin-bottom:5px;display:block;letter-spacing:.01em}
 input,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:var(--r-md);
-  font-size:var(--fs-lg);background:#fff;color:var(--ink);font-family:inherit;
+  font-size:var(--fs-lg);background:#fff;color:var(--ink);font-family:inherit;min-width:0;
   transition:border-color .16s,box-shadow .16s,background .16s}
+/* 数字输入框的原生 spinner（上下箭头）在 Chrome/Edge 上会吃掉 15~20px 内宽。
+   汇率那一行的输入框本来就只有 ~57px，留着它"1925"会被截成"19"；
+   手机上填数字也从来不用 spinner。全局关掉。 */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield;appearance:textfield}
 input:focus,select:focus{outline:none;border-color:var(--tone);
   box-shadow:0 0 0 3.5px color-mix(in srgb,var(--tone) 12%,transparent)}
 input[type=number]{font-variant-numeric:tabular-nums;font-family:var(--font-num);font-weight:650;letter-spacing:-.01em}
@@ -604,20 +610,25 @@ select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns=
 .ch-add .ca-btns{display:flex;gap:8px}
 .ch-add .ca-btns .btn{flex:1}
 
-/* 双向换算 pair 编辑器 */
+/* 双向换算 pair 编辑器
+   这一行的宽度是从"手机竖屏"倒推的：390px 视口 → wrap 内容宽 362 → pair-row 内宽 340
+   减去 gap 5×4 + 币种锁 37 + 等号 11 + 币种选择器 62 = 190 → 两个输入框各 95px，
+   padding 6×2 之后内容区还有 83px，14px 粗体放得下 10 位数字。
+   v13 之前是 8px padding + 62px 的 select + 15px 字号，内容区只剩 40px ——
+   输 "1925" 就已经顶满，输 "1925.5" 直接看不见末尾（这就是"显示不全"的根因）。 */
 .pair-row{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:10px 11px;margin-bottom:9px}
 .pair-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .pair-target{font-size:var(--fs-xs);font-weight:700;color:var(--ink2)}
 .pair-res{font-size:var(--fs-sm);font-weight:800;color:var(--tone-ink);font-variant-numeric:tabular-nums;
   letter-spacing:-.02em;font-family:var(--font-num)}
-.pair-eq{display:flex;align-items:center;gap:6px}
-.pair-eq input{flex:1;min-width:0;padding:9px 8px;text-align:center;font-weight:750;font-size:var(--fs-lg);
+.pair-eq{display:flex;align-items:center;gap:5px}
+.pair-eq input{flex:1 1 0;min-width:0;padding:9px 6px;text-align:center;font-weight:700;font-size:var(--fs-md);
   font-variant-numeric:tabular-nums}
-.pair-eq select{flex:0 0 auto;width:78px;padding:9px 24px 9px 9px;font-size:var(--fs-xs);font-weight:750;
-  background-position:right 8px center}
-.pair-eqsign{font-size:var(--fs-xl);font-weight:800;color:var(--ink3);flex:0 0 auto;padding:0 1px}
-.curb-lock{font-size:var(--fs-xs);font-weight:800;color:var(--ink2);background:#EEF2F7;border-radius:var(--r-sm);
-  padding:9px 10px;flex:0 0 auto;letter-spacing:.02em}
+.pair-eq select{flex:0 0 auto;width:62px;padding:9px 19px 9px 8px;font-size:var(--fs-2xs);font-weight:750;
+  background-position:right 6px center}
+.pair-eqsign{font-size:var(--fs-lg);font-weight:800;color:var(--ink3);flex:0 0 auto;padding:0 1px}
+.curb-lock{font-size:var(--fs-2xs);font-weight:800;color:var(--ink2);background:#EEF2F7;border-radius:var(--r-sm);
+  padding:9px 7px;flex:0 0 auto;letter-spacing:.02em}
 
 /* 结果卡 —— 整套皮肤的"招牌"。它是全页最醒目的一块：
    四色相深渐变 + 亮色缎带 + 角落光晕 + 与卡头同款的场景彩绘。
@@ -745,6 +756,43 @@ select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns=
   border-top:1px solid var(--line);padding:10px 14px 14px;z-index:30}
 .foot-in{max-width:520px;margin:0 auto;display:flex;gap:9px}
 .foot .btn{flex:1;padding:13px;font-size:var(--fs-lg);border-radius:var(--r-md)}
+
+/* ============ 必填标记 + 「未填就地指认」（v14） ============
+   只弹 toast 是不够的 —— toast 说"请先填报价金额"，用户还是不知道该填哪一格，
+   而且 toast 2 秒就没了、结果区在页面最底下也看不到任何提示。
+   所以做成三层：① 必填项左侧一个红星（事前预防）② 点按钮时给那一格加红框 + 抖两下
+   ③ 同时展开所在折叠卡并滚过去（事后指认）。 */
+label.fl .req{color:var(--red);margin-left:1px;font-weight:800;font-size:var(--fs-xs);
+  vertical-align:-.5px;line-height:0}
+@keyframes needShake{0%,100%{transform:translateX(0)}
+  16%{transform:translateX(-4px)}36%{transform:translateX(4px)}
+  56%{transform:translateX(-3px)}76%{transform:translateX(2px)}}
+.need{border-color:var(--red)!important;background:var(--red2)!important;
+  box-shadow:0 0 0 3.5px color-mix(in srgb,var(--red) 15%,transparent)!important;
+  animation:needShake .52s var(--ease)}
+/* 软版：只染底色 + 描红，不抖。给"整块列表都没选"用。 */
+.need-soft{background:var(--red2)!important;box-shadow:inset 0 0 0 1.5px var(--red)!important;
+  border-radius:var(--r-sm);transition:background .2s}
+.acc.need-acc{border-color:var(--red)!important;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 11%,transparent),var(--shadow)!important}
+
+/* ============ 结果区顶部的「结论条」（v14） ============
+   测算结论原来在页面最底部，手机上要下滑 1000px 才看得到。
+   除了"算完自动收起 1/2、并把结论滚到视口顶部"，再钉一条 sticky 结论条 ——
+   它是给"往下翻全渠道明细"的时候用的：翻到哪儿都能看见最后结论，
+   不用来回滚。颜色沿用结果卡的主色相，保证和它是一套东西。 */
+.res-bar{position:sticky;top:var(--hdr,0px);z-index:8;display:flex;align-items:center;gap:8px;
+  margin:0 0 9px;padding:9px 13px;border-radius:var(--r-md);color:#fff;
+  background:color-mix(in oklab,var(--tone-band) 92%,#000);
+  font-size:var(--fs-sm);font-weight:700;letter-spacing:-.01em;
+  box-shadow:0 8px 20px -10px rgba(16,24,40,.55);
+  transition:background .45s ease}
+.res-bar .rb-ic{flex:0 0 auto;display:flex;opacity:.8}
+.res-bar .rb-ic .ic{width:14px;height:14px;stroke-width:2.4}
+.res-bar .rb-t{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.res-bar .rb-n{font-family:var(--font-num);font-variant-numeric:tabular-nums;font-weight:800;letter-spacing:-.02em}
+.res-bar .rb-s{flex:0 0 auto;font-size:var(--fs-2xs);font-weight:700;background:var(--tone-band2);
+  border-radius:var(--r-pill,999px);padding:2px 8px}
 .muted{font-size:var(--fs-2xs);color:var(--ink3);line-height:1.65;margin-top:9px}
 .mini{font-size:var(--fs-2xs);color:var(--ink3)}
 .toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%) translateY(20px) scale(.96);
@@ -1240,6 +1288,17 @@ function _ground(){
 /* 近景框：左右下角各一丛"贴脸"植被（只露一部分轮廓）+ 中段草簇。
    这是让画面从"图标条"变成"有景深的插画"最有效的一招 ——
    观众会下意识把最暗、最大的那层读成"离我最近"。 */
+/* 草原地面：和通用 _ground() 只差一点 —— **最上一层加深一档**（lm-c3 而不是 lm-c2）。
+   通用版给的是"远亮近深"的空气透视，近景主体就只能是深色；
+   但草原的主角（白马群）是浅色（lm-c0h 78% 白），压在一张只退 10% 黑的台地上，
+   明度差不到 1.4:1，整群马直接消失（v13 蒙古那一版就是这么废的）。
+   加深一档后，近景变成"浅色主体压深色地面"，和远山的"深色剪影压浅色天空"
+   正好是同一张卡里的两个对比方向。 */
+function _steppe(){
+  return _terrain(63,[0,2.4,.8,3.2,.8,2.4,.8,3.2,.8],'lm-c3')
+       + _terrain(69,[0,3.6,1.2,4.4,1,3.6,1.2,4.4,1],'lm-near');
+}
+
 /* 单枚披针形叶片：从 (x,y) 沿 ang 度（90 = 正上）长出长 len、腰宽 w 的叶 */
 function _leaf(x,y,len,ang,w,cls){
   const a=ang*Math.PI/180, f=v=>v.toFixed(1);
@@ -1489,6 +1548,115 @@ function _tp101(cx,b,H){
    +`<path class="lm-c0" d="M${f(cx-2.5)} ${f(top-1.6)} L${f(cx-.5)} ${f(top-8.6)} L${f(cx+.5)} ${f(top-8.6)} L${f(cx+2.5)} ${f(top-1.6)} Z"/>`
    +`<rect class="lm-c0h" x="${f(cx-.8)}" y="${f(top-12.2)}" width="1.6" height="3.6"/>`
    +`</g>`;
+}
+/* 蒙古包 / 中亚毡房：短圆柱墙身 + 陡圆锥顶 + 顶上的"陶脑"（天窗圈）。
+   辨识点全在"矮胖 + 尖顶"这个组合上：顶写成半球就变成太空舱，
+   墙身写高就变成小房子。真实蒙古包直径约 5m、总高约 2.4m —— 宽高比 2:1，
+   所以 w 必须给到 h 的两倍左右，一瘦就认不出。 */
+function _yurt(x,b,w,h,cls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0', hw=w/2, wall=h*.44, top=b-h;
+  return `<g class="${C}">`
+   +`<rect x="${f(x-hw)}" y="${f(b-wall)}" width="${f(w)}" height="${f(wall)}"/>`
+   +`<path d="M${f(x-hw)} ${f(b-wall)} L${f(x-2.1)} ${f(top+1)} Q${f(x)} ${f(top-.4)} ${f(x+2.1)} ${f(top+1)} L${f(x+hw)} ${f(b-wall)} Z"/>`
+   +`<path d="M${f(x-2.5)} ${f(top+.7)} L${f(x-1.3)} ${f(top-1.1)} L${f(x+1.3)} ${f(top-1.1)} L${f(x+2.5)} ${f(top+.7)} Z"/>`
+   +`<rect x="${f(x-.4)}" y="${f(top-2.8)}" width=".8" height="1.7"/>`
+   +`</g>`
+   +`<path class="lm-c3" d="M${f(x-1.5)} ${f(b)} v${f(-wall*.78)} q1.5 -1.4 3 0 v${f(wall*.78)} Z"/>`;
+}
+/* 马：侧面剪影 = 四条细腿 + 横向长身 + 前伸的斜颈与头。
+   78 单位画布里马只有 8~10 单位高，细节必须砍到只剩这三块 ——
+   多画一条尾巴或一只耳朵，整匹马就糊成一个点。h = 含头总高。 */
+function _horse(x,b,h,cls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c2', u=h/11;
+  const by=b-4.6*u;
+  return `<g class="${C}">`
+   +`<rect x="${f(x-3.5*u)}" y="${f(by)}" width="${f(.85*u)}" height="${f(4.6*u)}"/>`
+   +`<rect x="${f(x-2.2*u)}" y="${f(by)}" width="${f(.85*u)}" height="${f(4.6*u)}"/>`
+   +`<rect x="${f(x+1.3*u)}" y="${f(by)}" width="${f(.85*u)}" height="${f(4.6*u)}"/>`
+   +`<rect x="${f(x+2.6*u)}" y="${f(by)}" width="${f(.85*u)}" height="${f(4.6*u)}"/>`
+   +`<path d="M${f(x-4*u)} ${f(by)} q${f(1.9*u)} ${f(-2.4*u)} ${f(4.3*u)} ${f(-2.3*u)} q${f(2.7*u)} ${f(-.1*u)} ${f(3.8*u)} ${f(1.4*u)} q${f(-3.6*u)} ${f(1.1*u)} ${f(-8.1*u)} ${f(.9*u)} Z"/>`
+   +`<path d="M${f(x+3.3*u)} ${f(by-1.9*u)} L${f(x+4.3*u)} ${f(by-5.6*u)} l${f(1.5*u)} ${f(.4*u)} L${f(x+4.5*u)} ${f(by-1.7*u)} Z"/>`
+   +`<path d="M${f(x+4.3*u)} ${f(by-5.6*u)} l${f(2.4*u)} ${f(-.2*u)} l${f(-.5*u)} ${f(1.3*u)} l${f(-1.6*u)} ${f(.3*u)} Z"/>`
+   +`</g>`;
+}
+/* 巴伊杰列克塔（阿斯塔纳"生命之树"）：细柱身 + 顶上一颗大球 + 底部左右外张的斜脚。
+   球径约占总高的 12% —— 给太小就退化成"带圆顶的柱子"，那就和一般纪念塔分不出来了。
+   注意球心要压到 0.85H 以上：真实塔的球就在最顶上，放低了会读成"胖子举球"。
+
+   两个实测坑：
+   1) 斜脚**必须和塔身同色或更亮**。第一版给了 lm-c1（16% 白），在 tone-america /
+      tone-desert 这种浅天幕上等于没画 —— 塔退化成一根"棒棒糖"，没有"树根"。
+   2) 球要压一牙暗侧。整颗球和柱身同色同亮度时，卡上一眼看到的是"竖杆 + 圆头"，
+      也就是麦克风；右下角压掉一牙，球体感就回来了。 */
+function _baiterek(cx,b,H,cls,ballCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0', BC=ballCls||C;
+  const hw=H*.048, sy=b-H*.74, r=H*.125, cy=sy-r*.92, top=b-H;
+  const legY=b-H*.34, leg=hw*7.2;
+  return `<g>`
+   +`<g class="${C}">`
+   +`<path d="M${f(cx-hw*1.5)} ${f(b)} L${f(cx-leg)} ${f(b)} L${f(cx-hw*1.05)} ${f(legY)} Z"/>`
+   +`<path d="M${f(cx+hw*1.5)} ${f(b)} L${f(cx+leg)} ${f(b)} L${f(cx+hw*1.05)} ${f(legY)} Z"/>`
+   +`<path d="M${f(cx-hw*1.05)} ${f(legY)} L${f(cx-hw)} ${f(sy)} h${f(hw*2)} L${f(cx+hw*1.05)} ${f(legY)} Z"/>`
+   +`</g>`
+   +`<circle class="${BC}" cx="${f(cx)}" cy="${f(cy)}" r="${f(r)}"/>`
+   +`<path class="${BC}" d="M${f(cx-1.3)} ${f(cy-r*.84)} L${f(cx)} ${f(top)} L${f(cx+1.3)} ${f(cy-r*.84)} Z"/>`
+   +`<path class="lm-c3" opacity=".3" d="M${f(cx)} ${f(cy-r)} a${f(r)} ${f(r)} 0 0 1 0 ${f(r*2)} Z"/>`
+   +`<rect class="lm-c3" x="${f(cx-hw*.55)}" y="${f(sy)}" width="${f(hw*1.1)}" height="${f(b-sy)}" opacity=".22"/>`
+   +`</g>`;
+}
+/* 达瓦扎"地狱之门"火坑：从平视角度画成"地面上的一个椭圆火口"——
+   外圈是土黄坑沿、内里压暗、火苗从口里往上蹿。
+   火苗走 .lm-sky（就是日头那支暖黄），这样它在任何主题下都是画面里唯一的暖亮点，
+   不用另外引一个颜色常量。
+
+   注意：**不要画烟**。烟只能往 y<37 升，而全宽无字带的上沿就是 y=36（高原文字底边），
+   再往上必然落进文字区 —— 实测那三颗小椭圆在卡上读成"多出来的一朵云"，
+   和火坑完全脱钩。火焰本身已经足够，宁缺毋滥。 */
+function _crater(cx,y,r){
+  const f=v=>v.toFixed(1);
+  return `<g>`
+   +`<ellipse class="lm-c1" cx="${f(cx)}" cy="${f(y)}" rx="${f(r)}" ry="${f(r*.34)}"/>`
+   +`<ellipse class="lm-near" cx="${f(cx)}" cy="${f(y+r*.03)}" rx="${f(r*.84)}" ry="${f(r*.26)}"/>`
+   +`<ellipse class="lm-c3" cx="${f(cx)}" cy="${f(y+r*.05)}" rx="${f(r*.58)}" ry="${f(r*.17)}"/>`
+   /* 火苗：三簇"水滴形"（下圆上尖、两侧外凸），比柳叶更读得出是火。
+      第一版写成等腰三角 → 三颗白牙；第二版写成柳叶 → 三片花瓣。 */
+   +`<g class="lm-sky">`
+   +`<path d="M${f(cx-r*.32)} ${f(y+r*.02)} C${f(cx-r*.62)} ${f(y-r*.34)} ${f(cx-r*.44)} ${f(y-r*.86)} ${f(cx-r*.26)} ${f(y-r*1.06)} C${f(cx-r*.16)} ${f(y-r*.6)} ${f(cx-r*.02)} ${f(y-r*.3)} ${f(cx-r*.32)} ${f(y+r*.02)} Z"/>`
+   +`<path d="M${f(cx)} ${f(y-r*.02)} C${f(cx-r*.4)} ${f(y-r*.44)} ${f(cx-r*.3)} ${f(y-r*1.06)} ${f(cx+r*.02)} ${f(y-r*1.34)} C${f(cx+r*.34)} ${f(y-r*.92)} ${f(cx+r*.4)} ${f(y-r*.4)} ${f(cx)} ${f(y-r*.02)} Z"/>`
+   +`<path d="M${f(cx+r*.34)} ${f(y+r*.01)} C${f(cx+r*.06)} ${f(y-r*.28)} ${f(cx+r*.2)} ${f(y-r*.68)} ${f(cx+r*.58)} ${f(y-r*.9)} C${f(cx+r*.6)} ${f(y-r*.5)} ${f(cx+r*.56)} ${f(y-r*.2)} ${f(cx+r*.34)} ${f(y+r*.01)} Z"/>`
+   +`</g>`
+   +`</g>`;
+}
+/* 雪峰：三角尖 + 一条折线山脊（三点着地才不像"贴上去的三角"）+ 顶端的雪盖。
+   中北亚这一批全是"雪山"，全靠它撑；雪盖用 lm-c0h（78% 白），
+   在 nordic 的深蓝底上一下子就跳出来，比多加三条山脊有用。
+
+   注意：雪盖的左右两条边**必须贴在山体轮廓上**。第一版拿"顶点 ± 固定比例"去画，
+   而左坡在 t=.2 处有个折点（山脊外挑），直线一穿就跑到天幕上去了 —— 表现是
+   山顶挂了一块"悬空白斑"，w 越大越离谱（kyrgyzstan 的 w=96 直接读成纸飞机）。
+   现在用 LX/RX 两个切线函数去求交点，雪盖永远是山体的一部分，w 随便改都不会漏。 */
+function _snowpeak(cx,b,w,h,cls,snow){
+  const f=v=>v.toFixed(1), hw=w/2, top=b-h;
+  /* 深度比例夹到 [.22,.29]：小于 .2 会踩在山脊折点上（多边形自交），
+     大于 .3 右坡就换段了（RX 的公式只管第一段）。 */
+  const sn=Math.min(Math.max(snow==null?.3:snow,.22),.29);
+  const C=cls||'lm-c0b';
+  /* 主脊偏左 1/3：等腰三角形会读成"山"字图标，偏脊才像真山；
+     右侧坡给两点折，让轮廓有起伏而不是一条直线。 */
+  const px=cx-hw*.32, bx=px+hw*.2, b2y=top+h*.2;
+  const body=`M${f(cx-hw)} ${f(b)} L${f(bx)} ${f(b2y)} L${f(px)} ${f(top)}`
+   +` L${f(cx+hw*.46)} ${f(top+h*.3)} L${f(cx+hw*.62)} ${f(top+h*.24)} L${f(cx+hw)} ${f(b)} Z`;
+  /* 轮廓切线：t = 距顶点的深度比例（0 = 顶，1 = 地平线） */
+  const LX=t=> px + hw*(t<=.2 ? t : .2-1.1*(t-.2));
+  const RX=t=> px + hw*.78*(t/.3);
+  const xL=LX(sn), xR=RX(sn), y0=top+h*sn;
+  /* 雪盖底边的锯齿：三点下探、三点回收，最后一点咬在右坡上，
+     再从顶点沿左坡折点绕回来 —— 整条边界全程落在山体轮廓以内。 */
+  const k=[[0,1],[.16,1.5],[.31,.86],[.47,1.6],[.64,.92],[.8,1.44],[1,1]];
+  let sd=`M${f(xL)} ${f(y0)}`;
+  k.forEach(p=>{ sd+=` L${f(xL+(xR-xL)*p[0])} ${f(top+h*sn*p[1])}`; });
+  sd+=` L${f(px)} ${f(top)} L${f(bx)} ${f(b2y)} Z`;
+  return `<g class="${C}"><path d="${body}"/></g><path class="lm-c0h" d="${sd}"/>`;
 }
 
 const LM_SCENE={
@@ -2136,6 +2304,150 @@ const LM_SCENE={
      +`<path class="lm-c3" d="M178 50 C182 34 191 26 200 24 C191 30 184 39 181 50 Z"/>`,
     fore:_water(67) },
 
+  /* ==================== 中北亚（round 1）====================
+     这一批全是"草原/雪山"，必须按**纵向层次**互相拉开，否则五张会长得一样：
+       蒙古 = 缓丘 + 毡房 + 马（最低、最平、最空的横向构图）
+       哈萨克 = 一根细塔 + 球（唯一的垂直线条）
+       吉尔吉斯 = 雪山 + 湖（雪在上、水在下，中间是湖畔毡房）
+       塔吉克 = 群峰无湖（山最高最密，前景换成裸岩）
+       土库曼 = 沙丘 + 火坑（唯一的暖色亮点，地面凹陷）
+
+     这一批共同的硬约束（下面几条都是在截图里踩出来的）：
+       1) 主体是**浅色**就用 _steppe()（近景压深）+ lm-c0h，别用通用 _ground()
+       2) 主体是**深色**就直接站地平线，天幕就是它最好的背景
+       3) 深色主体**不要**放进前景 —— 前景地面压得深，深压深等于没画
+       4) 景观元素一律不许进 y<37（那是文字区，烟、雾、飞鸟都算） */
+  /* 蒙古：缓丘草原 + 毡房 + 马群。
+     蒙古的辨识点其实是"空" —— 一望无际的缓丘、几顶毡房、几匹马。
+     这张图必须克制：不加山（会变成西藏）、不加建筑（会变成中亚城市）。
+
+     这一版最大的改动是**把前景的深色马换成浅色马**。理由：
+     通用 _ground() 的最上一层只压 10% 黑，而马原本用的是 lm-c3（34% 黑）——
+     深压深，明度差不到 1.4:1，三匹近景马整群消失（第一版截图里只能看到几个"拱形"）。
+     现在改用 _steppe()（近景整层压深）+ lm-c0h（78% 白）的马：
+     远山上的暗毡房压浅天幕、近景的白马群压深草原，一张卡里给出两个方向的对比。 */
+  mongolia:{ sun:[90,12,7.5], clouds:[[152,10.5,11,2.4],[204,13,8,1.9]], birds:[56,21,2.3],
+    far:`<path d="M-14 64 Q28 53 76 57 Q122 61 166 53 Q210 45 256 54 Q288 59 322 57 L322 64 Z" opacity=".92"/>`
+       +`<path d="M-14 64 Q46 58 98 61 Q146 63 192 57 Q236 52 282 59 Q304 62 322 61 L322 64 Z" opacity=".78"/>`,
+    mid:
+      _yurt(146,64,26,13.4,'lm-c3')
+     +_yurt(182,64,20,10.6,'lm-c3')
+     +_yurt(210,64,15,8,'lm-c3')
+     +`<path class="lm-c3" d="M104 64 v-2.4 h118 v2.4 Z" opacity=".4"/>`
+      // 远处一小群马：也是暗调，压在地平线上，只作为"草原上还有活物"的暗示
+     +_horse(96,63.6,7.6,'lm-c3')+_horse(112,63.9,6.6,'lm-c3'),
+    fore:
+      _steppe()
+      // 近景三匹白马：全卡唯一的高亮前景，也是"蒙古"最有效的注脚
+     +`<g class="lm-c0h">${_horse(66,72.2,10.6)}${_horse(96,72.6,9.4)}${_horse(124,72.2,11)}</g>`
+     +`<g opacity=".78">${_tuft(52,76.6,7)}${_tuft(84,77,5.4)}${_tuft(156,76.6,6.6)}${_tuft(192,77,5.2)}${_tuft(224,76.6,6.2)}${_tuft(258,76.8,5.4)}</g>` },
+
+  /* 哈萨克斯坦：巴伊杰列克塔（生命之树）+ 大草原。
+     它是这一批里**唯一一根垂直线**，所以放中间偏右，让"细柱 + 大球"的轮廓单独成立。
+
+     主塔改成**深色剪影 + 暖黄球**。原因：tone-america 的 band（#A57050）是 11 套里
+     最亮的，天幕几乎不压黑 —— 浅色塔压上去对比度不够，第一版读出来是一根"棒棒糖/麦克风"。
+     压深成剪影后，塔身轮廓在天幕上立刻就清楚了；球单独走 lm-sky（和日头、火苗同一支暖黄），
+     "金球"这个身份不会丢。旁边再点几块带窗的暗方块当明度对手。 */
+  kazakhstan:{ sun:[92,12,8], clouds:[[150,10.5,11,2.4],[202,13,8,1.9]], birds:[58,21,2.3],
+    far:`<path d="M-14 64 Q36 54 84 58 Q130 62 174 55 Q216 48 260 56 Q292 60 322 58 L322 64 Z" opacity=".7"/>`
+       +`<path d="M-14 64 Q52 59 106 62 Q156 64 204 59 Q248 55 292 60 Q308 62 322 61 L322 64 Z"/>`,
+    mid:
+      `<g class="lm-c3" opacity=".85">`
+       +`<rect x="34" y="51" width="15" height="13"/><rect x="52" y="44" width="14" height="20"/>`
+       +`<rect x="69" y="54" width="13" height="10"/>`
+       +`<rect x="226" y="49" width="14" height="15"/>`
+     +`</g>`
+     +`<g class="lm-c0h" opacity=".5">`
+       +`<rect x="54.6" y="47.6" width="8.8" height="1"/><rect x="54.6" y="50.4" width="8.8" height="1"/>`
+       +`<rect x="54.6" y="53.2" width="8.8" height="1"/><rect x="54.6" y="56" width="8.8" height="1"/>`
+       +`<rect x="228.6" y="52.4" width="8.8" height="1"/><rect x="228.6" y="55.2" width="8.8" height="1"/>`
+       +`<rect x="228.6" y="58" width="8.8" height="1"/>`
+     +`</g>`
+     +_baiterek(196,64,42,'lm-c3','lm-sky')
+      // 远处的马群：小、暗，贴着地平线，交代"草原"
+     +`<g class="lm-c3" opacity=".9">${_horse(108,63.8,7.4)}${_horse(122,64,6.4)}${_horse(136,63.8,7.8)}</g>`,
+    fore:
+      _steppe()
+      // 近景两匹白马：和蒙古同一套逻辑（浅色主体压深色草原）
+     +`<g class="lm-c0h">${_horse(74,72.6,9.8)}${_horse(104,73,8.6)}</g>`
+     +`<g opacity=".75">${_tuft(56,76.6,7)}${_tuft(146,76.8,5.6)}${_tuft(176,76.6,6.4)}${_tuft(238,77,5.2)}${_tuft(266,76.6,6)}</g>`
+     +_pine(272,70,15,'lm-c3') },
+
+  /* 吉尔吉斯斯坦：伊塞克湖 + 天山雪脊 + 湖畔毡房。
+     和塔吉克必须有明显分工：这边是"一湖 + 一排雪脊"，湖占下半幅，
+     所以雪脊只到 y≈40（再高就顶进文字区），毡房贴着湖岸放。
+
+     两个修正：① 主峰从 w96 收到 w76 —— 90 多单位宽的雪峰缩到卡上就是一块"楔形斜坡"，
+     ② 湖面必须**提亮**：nordic 的 lm-near 是 46% 黑，和岸边地面同色，湖根本看不出来。
+     夜里/暮色里的湖是"反天光"的，用 lm-c1（比地面亮）才对。 */
+  kyrgyzstan:{ sun:[96,12,8.5], clouds:[[150,10.5,10,2.3],[200,13,7.5,1.8]], birds:[56,21,2.2],
+    far:
+      _snowpeak(56,64,54,21,'lm-c2',.28)
+     +_snowpeak(176,64,76,44,'lm-c0b',.3)
+     +_snowpeak(274,64,48,19,'lm-c2',.26)
+     +`<path d="M-14 64 Q64 61 136 62.5 Q208 64 276 61.5 Q300 60.5 322 62 L322 64 Z"/>`,
+    mid:
+      _terrain(65,[0,2.4,.8,3.2,.7,2.4,.8,3.2,.7],'lm-c3')
+     +_yurt(104,65,20,10.8,'lm-c0h')
+     +_yurt(132,65,15,8.4,'lm-c0h')
+     +_pine(64,65,13,'lm-c3')+_pine(160,65,11.5,'lm-c3')+_pine(176,65,9,'lm-c3'),
+    fore:
+      _ground()
+      // 湖只铺右半幅 —— 全宽水面会把毡房"泡"在水里；左岸留给毡房和树
+     +`<path class="lm-c1" opacity=".62" d="M92 78 L92 69.4 Q140 66.4 190 68.4 Q242 70.8 300 68 L302 78 Z"/>`
+     +`<g class="lm-c0h" opacity=".34">`
+       +`<path d="M124 71.8 q12 -1.8 24 0 q-12 1.8 -24 0 Z"/>`
+       +`<path d="M172 73.8 q14 -2 28 0 q-14 2 -28 0 Z"/>`
+       +`<path d="M226 71.2 q12 -1.8 24 0 q-12 1.8 -24 0 Z"/>`
+       +`<path d="M258 74.6 q11 -1.6 22 0 q-11 1.6 -22 0 Z"/>`
+     +`</g>`
+     +`<g opacity=".75">${_tuft(72,76.4,6.6)}${_tuft(158,76,5.2)}</g>` },
+
+  /* 塔吉克斯坦：帕米尔高原 —— 群峰无湖。
+     山要"最高最密"：主峰顶压到 y20（右侧，那里没有文字），
+     左侧次峰一律不超过 y36（国名区）。前景换成裸岩而不是草甸，
+     这样和吉尔吉斯的"湖畔草甸"一眼就分得开。 */
+  tajikistan:{ sun:[94,12,8], clouds:[[148,10,9,2.1],[198,12.5,7,1.7]], birds:[52,21,2],
+    far:
+      _snowpeak(34,64,48,19,'lm-c2',.28)
+     +_snowpeak(92,64,60,25,'lm-c2',.28)
+     +_snowpeak(182,64,84,44,'lm-c0b',.28)
+     +_snowpeak(268,64,50,20,'lm-c2',.26)
+     +`<path d="M-14 64 Q62 60 132 62 Q202 64 268 61 Q298 60 322 62 L322 64 Z"/>`,
+    mid:
+      `<path class="lm-c3" d="M-14 64 Q56 60 124 62.5 Q196 65 264 62 Q298 60.5 322 62 L322 66 L-14 66 Z" opacity=".7"/>`
+     +`<g class="lm-c3" opacity=".75">`
+       +`<path d="M84 66 L108 55 L130 64.5 L150 58 L168 66 Z"/>`
+       +`<path d="M196 66 L218 56 L242 65 L262 59 L280 66 Z"/>`
+     +`</g>`
+     +_yurt(112,66,15,8.4,'lm-c0h'),
+    fore:
+      _ground()
+     +`<path class="lm-near" d="M18 74 L46 61 L74 71 L100 64 L126 74 Z" opacity=".7"/>`
+     +`<path class="lm-near" d="M180 75 L208 63 L238 72 L266 65 L294 76 Z" opacity=".58"/>`
+     +`<g opacity=".7">${_tuft(58,77,6)}${_tuft(150,77,5.4)}${_tuft(244,77,6.2)}</g>` },
+
+  /* 土库曼斯坦：达瓦扎"地狱之门"。
+     火坑放**前景**才有压迫感；沙丘只做两层弧线（再多就变成黄波浪）。
+     火苗是画面里唯一的暖黄亮点（走 .lm-sky 那支色）。
+
+     两处修正：① 去掉"烟"（升不到 y37 就进文字区，实测读成"多出来的一朵云"）；
+     ② 沙丘整体压深两档 —— 原本用 lm-c1/lm-c2（比底色更亮），在 tone-desert 上
+     整张卡就是一块浅棕，除了火苗什么都没有；压成 lm-c3/lm-near 之后，
+     暖火苗和暗沙丘才形成对比。 */
+  turkmenistan:{ sun:[92,12,9], clouds:[[150,10.5,10,2.2],[200,13,7.5,1.8]], birds:[56,21,2.2],
+    far:
+      `<path d="M-14 64 Q40 52 96 58 Q150 63 206 55 Q258 48 306 57 L322 64 Z" opacity=".7"/>`
+     +`<path d="M-14 64 Q52 58 112 61 Q170 64 228 58 Q276 54 322 60 L322 64 Z"/>`,
+    mid:
+      `<g class="lm-c3">${_acacia(54,64,20)}${_acacia(228,64,16)}${_acacia(258,64.4,12)}</g>`,
+    fore:
+      _terrain(66,[0,4.4,1,5.4,1.2,4.4,1,5.4,1],'lm-c3')
+     +_terrain(73,[0,5,.8,6.4,.9,5,1,6.4,.9],'lm-near')
+     +_crater(172,69,24)
+     +`<g class="lm-c3" opacity=".8">${_tuft(64,77,7)}${_tuft(94,77,5.4)}${_tuft(254,77,6.4)}${_tuft(282,77,5)}</g>` },
+
   /* ==================== 热带兜底 ==================== */
   tropical:{ sun:[152,14,10], clouds:[[112,12,11,2.5]], birds:[214,21,2.7],
     far:`<path d="M-14 62 L24 50 L62 62 Z"/><path d="M198 62 L242 43 L288 62 Z"/>`,
@@ -2213,8 +2525,8 @@ const DEST_THEME={
   MV:{tone:'tone-tropical',lm:'philippines',tag:'印度洋上的珍珠'},
   PK:{tone:'tone-desert',lm:'india',tag:'丝路南道的山川'},
   UZ:{tone:'tone-desert',lm:'turkiye',tag:'蓝色圆顶，丝路明珠'},
-  MN:{tone:'tone-america',lm:'china',tag:'草原、戈壁与星空'},
-  KZ:{tone:'tone-america',lm:'china',tag:'中亚大草原'},
+  MN:{tone:'tone-america',lm:'mongolia',tag:'草原、戈壁与星空'},
+  KZ:{tone:'tone-america',lm:'kazakhstan',tag:'中亚大草原'},
   // 欧洲
   GB:{tone:'tone-euro',lm:'euro',tag:'古堡、红色双层巴士与阴晴不定'},
   FR:{tone:'tone-euro',lm:'euro',tag:'铁塔、美术馆与街角咖啡'},
@@ -2287,9 +2599,9 @@ const DEST_THEME={
   AM:{tone:'tone-euro',lm:'turkiye',tag:'高原修道院与阿拉拉特'},
   IE:{tone:'tone-nordic',lm:'nordic',tag:'绿野、悬崖与健力士'},
   BD:{tone:'tone-tropical',lm:'india',tag:'恒河三角洲的水乡'},
-  KG:{tone:'tone-nordic',lm:'nordic',tag:'天山雪峰与伊塞克湖'},
-  TJ:{tone:'tone-nordic',lm:'nordic',tag:'帕米尔高原的雪山'},
-  TM:{tone:'tone-desert',lm:'uae',tag:'丝路驿站与沙漠火坑'},
+  KG:{tone:'tone-nordic',lm:'kyrgyzstan',tag:'天山雪峰与伊塞克湖'},
+  TJ:{tone:'tone-nordic',lm:'tajikistan',tag:'帕米尔高原的雪山'},
+  TM:{tone:'tone-desert',lm:'turkmenistan',tag:'丝路驿站与沙漠火坑'},
 };
 const TONE_FALLBACK={tone:'tone-default',lm:'tropical',tag:'出发前先算清楚，别在柜台上纠结'};
 /* 大区兜底（当 DEST_THEME 没写时的最后一道保险） */
@@ -2407,7 +2719,42 @@ const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
 const fmt=n=>'¥'+(Math.round(n*100)/100).toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),1800);}
+/* 必填未填时把用户"押"到那一格上：展开所在折叠卡 → 滚到视口中间 → 红框抖两下 + toast。
+   只弹 toast 是没用的：用户知道"没填"，但不知道填哪一格；而且 toast 两秒就没了。
+   只滚动也没用：不知道为什么要跳过去。三件事一起做才是完整的"指认"。 */
+let _needT=null;
+function needHelp(el,accId,msg,soft){
+  const acc=accId?$('#'+accId):null;
+  if(acc)acc.classList.add('open');
+  toast(msg);
+  if(!el)return;
+  // soft：只染色不抖动。用在"一整块列表都没选"这种场景 ——
+  // 让一整列卡片左右晃，观感是"页面坏了"而不是"这里要选"。
+  el.classList.remove('need','need-soft');void el.offsetWidth;
+  el.classList.add(soft?'need-soft':'need');
+  if(acc)acc.classList.add('need-acc');
+  clearTimeout(_needT);
+  _needT=setTimeout(()=>{el.classList.remove('need','need-soft');if(acc)acc.classList.remove('need-acc');},3200);
+  // 折叠卡刚展开，等一帧让它完成布局再滚动
+  setTimeout(()=>{
+    const r=el.getBoundingClientRect();
+    const footH=(document.querySelector('.foot')||{getBoundingClientRect:()=>({height:0})}).getBoundingClientRect().height;
+    const vh=innerHeight-footH-16;
+    if(r.top<90||r.bottom>vh)
+      window.scrollTo({top:Math.max(0,scrollY+r.top-(vh-r.height)/2),behavior:'smooth'});
+    try{if(el.focus&&el.tagName==='INPUT')el.focus({preventScroll:true});}catch(e){}
+  },90);
+}
 function uid(){return 'c'+Math.random().toString(36).slice(2,8);}
+/* 顶栏是 position:sticky 的，所以结果区的结论条必须让开它 ——
+   写在 CSS 里的固定 top 会在小屏（h1 换行、顶栏变高）时失效，结论条被顶栏盖住。
+   这里把顶栏实测高度写进 --hdr，CSS 用 var(--hdr) 读。 */
+function syncHdrH(){
+  const h=document.querySelector('header');
+  if(h)document.documentElement.style.setProperty('--hdr',Math.round(h.getBoundingClientRect().height)+'px');
+}
+window.addEventListener('resize',syncHdrH);
+window.addEventListener('orientationchange',()=>setTimeout(syncHdrH,120));
 function toggleAcc(id){$('#'+id).classList.toggle('open');}
 
 /* ============ 汇率 ============ */
@@ -2607,7 +2954,7 @@ function renderQuotes(){
   if(!QUOTES.length){box.innerHTML='<p class="mini" style="padding:6px 0">还没有报价。</p>';renderHint();return;}
   box.innerHTML=QUOTES.map((q,i)=>`
     <div class="quote">
-      <div class="f amt"><label class="fl">金额</label>
+      <div class="f amt"><label class="fl">金额<span class="req">*</span></label>
         <input type="number" inputmode="decimal" value="${q.amt}" placeholder="0" oninput="setQuote(${i},'amt',this.value);calc(true)">
       </div>
       <div class="f cur"><label class="fl">币种 ${q.self?'<span class="tag-self">当地</span>':''}</label>
@@ -2619,7 +2966,10 @@ function renderQuotes(){
 }
 function renderHint(){
   const v=QUOTES.filter(q=>parseFloat(q.amt)>0);
-  $('#hint1').textContent = v.length ? v.map(q=>`${q.amt} ${q.cur}`).join(' / ') : '填写报价';
+  const el=$('#hint1');
+  el.textContent = v.length ? v.map(q=>`${q.amt} ${q.cur}`).join(' / ') : '填写报价（必填）';
+  el.style.color = v.length?'':'var(--red)';
+  el.style.fontWeight = v.length?'':'700';
 }
 
 /* ============ 汇率区 ============ */
@@ -2682,7 +3032,10 @@ function renderChannels(){
 function CUR_OK(c){return c.on;}
 function renderHint2(){
   const on=CHANNELS.filter(c=>c.on);
-  $('#hint2').textContent = on.length?`已选 ${on.length} 个`:'未选择';
+  const el=$('#hint2');
+  el.textContent = on.length?`已选 ${on.length} 个`:'未选（必填）';
+  el.style.color = on.length?'':'var(--red)';
+  el.style.fontWeight = on.length?'':'700';
 }
 /* 逐币种「本币种实付汇率」行，现金与其他渠道共用。
    cashMode=true 时加一句"兜底"说明 */
@@ -3170,12 +3523,25 @@ function calc(silent){
   const valid=QUOTES.filter(q=>parseFloat(q.amt)>0&&q.cur);
   // 先同步"当地币"：任何依赖它的展示（渠道徽章/换汇默认币种）都要看到最新值
   localCur=homeCurrency();
-  if(!valid.length){box.innerHTML='<div class="alert blue"><span class="ai">'+ico('info')+'</span><div>先填<b>商家报价</b>，再点「立即测算」。</div></div>';return;}
+  if(!valid.length){
+    box.innerHTML='<div class="alert blue"><span class="ai">'+ico('info')+'</span><div>先填<b>商家报价</b>，再点「立即测算」。</div></div>';
+    // 点按钮（非静默）时把用户押到第一个空着的金额格上，而不是只写一句提示
+    if(!silent){
+      const amtEls=[...document.querySelectorAll('#quoteList .quote .f.amt input')];
+      const empty=amtEls.find(i=>!(parseFloat(i.value)>0))||amtEls[0];
+      needHelp(empty,'acc1','请先填写「商家报价」的金额');
+    }
+    return;
+  }
   const selfQ=valid.find(q=>q.self);
   if(selfQ&&selfQ.cur) localCur=selfQ.cur;
 
   const on=CHANNELS.filter(c=>c.on);
-  if(!on.length){box.innerHTML='<div class="alert amber"><span class="ai">'+ico('info')+'</span><div>请至少勾选一个<b>支付渠道</b>。</div></div>';return;}
+  if(!on.length){
+    box.innerHTML='<div class="alert amber"><span class="ai">'+ico('info')+'</span><div>请至少勾选一个<b>支付渠道</b>。</div></div>';
+    if(!silent) needHelp($('#chList'),'acc2','请至少勾选一个支付方式',true);
+    return;
+  }
 
   const rows=[];        // 每个渠道一行（含全部币种的明细）
   const skipped=[];     // 完全无法计算的渠道
@@ -3198,6 +3564,7 @@ function calc(silent){
     box.innerHTML='<div class="alert red"><span class="ai">'+ico('warn')+'</span><div>没有可计算的渠道。<br>'+
       skipped.map(s=>`「${s.ch.name}」缺 ${s.need.join('/')} 汇率`).join('；')+
       '<br>请在「我可用的支付方式」里点开该渠道补填汇率。</div></div>';
+    if(!silent) needHelp($('#chList'),'acc2','渠道缺少对应币种的汇率，请补填');
     return;
   }
   const partial=rows.filter(r=>r.missing.length);
@@ -3239,6 +3606,21 @@ function calc(silent){
   const qCurs=valid.map(q=>q.cur);
 
   box.innerHTML=`
+    <div class="res-bar">
+      <span class="rb-ic">${ico('tag')}</span>
+      <span class="rb-t">最省：${cheapest.ch.name} · 按 ${cheapest.q.cur}</span>
+      <span class="rb-n">${fmt(cheapest.cost)}</span>
+      <span class="rb-s">省 ${fmt(save)}</span>
+    </div>
+    <div class="score">
+      <span class="score-ribbon"></span>
+      <div class="score-mark lm-paint">${paintSvg(destTheme(destCode).lm)}</div>
+      ${(()=>{const d=destByCode(destCode);return d?`<span class="score-chip">${d.f} ${d.n}</span>`:'';})()}
+      <div class="lbl">${ico('tag')} 最省钱的选择</div>
+      <div class="big">${ico(cheapest.ch.ico)} ${cheapest.ch.name} · 按 ${cheapest.q.cur}</div>
+      <div class="cost">${fmt(cheapest.cost)}<span class="cost-u">人民币</span></div>
+      <div class="save">比最贵的「${priciest.ch.name}（按${priciest.q.cur}）」省 <b>${fmt(save)}</b>（${savePct.toFixed(1)}%）</div>
+    </div>
     ${(skipped.length||partial.length)?`
     <div class="alert amber">
       <span class="ai">${ico('warn')}</span><div>
@@ -3249,15 +3631,6 @@ function calc(silent){
         <br><span class="mini">去「我可用的支付方式」点开对应渠道，在缺失币种下填 App 里看到的汇率。</span>
       </div>
     </div>`:''}
-    <div class="score">
-      <span class="score-ribbon"></span>
-      <div class="score-mark lm-paint">${paintSvg(destTheme(destCode).lm)}</div>
-      ${(()=>{const d=destByCode(destCode);return d?`<span class="score-chip">${d.f} ${d.n}</span>`:'';})()}
-      <div class="lbl">${ico('tag')} 最省钱的选择</div>
-      <div class="big">${ico(cheapest.ch.ico)} ${cheapest.ch.name} · 按 ${cheapest.q.cur}</div>
-      <div class="cost">${fmt(cheapest.cost)}<span class="cost-u">人民币</span></div>
-      <div class="save">比最贵的「${priciest.ch.name}（按${priciest.q.cur}）」省 <b>${fmt(save)}</b>（${savePct.toFixed(1)}%）</div>
-    </div>
     ${dccHtml}
     ${cashFxBanner(valid)}
     <div class="acc open" style="margin-top:12px">
@@ -3333,6 +3706,24 @@ function calc(silent){
       直接汇率模式：你填的 App 成品汇率（按币种分别填）<br>
       <span class="mini">点每个渠道下方的「查看计算过程」可展开逐档拆解。</span>
     </p>`;
+
+  /* 点按钮算完之后：把 1~4 号输入区收起来，并把结论顶到视口顶部。
+     不这么做的话，手机竖屏下结论区距文档顶 1850px、比一屏（844px）还高一倍，
+     用户得下滑 1000px 才看得到第一眼结论 —— 这是 v14 之前最主要的体验问题。
+     注意只在**点按钮**时做（silent 是 oninput 触发的自动重算，不能打断正在输入的人）。 */
+  if(!silent){
+    ['acc1','acc2','acc3','acc4'].forEach(id=>{const a=$('#'+id);if(a)a.classList.remove('open');});
+    requestAnimationFrame(()=>{
+      // 对齐到 .score 卡（不是 #result）—— 结论条 sticky 吸顶，结论卡紧随其后，
+      // 首屏几乎整屏都是结论。滚到 #result 的话上面那几条警告会把结论挤出屏幕。
+      // 偏移量 = 顶栏高（sticky）+ 结论条高，两者都要让开。
+      const t=box.querySelector('.score')||box;
+      const bar=box.querySelector('.res-bar');
+      const hd=document.querySelector('header');
+      const off=(hd?hd.getBoundingClientRect().height:0)+(bar?bar.offsetHeight:0)+10;
+      window.scrollTo({top:Math.max(0,scrollY+t.getBoundingClientRect().top-off),behavior:'smooth'});
+    });
+  }
 }
 
 /* ============ 初始化 ============ */
@@ -3343,6 +3734,9 @@ function reset(){
   editingCh=null;
   localCur='';
   destCode='';
+  // 清空后 1、2 号必须展开 —— 否则用户点完测算（会自动收起）再点重置，
+  // 面对的是一个全新但全折叠的表单，根本不知道从哪开始填。
+  ['acc1','acc2'].forEach(id=>{const a=$('#'+id);if(a)a.classList.add('open');});
   const dInp=$('#destSearch'); if(dInp) dInp.value='';
   const dBox=$('#destSug'); if(dBox){dBox.classList.remove('on');dBox.innerHTML='';}
   openCombo(false);
@@ -3697,7 +4091,7 @@ document.addEventListener('visibilitychange', ()=>{ if(document.hidden) flushSav
 window.addEventListener('beforeunload', flushSave);
 window.addEventListener('pagehide', flushSave);
 
-document.addEventListener('DOMContentLoaded',()=>{ reset(); offerResume(); });
+document.addEventListener('DOMContentLoaded',()=>{ reset(); offerResume(); syncHdrH(); });
 
 window.addQuote=addQuote;window.delQuote=delQuote;window.setQuote=setQuote;window.setOverride=setOverride;
 window.renderQuotes=renderQuotes;window.renderRates=renderRates;window.renderChannels=renderChannels;
