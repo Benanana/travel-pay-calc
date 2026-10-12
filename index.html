@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-page-node-id="ZbpTb3woHO1ju192cwcmSy"><head data-page-node-id="HpuLNjWGwwaw8lDaIvq4Uu">
 <meta charset="UTF-8" data-page-node-id="OBoEDGnTvVTlxdQ6QVaLiJ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" data-page-node-id="fmUwsNfmTrrJ4EFh8BPLO1">
-<meta name="theme-color" content="#B94A32" data-page-node-id="wHKqgGcmWPJw29gt6frWU0">
+<meta name="theme-color" content="#AA756A" data-page-node-id="wHKqgGcmWPJw29gt6frWU0">
 <title data-page-node-id="FRdXyCoxb09dDWIGrUaJRw">出境支付决策器</title>
 <!-- 分享卡片（微信/iMessage/微博 抓 og 标签） -->
 <meta name="description" content="出境当场算支付，选对币种和渠道：同一件东西商家报了几种币，用哪个付最省，一目了然。">
@@ -57,6 +57,8 @@
   /* 动效 */
   --ease:cubic-bezier(.32,.72,0,1);
   --dur:.22s;
+  /* D · 素调 —— 遮罩与结果卡叠黑（全局常量） */
+  --sc-sx:0.3584;--sc-sx2:0.168;--sc-ty:0.1904;--sc-ty2:0.056;--sc-by:0.1792;--sc-by2:0.336;--score-ov0:0;--score-ov1:0.0672;--score-ov2:0.1344
 }
 /* 主题预设：每个目的地按大区/文化圈归到一个 tone。
    每套都是"三色相"搭配，不是单一色系的深浅。
@@ -64,27 +66,27 @@
    保证白色文字在其上的对比度 ≥4.5:1（用 palette-check.js 校验）。
    --tone / --tone-2 是亮色，只用于描边、图标、装饰面，不承字。 */
 /* 默认态：海岛日落 —— 珊瑚 + 暖金 + 海青（三色相，度假感） */
-.tone-default{--tone:#E4683F;--tone-soft:#FDEBE3;--tone-deep:#8E3520;--tone-ink:#7C2E19;--tone-2:#12A0A6;--tone-2-soft:#DFF5F6;--tone-2-ink:#0A6569;--tone-band:#B94A32;--tone-band2:#9A6614;--tone-g3:#16787E;--tone-page:#FDF6F2;--lm-sun:#FFD98A}
+.tone-default{--tone:#C69686;--tone-soft:#FCF4F0;--tone-deep:#996052;--tone-ink:#623D33;--tone-2:#45989C;--tone-2-soft:#EAF6F7;--tone-2-ink:#234E50;--tone-band:#AA756A;--tone-band2:#937444;--tone-g3:#3F7B7E;--tone-page:#FDF6F2;--lm-sun:#F2D69C;--hero-g1:#9C6B61;--hero-g2:#AA756A;--score-g1:#8A5E55;--score-g2:#AA756A}
 /* 日系：藍（indigo）+ 紅梅（rose）+ 朱 —— 樱与蓝染 */
-.tone-sakura{--tone:#D9648A;--tone-soft:#FDECF2;--tone-deep:#23406B;--tone-ink:#8A2F52;--tone-2:#3A5E93;--tone-2-soft:#E7EEF9;--tone-2-ink:#28497A;--tone-band:#A83E63;--tone-band2:#2F5480;--tone-g3:#8A2F45;--tone-page:#FBF5F4;--lm-sun:#F2A8A2}
+.tone-sakura{--tone:#C99DAB;--tone-soft:#FDF8FA;--tone-deep:#4D617E;--tone-ink:#724757;--tone-2:#617695;--tone-2-soft:#F2F5FA;--tone-2-ink:#3D4D65;--tone-band:#A26D7F;--tone-band2:#546A84;--tone-g3:#8C5663;--tone-page:#FBF5F4;--lm-sun:#EAB4AF;--hero-g1:#956475;--hero-g2:#A26D7F;--score-g1:#845867;--score-g2:#A26D7F}
 /* 东南亚：翡翠绿 + 姜黄 + 珊瑚 —— 热带海岛与佛寺金顶 */
-.tone-tropical{--tone:#12A07C;--tone-soft:#E3F5EF;--tone-deep:#075148;--tone-ink:#075148;--tone-2:#D99A2B;--tone-2-soft:#FBF1DE;--tone-2-ink:#7A5013;--tone-band:#0B6E58;--tone-band2:#9A6614;--tone-g3:#B34A2E;--tone-page:#F1F8F4;--lm-sun:#FFE08A}
+.tone-tropical{--tone:#449782;--tone-soft:#EDF7F4;--tone-deep:#2C6961;--tone-ink:#1A3E39;--tone-2:#B9A073;--tone-2-soft:#FAF5EB;--tone-2-ink:#5F4B2E;--tone-band:#317163;--tone-band2:#937444;--tone-g3:#A87162;--tone-page:#F1F8F4;--lm-sun:#F2DB9C;--hero-g1:#2C685B;--hero-g2:#317163;--score-g1:#265B50;--score-g2:#317163}
 /* 泰越 · 金顶朱墙：宫墙朱 + 金顶 + 檀木 */
-.tone-imperial{--tone:#C4432F;--tone-soft:#FBEAE7;--tone-deep:#6B3A16;--tone-ink:#6E1F1A;--tone-2:#C79A2E;--tone-2-soft:#FAF1DC;--tone-2-ink:#7A5013;--tone-band:#9E3226;--tone-band2:#8F5F14;--tone-g3:#6B4A12;--tone-page:#FBF4F0;--lm-sun:#FFD98A}
+.tone-imperial{--tone:#AF766D;--tone-soft:#FBF4F3;--tone-deep:#7D5A41;--tone-ink:#583230;--tone-2:#B19D6D;--tone-2-soft:#F9F4E9;--tone-2-ink:#5F4B2E;--tone-band:#995B54;--tone-band2:#8B6E41;--tone-g3:#6F5A37;--tone-page:#FBF4F0;--lm-sun:#F2D69C;--hero-g1:#8D534D;--hero-g2:#995B54;--score-g1:#7C4943;--score-g2:#995B54}
 /* 中东 · 沙漠：沙金 + 波斯绿松石 —— 瓷砖与烈日 */
-.tone-desert{--tone:#D9A02B;--tone-soft:#FBF1DE;--tone-deep:#7A5013;--tone-ink:#7A5013;--tone-2:#1E9EA6;--tone-2-soft:#DFF4F5;--tone-2-ink:#0C5D63;--tone-band:#96631A;--tone-band2:#146F76;--tone-g3:#0F5A60;--tone-page:#FBF7F0;--lm-sun:#FFD07A}
+.tone-desert{--tone:#B9A273;--tone-soft:#FAF5EB;--tone-deep:#896C42;--tone-ink:#5F4B2E;--tone-2:#4F999E;--tone-2-soft:#EAF6F6;--tone-2-ink:#23494C;--tone-band:#917348;--tone-band2:#3B7478;--tone-g3:#316366;--tone-page:#FBF7F0;--lm-sun:#F0CD8E;--hero-g1:#856942;--hero-g2:#917348;--score-g1:#765D39;--score-g2:#917348}
 /* 北欧：极夜蓝 + 极光青 —— 冷而清透 */
-.tone-nordic{--tone:#3D6F9E;--tone-soft:#E8F0F7;--tone-deep:#24405E;--tone-ink:#1F425C;--tone-2:#2FA08A;--tone-2-soft:#E1F5EF;--tone-2-ink:#166055;--tone-band:#2F5A85;--tone-band2:#1E8474;--tone-g3:#3A4E7A;--tone-page:#F2F6F9;--lm-sun:#EAF0FF}
+.tone-nordic{--tone:#67839C;--tone-soft:#F2F6F9;--tone-deep:#4B5F74;--tone-ink:#2F404C;--tone-2:#5B9C90;--tone-2-soft:#ECF6F3;--tone-2-ink:#294D47;--tone-band:#556E88;--tone-band2:#47847A;--tone-g3:#5C6781;--tone-page:#F2F6F9;--lm-sun:#F1F4FD;--hero-g1:#4E657D;--hero-g2:#556E88;--score-g1:#44596E;--score-g2:#556E88}
 /* 欧洲 · 布达佩斯大饭店：李子紫 + 玫瑰粉 + 复古金 */
-.tone-euro{--tone:#C4577F;--tone-soft:#FBEBF1;--tone-deep:#40203A;--tone-ink:#4A2440;--tone-2:#D2A03F;--tone-2-soft:#FAF0DC;--tone-2-ink:#8A6414;--tone-band:#5E2748;--tone-band2:#A8395F;--tone-g3:#96661A;--tone-page:#FBF4F2;--lm-sun:#F3C97E}
+.tone-euro{--tone:#B78C9C;--tone-soft:#FCF6F8;--tone-deep:#5B4256;--tone-ink:#402E3B;--tone-2:#BAA680;--tone-2-soft:#F9F4E9;--tone-2-ink:#6B5933;--tone-band:#68465A;--tone-band2:#A2687C;--tone-g3:#917548;--tone-page:#FBF4F2;--lm-sun:#E6C790;--hero-g1:#5F4052;--hero-g2:#68465A;--score-g1:#543848;--score-g2:#68465A}
 /* 柬老缅 · 吴哥：砂岩赭 + 丛林绿 */
-.tone-angkor{--tone:#9A6B33;--tone-soft:#F4EDE0;--tone-deep:#4E3B1B;--tone-ink:#4E3B1B;--tone-2:#4E7A52;--tone-2-soft:#E8F1E8;--tone-2-ink:#3C5C40;--tone-band:#7A5320;--tone-band2:#476F4C;--tone-g3:#3C5C40;--tone-page:#F9F5EE;--lm-sun:#FFE0A0}
+.tone-angkor{--tone:#997D5D;--tone-soft:#F6F2EB;--tone-deep:#665840;--tone-ink:#413828;--tone-2:#6C856E;--tone-2-soft:#F0F5F0;--tone-2-ink:#445446;--tone-band:#7D6546;--tone-band2:#647B67;--tone-g3:#576A59;--tone-page:#F9F5EE;--lm-sun:#F4DEAF;--hero-g1:#735C40;--hero-g2:#7D6546;--score-g1:#655138;--score-g2:#7D6546}
 /* 美洲 · 加州阳光：落日橙 + 太平洋蓝 + 麦金 */
-.tone-america{--tone:#E0762A;--tone-soft:#FDEEE1;--tone-deep:#8A4213;--tone-ink:#7A3A10;--tone-2:#2A8FBD;--tone-2-soft:#E4F2FA;--tone-2-ink:#14567C;--tone-band:#B0541C;--tone-band2:#1670A0;--tone-g3:#96661A;--tone-page:#FDF8F2;--lm-sun:#FFC96B}
+.tone-america{--tone:#BE9375;--tone-soft:#FCF5EE;--tone-deep:#956545;--tone-ink:#5E402C;--tone-2:#6496AC;--tone-2-soft:#F0F7FA;--tone-2-ink:#2F4F61;--tone-band:#A57050;--tone-band2:#477C98;--tone-g3:#917548;--tone-page:#FDF8F2;--lm-sun:#EEC681;--hero-g1:#986749;--hero-g2:#A57050;--score-g1:#865A40;--score-g2:#A57050}
 /* 非洲 · 萨凡纳：赭红 + 金合欢绿 */
-.tone-africa{--tone:#B05F22;--tone-soft:#FAEDE0;--tone-deep:#5A3410;--tone-ink:#62320F;--tone-2:#6E8A3A;--tone-2-soft:#EFF4E4;--tone-2-ink:#46621F;--tone-band:#8A4314;--tone-band2:#587A2E;--tone-g3:#96681C;--tone-page:#FAF4EE;--lm-sun:#FFD582}
+.tone-africa{--tone:#A67855;--tone-soft:#FAF3ED;--tone-deep:#705338;--tone-ink:#4C3525;--tone-2:#7D8E5F;--tone-2-soft:#F4F6EE;--tone-2-ink:#435130;--tone-band:#875C40;--tone-band2:#6B7F52;--tone-g3:#917649;--tone-page:#FAF4EE;--lm-sun:#F1D295;--hero-g1:#7C543A;--hero-g2:#875C40;--score-g1:#6D4A33;--score-g2:#875C40}
 /* 大洋洲 · 礁湖：礁湖青 + 珊瑚粉 —— 大堡礁 */
-.tone-oceania{--tone:#1B87AE;--tone-soft:#E4F2F8;--tone-deep:#0A3F5C;--tone-ink:#0D4A69;--tone-2:#E8735F;--tone-2-soft:#FDECE8;--tone-2-ink:#8A3A28;--tone-band:#14688A;--tone-band2:#A8503C;--tone-g3:#0F7A78;--tone-page:#F0F7FA;--lm-sun:#FFE49B}
+.tone-oceania{--tone:#4E8DA3;--tone-soft:#EFF6F9;--tone-deep:#325B71;--tone-ink:#254251;--tone-2:#D1A69E;--tone-2-soft:#FDF6F5;--tone-2-ink:#714A41;--tone-band:#407287;--tone-band2:#A2756B;--tone-g3:#387A79;--tone-page:#F0F7FA;--lm-sun:#F4E0AB;--hero-g1:#3A687C;--hero-g2:#407287;--score-g1:#335C6D;--score-g2:#407287}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
 body{
@@ -202,7 +204,7 @@ header::before{content:'';display:block;height:3px;
    这一段正好给地标建筑留出干净的展示带。 */
 .dest-hero{position:relative;overflow:hidden;border-radius:var(--r-xl);margin-top:12px;min-height:128px;
   display:flex;flex-direction:column;isolation:isolate;
-  background:linear-gradient(150deg,var(--hero-g1,color-mix(in oklab,var(--tone-band) 64%,#000)) 0%,
+  background:linear-gradient(150deg,var(--hero-g1,color-mix(in oklab,var(--tone-band) 94%,#000)) 0%,
                                       var(--hero-g2,var(--tone-band)) 100%);
   color:#fff;box-shadow:var(--shadow-tone);transition:background .45s ease;
   animation:heroIn .42s var(--ease)}
@@ -258,10 +260,10 @@ header::before{content:'';display:block;height:3px;
    左右各加一道横向渐变后，中央彩绘完整露出、两侧承字区被压暗，读起来更像一张设计过的海报。 */
 .dest-hero .dh-scrim{position:absolute;left:0;right:0;top:0;bottom:0;z-index:1;pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(0,0,0,var(--sc-sx,.42)) 0%,rgba(0,0,0,var(--sc-sx2,.20)) 26%,rgba(0,0,0,0) 46%),
-    linear-gradient(270deg,rgba(0,0,0,var(--sc-sx,.42)) 0%,rgba(0,0,0,var(--sc-sx2,.20)) 22%,rgba(0,0,0,0) 42%),
-    linear-gradient(180deg,rgba(0,0,0,var(--sc-ty,.24)) 0%,rgba(0,0,0,var(--sc-ty2,.06)) 22%,rgba(0,0,0,0) 38%,
-             rgba(0,0,0,0) 58%,rgba(0,0,0,var(--sc-by,.22)) 78%,rgba(0,0,0,var(--sc-by2,.40)) 100%)}
+    linear-gradient(90deg,rgba(0,0,0,var(--sc-sx,0.3584)) 0%,rgba(0,0,0,var(--sc-sx2,0.168)) 26%,rgba(0,0,0,0) 46%),
+    linear-gradient(270deg,rgba(0,0,0,var(--sc-sx,0.3584)) 0%,rgba(0,0,0,var(--sc-sx2,0.168)) 22%,rgba(0,0,0,0) 42%),
+    linear-gradient(180deg,rgba(0,0,0,var(--sc-ty,0.1904)) 0%,rgba(0,0,0,var(--sc-ty2,0.056)) 22%,rgba(0,0,0,0) 38%,
+             rgba(0,0,0,0) 58%,rgba(0,0,0,var(--sc-by,0.1792)) 78%,rgba(0,0,0,var(--sc-by2,0.336)) 100%)}
 .dest-hero .dh-in{position:relative;z-index:2;padding:16px 17px 15px;display:flex;align-items:center;gap:12px}
 /* === 承字软垫 ===
    卡头底图是细描彩绘，浅色山体 / 洋葱穹顶 / 日头都没法保证白字达到 4.5:1
@@ -625,16 +627,23 @@ select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns=
   padding:22px 20px 84px;transition:background .45s ease;
   box-shadow:0 0 0 1.5px color-mix(in srgb,var(--tone-2) 34%,transparent),var(--shadow-tone);
   background:
-    linear-gradient(158deg,rgba(0,0,0,var(--score-ov0,0)) 0%,rgba(0,0,0,var(--score-ov1,.10)) 54%,
-             rgba(0,0,0,var(--score-ov2,.22)) 100%),
-    linear-gradient(158deg,var(--score-g1,color-mix(in oklab,var(--tone-band) 60%,#000)) 0%,
+    linear-gradient(158deg,rgba(0,0,0,var(--score-ov0,0)) 0%,rgba(0,0,0,var(--score-ov1,0.0672)) 54%,
+             rgba(0,0,0,var(--score-ov2,0.1344)) 100%),
+    linear-gradient(158deg,var(--score-g1,color-mix(in oklab,var(--tone-band) 86%,#000)) 0%,
              var(--score-g2,var(--tone-band)) 100%)}
 /* 第二色相：右上角的几何"折角"色块（纯色、硬边、零插值）。
    整卡的第二色相只由这一处提供；它只占右上角装饰区（文字全在左侧与下方），
    所以不牵动任何白字的对比度 —— 这也是它为什么能做得这么实。 */
+/* 注意：折角**不是纯装饰** —— `.big`（"最便宜渠道"那一行）右端会压在它上面，
+   所以它是一块真正的白字承压面，必须 ≥4.5:1。
+   v13 把承压面整体降饱和提亮后，纯 band2 在这块掉到 3.97（oceania）——
+   改成"band2 压 12% 黑"。oklab 混黑 = (L,a,b) 等比缩放，**色相严格不变**，
+   所以它依然是第二色相，只是深了一档（观感上反而更像"折过来的暗面"）。
+   ⚠️ 不能写成 :root 里的 `--x:color-mix(...,var(--tone-band2),...)`：
+   CSS 变量在声明处就替换完了，拿不到 body 上 tone 类的覆盖。 */
 .score::before{content:'';position:absolute;right:0;top:0;width:110px;height:102px;z-index:1;
-  pointer-events:none;background:var(--tone-band2);border-bottom-left-radius:34px;
-  transition:background .45s ease}
+  pointer-events:none;background:color-mix(in oklab,var(--tone-band2) 88%,#000);
+  border-bottom-left-radius:34px;transition:background .45s ease}
 /* 顶部亮色缎带：三段硬边色标（丝网印式），纯装饰、不承字 */
 .score .score-ribbon{position:absolute;left:0;right:0;top:0;height:5px;z-index:3;pointer-events:none;
   background:linear-gradient(90deg,var(--tone) 0 34%,var(--tone-band) 34% 68%,var(--tone-band2) 68% 100%)}
@@ -662,7 +671,7 @@ select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns=
 .score .cost .cost-u{font-size:var(--fs-2xs);font-weight:700;letter-spacing:.1em;opacity:.82;
   font-family:var(--font-sans);text-shadow:none}
 .score .save{font-size:var(--fs-sm);font-weight:600;opacity:.96;line-height:1.7}
-.score .save b{background:var(--tone-band2);padding:3px 9px;border-radius:var(--r-sm);
+.score .save b{background:color-mix(in oklab,var(--tone-band2) 88%,#000);padding:3px 9px;border-radius:var(--r-sm);
   font-size:var(--fs-md);font-weight:800;font-variant-numeric:tabular-nums;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
 .res-item{display:flex;align-items:center;gap:11px;padding:13px;border-radius:var(--r-md);background:#fff;
