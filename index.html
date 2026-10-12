@@ -291,8 +291,8 @@ header::before{content:'';display:block;height:3px;
 .dest-hero .dh-plate{position:relative;display:inline-block;max-width:100%}
 .dest-hero .dh-plate::before{content:'';position:absolute;z-index:-1;
   left:-26px;right:-26px;top:-22px;bottom:-22px;border-radius:24px;
-  background:radial-gradient(52% 52% at 50% 50%,rgba(0,0,0,.64) 0%,rgba(0,0,0,.61) 30%,
-    rgba(0,0,0,.54) 48%,rgba(0,0,0,.40) 64%,rgba(0,0,0,.17) 82%,rgba(0,0,0,0) 100%)}
+  background:radial-gradient(52% 52% at 50% 50%,rgba(0,0,0,.72) 0%,rgba(0,0,0,.70) 30%,
+    rgba(0,0,0,.63) 48%,rgba(0,0,0,.47) 64%,rgba(0,0,0,.20) 82%,rgba(0,0,0,0) 100%)}
 /* 国旗徽章：底板用"暗玻璃"而不是"白玻璃" —— 白玻璃压在浅色插画上，
    里面的白字 / 国旗代码一样会糊掉。 */
 .dest-hero .dh-flag{flex:0 0 auto;min-width:44px;height:32px;padding:0 8px;border-radius:var(--r-sm);
@@ -1245,8 +1245,35 @@ const LANDMARKS={
   india:`<ellipse cx="48" cy="60" rx="30" ry="19"/><path d="M44 42 L52 22 L60 42 Z"/><path d="M92 78 L92 48 L112 48 L112 78 Z"/><path d="M100 48 Q102 32 108 28 Q114 32 116 48 Z"/><path d="M130 78 Q140 30 150 78 Z"/><path d="M162 78 L162 44 L186 44 L186 78 Z"/><path d="M170 44 L178 26 L186 44 Z"/><path d="M198 78 L198 54 L222 54 L222 78 Z"/><path d="M208 54 L213 40 L218 54 Z"/><path d="M240 78 Q250 34 260 78 Z"/><path d="M272 78 L272 50 L294 50 L294 78 Z"/>`,
   uae:`<path d="M0 78 L0 60 L30 60 L30 78 Z"/><path d="M40 78 L40 52 L60 52 L60 78 Z"/><path d="M52 52 L64 34 L76 52 Z"/><path d="M64 34 L70 26 L76 34 Z"/><path d="M92 78 L92 44 L112 44 L112 78 Z"/><path d="M100 44 L106 24 L112 44 Z"/><path d="M128 78 Q136 32 144 78 Z"/><path d="M156 78 L156 40 L180 40 L180 78 Z"/><path d="M164 40 L172 22 L180 40 Z"/><path d="M194 78 L194 50 L220 50 L220 78 Z"/><path d="M204 50 L210 36 L216 50 Z"/><path d="M236 78 Q246 36 256 78 Z"/><path d="M270 78 L270 48 L294 48 L294 78 Z"/>`,
   // 欧洲
+  france:`<path d="M0 78 L0 52 L24 52 L24 78 Z"/><path d="M10 52 L22 36 L34 52 Z"/><ellipse cx="72" cy="62" rx="34" ry="16"/><path d="M56 46 Q72 22 88 46 Z"/><path d="M112 78 L112 40 L126 40 L126 78 Z"/><path d="M124 40 L136 18 L148 18 L148 40 Z"/><path d="M134 18 L136 6 L140 6 L140 18 Z"/><path d="M162 78 L162 50 L186 50 L186 78 Z"/><path d="M170 50 L178 32 L186 50 Z"/><path d="M200 78 L200 44 L220 44 L220 78 Z"/><path d="M206 44 L212 28 L218 44 Z"/><path d="M234 78 Q244 34 254 78 Z"/><path d="M268 78 L268 52 L292 52 L292 78 Z"/>`,
   euro:`<path d="M0 78 L0 52 L24 52 L24 78 Z"/><path d="M10 52 L22 36 L34 52 Z"/><ellipse cx="72" cy="62" rx="34" ry="16"/><path d="M56 46 Q72 22 88 46 Z"/><path d="M112 78 L112 40 L126 40 L126 78 Z"/><path d="M124 40 L136 18 L148 18 L148 40 Z"/><path d="M134 18 L136 6 L140 6 L140 18 Z"/><path d="M162 78 L162 50 L186 50 L186 78 Z"/><path d="M170 50 L178 32 L186 50 Z"/><path d="M200 78 L200 44 L220 44 L220 78 Z"/><path d="M206 44 L212 28 L218 44 Z"/><path d="M234 78 Q244 34 254 78 Z"/><path d="M268 78 L268 52 L292 52 L292 78 Z"/>`,
   nordic:`<path d="M0 78 L0 52 L26 52 L26 78 Z"/><path d="M10 52 L18 36 L26 52 Z"/><path d="M44 78 L44 48 L62 48 L62 78 Z"/><path d="M52 48 L64 30 L76 30 L76 48 Z"/><path d="M62 30 L64 20 L68 20 L68 30 Z"/><path d="M92 78 L92 44 L110 44 L110 78 Z"/><path d="M100 44 L108 26 L116 44 Z"/><path d="M132 78 Q140 30 148 78 Z"/><path d="M160 78 L160 48 L184 48 L184 78 Z"/><path d="M168 48 L176 30 L184 48 Z"/><path d="M200 78 L200 54 L224 54 L224 78 Z"/><path d="M240 78 Q250 36 260 78 Z"/><path d="M274 78 L274 50 L296 50 L296 78 Z"/>`,
+  // 欧洲 · round 4a
+  gb:`<path d="M0 78 L0 52 L20 52 L20 78 Z"/><path d="M28 78 L28 38 L40 38 L42 22 L54 22 L56 38 L68 38 L68 78 Z"/><path d="M78 78 L78 50 L96 50 L96 78 Z"/><path d="M106 78 L106 44 L118 44 L120 30 L132 30 L134 44 L146 44 L146 78 Z"/><path d="M156 78 Q164 34 172 78 Z"/><path d="M182 78 L182 48 L204 48 L204 78 Z"/><path d="M212 78 L216 34 L220 34 L224 78 Z"/><circle cx="218" cy="30" r="7"/><path d="M244 78 L244 52 L266 52 L266 78 Z"/><path d="M274 78 Q284 40 294 78 Z"/>`,
+  de:`<path d="M0 78 L24 60 L48 78 Z"/><path d="M56 78 L80 56 L104 78 Z"/><path d="M96 78 L96 56 L112 56 L112 78 Z"/><path d="M106 56 L114 42 L122 56 Z"/><path d="M132 78 L132 52 L156 52 L156 78 Z"/><path d="M140 52 L148 36 L156 52 Z"/><path d="M166 78 L166 48 L180 48 L180 78 Z"/><path d="M172 48 L172 28 L186 28 L186 48 Z"/><path d="M177 28 L179 14 L181 28 Z"/><path d="M198 78 L198 54 L222 54 L222 78 Z"/><path d="M206 54 L214 40 L222 54 Z"/><path d="M234 78 L256 58 L278 78 Z"/><path d="M286 78 L286 58 L300 58 L300 78 Z"/>`,
+  nl:`<path d="M0 78 L0 60 L20 60 L20 78 Z"/><path d="M14 60 L22 48 L30 60 Z"/><path d="M38 78 L38 56 L56 56 L56 78 Z"/><path d="M44 56 L52 42 L60 56 Z"/><path d="M68 78 L68 58 L84 58 L84 78 Z"/><path d="M74 58 L80 46 L88 58 Z"/><path d="M96 78 L104 46 L112 78 Z"/><path d="M108 48 L134 48 L136 44 L140 44 L142 48 L166 48 L164 52 L110 52 Z"/><path d="M108 50 L108 66 L110 66 L110 50 Z"/><path d="M182 78 L182 54 L202 54 L202 78 Z"/><path d="M190 54 L196 43 L202 54 Z"/><path d="M216 78 L216 58 L240 58 L240 78 Z"/><path d="M224 58 L230 46 L238 58 Z"/><path d="M252 78 L252 60 L274 60 L274 78 Z"/><path d="M260 60 L266 48 L272 60 Z"/>`,
+  be:`<path d="M0 78 L0 58 L22 58 L22 78 Z"/><path d="M14 58 L22 46 L30 58 Z"/><path d="M40 78 L40 54 L58 54 L58 78 Z"/><path d="M46 54 L54 40 L62 54 Z"/><path d="M70 78 L70 56 L88 56 L88 78 Z"/><path d="M76 56 L82 44 L90 56 Z"/><path d="M98 78 L98 44 L114 44 L114 78 Z"/><path d="M104 44 L106 30 L108 44 Z"/><path d="M106 30 L106 22 L108 22 L108 30 Z"/><path d="M130 78 L130 50 L152 50 L152 78 Z"/><path d="M138 50 L146 34 L154 50 Z"/><path d="M168 78 L168 44 L184 44 L184 78 Z"/><path d="M178 44 L180 30 L182 44 Z"/><path d="M198 78 L198 56 L220 56 L220 78 Z"/><path d="M206 56 L214 42 L222 56 Z"/><path d="M236 78 L236 52 L258 52 L258 78 Z"/><path d="M244 52 L252 36 L260 52 Z"/><path d="M272 78 L272 58 L294 58 L294 78 Z"/>`,
+  lu:`<path d="M0 78 L0 40 L22 36 L30 78 Z"/><path d="M8 36 L16 24 L26 24 L32 36 Z"/><path d="M30 44 L46 44 L46 78 L30 78 Z"/><path d="M84 60 L122 56 L124 78 L82 78 Z"/><path d="M150 58 L176 56 L178 78 L148 78 Z"/><path d="M204 78 L204 48 L226 48 L226 78 Z"/><path d="M208 48 L214 34 L222 48 Z"/><path d="M262 78 L262 42 L284 40 L296 78 Z"/><path d="M268 40 L282 38 L286 42 L272 46 Z"/>`,
+  italy:`<path d="M0 78 L0 56 L24 56 L24 78 Z"/><path d="M14 56 L20 44 L26 56 Z"/><path d="M34 78 L34 50 L54 50 L54 78 Z"/><path d="M40 50 L44 36 L48 50 Z"/><path d="M64 78 L64 54 L84 54 L84 78 Z"/><path d="M70 54 L74 42 L78 54 Z"/><path d="M94 78 L94 48 L118 48 L118 78 Z"/><path d="M100 48 L106 32 L112 48 Z"/><path d="M128 78 L128 56 L150 56 L150 78 Z"/><path d="M134 56 L139 44 L144 56 Z"/><path d="M160 78 L160 52 L182 52 L182 78 Z"/><path d="M166 52 L171 38 L176 52 Z"/><path d="M192 78 L192 46 L206 46 L206 78 Z"/><path d="M196 46 L199 30 L202 46 Z"/><path d="M216 78 L216 56 L238 56 L238 78 Z"/><path d="M222 56 L227 44 L232 56 Z"/><path d="M248 78 L248 50 L272 50 L272 78 Z"/><path d="M254 50 L260 34 L266 50 Z"/><path d="M282 78 L282 56 L300 56 L300 78 Z"/>`,
+  spain:`<path d="M0 78 L0 58 L20 58 L20 78 Z"/><path d="M10 58 L16 48 L22 58 Z"/><path d="M34 78 L34 50 L48 50 L48 78 Z"/><path d="M41 50 L41 30 L45 30 L45 50 Z"/><path d="M39 30 L43 18 L47 30 Z"/><path d="M60 78 L60 52 L76 52 L76 78 Z"/><path d="M68 52 L68 34 L72 34 L72 52 Z"/><path d="M66 34 L70 22 L74 34 Z"/><path d="M88 78 L88 54 L104 54 L104 78 Z"/><path d="M96 54 L96 38 L100 38 L100 54 Z"/><path d="M94 38 L98 26 L102 38 Z"/><path d="M116 78 L116 56 L132 56 L132 78 Z"/><path d="M124 56 L124 42 L128 42 L128 56 Z"/><path d="M122 42 L126 30 L130 42 Z"/><path d="M146 78 L146 48 L162 48 L162 78 Z"/><path d="M153 48 L153 28 L157 28 L157 48 Z"/><path d="M151 28 L155 16 L159 28 Z"/><path d="M176 78 L176 54 L192 54 L192 78 Z"/><path d="M184 54 L184 38 L188 38 L188 54 Z"/><path d="M182 38 L186 26 L190 38 Z"/><path d="M206 78 L206 56 L222 56 L222 78 Z"/><path d="M214 56 L214 42 L218 42 L218 56 Z"/><path d="M212 42 L216 30 L220 42 Z"/><path d="M236 78 L236 52 L252 52 L252 78 Z"/><path d="M244 52 L244 34 L248 34 L248 52 Z"/><path d="M242 34 L246 22 L250 34 Z"/><path d="M266 78 L266 54 L292 54 L292 78 Z"/>`,
+  portugal:`<path d="M0 78 L0 60 L30 60 L30 78 Z"/><path d="M40 78 L40 52 L58 52 L58 78 Z"/><path d="M44 52 L44 42 L54 42 L54 52 Z"/><path d="M42 42 L49 30 L56 42 Z"/><path d="M72 78 L72 58 L96 58 L96 78 Z"/><path d="M80 58 L80 46 L88 46 L88 58 Z"/><path d="M78 46 L84 34 L90 46 Z"/><path d="M110 78 L110 60 L134 60 L134 78 Z"/><path d="M116 60 L116 48 L128 48 L128 60 Z"/><path d="M114 48 L122 36 L130 48 Z"/><path d="M152 78 L166 62 L180 78 Z"/><path d="M200 78 L212 64 L224 78 Z"/><path d="M244 78 L244 58 L268 58 L268 78 Z"/><path d="M252 58 L252 44 L260 44 L260 58 Z"/><path d="M250 44 L256 32 L262 44 Z"/><path d="M282 78 L282 62 L300 62 L300 78 Z"/>`,
+  greece:`<path d="M0 78 L0 60 L22 60 L22 78 Z"/><path d="M30 78 L30 52 L52 52 L52 78 Z"/><path d="M30 46 L52 46 L52 52 L30 52 Z"/><path d="M30 40 L52 40 L52 46 L30 46 Z"/><path d="M34 40 L41 30 L48 40 Z"/><path d="M62 78 L62 50 L84 50 L84 78 Z"/><path d="M62 44 L84 44 L84 50 L62 50 Z"/><path d="M62 38 L84 38 L84 44 L62 44 Z"/><path d="M66 38 L73 28 L80 38 Z"/><path d="M94 78 L94 56 L114 56 L114 78 Z"/><path d="M100 56 C100 46 104 40 104 40 C104 40 108 46 108 56 Z"/><path d="M104 40 L104 32 L106 32 L106 40 Z"/><path d="M124 78 L124 58 L146 58 L146 78 Z"/><path d="M130 58 C130 48 134 42 135 42 C136 42 140 48 140 58 Z"/><path d="M135 42 L135 34 L137 34 L137 42 Z"/><path d="M156 78 L156 60 L178 60 L178 78 Z"/><path d="M164 60 C164 50 168 44 168 44 C168 44 172 50 172 60 Z"/><path d="M168 44 L168 36 L170 36 L170 44 Z"/><path d="M188 78 L188 52 L210 52 L210 78 Z"/><path d="M188 46 L210 46 L210 52 L188 52 Z"/><path d="M188 40 L210 40 L210 46 L188 46 Z"/><path d="M192 40 L199 30 L206 40 Z"/><path d="M220 78 L220 58 L242 58 L242 78 Z"/><path d="M228 58 C228 48 232 42 232 42 C232 42 236 48 236 58 Z"/><path d="M232 42 L232 34 L234 34 L234 42 Z"/><path d="M252 78 L252 60 L274 60 L274 78 Z"/><path d="M260 60 L260 46 L268 46 L268 60 Z"/><path d="M258 46 L264 34 L270 46 Z"/><path d="M284 78 L284 62 L300 62 L300 78 Z"/>`,
+  croatia:`<path d="M0 78 L0 62 L22 62 L22 78 Z"/><path d="M34 78 L34 56 L52 56 L52 78 Z"/><path d="M36 56 L44 46 L52 56 Z"/><path d="M64 78 L64 58 L80 58 L80 78 Z"/><path d="M66 58 L73 48 L80 58 Z"/><path d="M92 78 L92 54 L110 54 L110 78 Z"/><path d="M94 54 L101 44 L108 54 Z"/><path d="M122 78 L122 58 L138 58 L138 78 Z"/><path d="M124 58 L131 48 L138 58 Z"/><path d="M150 78 L150 56 L168 56 L168 78 Z"/><path d="M152 56 L159 46 L166 56 Z"/><path d="M180 78 L180 58 L196 58 L196 78 Z"/><path d="M182 58 L189 48 L196 58 Z"/><path d="M180 44 L196 44 L196 52 L180 52 Z"/><path d="M208 78 L208 56 L226 56 L226 78 Z"/><path d="M210 56 L217 46 L224 56 Z"/><path d="M238 78 L238 58 L256 58 L256 78 Z"/><path d="M240 58 L247 48 L254 58 Z"/><path d="M268 78 L268 54 L286 54 L286 78 Z"/><path d="M270 54 L277 44 L284 54 Z"/>`,
+  slovenia:`<path d="M0 78 L24 40 L44 62 L68 22 L94 58 L118 36 L142 62 L168 26 L192 58 L216 38 L240 62 L264 30 L288 58 L300 44 L300 78 Z"/><path d="M0 78 L0 60 L24 60 L24 78 Z"/><path d="M14 60 L22 48 L30 60 Z"/><path d="M120 78 L120 62 L156 62 L156 78 Z"/><path d="M130 62 L138 44 L146 62 Z"/><path d="M136 44 L138 32 L140 44 Z"/><path d="M180 78 L180 60 L214 60 L214 78 Z"/><path d="M188 60 L196 42 L204 60 Z"/><path d="M194 42 L196 30 L198 42 Z"/><path d="M240 78 L240 62 L276 62 L276 78 Z"/><path d="M248 62 L256 46 L264 62 Z"/>`,
+  austria:`<path d="M0 78 L0 58 L22 58 L22 78 Z"/><path d="M12 58 L20 44 L28 58 Z"/><path d="M40 78 L40 50 L62 50 L62 78 Z"/><path d="M44 50 L51 34 L58 50 Z"/><path d="M46 34 L51 22 L56 34 Z"/><path d="M74 78 L74 54 L96 54 L96 78 Z"/><path d="M78 54 L85 40 L92 54 Z"/><path d="M108 78 L108 52 L130 52 L130 78 Z"/><path d="M112 52 L119 38 L126 52 Z"/><path d="M114 38 L119 26 L124 38 Z"/><path d="M142 78 L142 56 L162 56 L162 78 Z"/><path d="M146 56 L152 44 L158 56 Z"/><path d="M174 78 L174 50 L196 50 L196 78 Z"/><path d="M178 50 L185 34 L192 50 Z"/><path d="M208 78 L208 56 L230 56 L230 78 Z"/><path d="M212 56 L219 42 L226 56 Z"/><path d="M240 78 L240 52 L262 52 L262 78 Z"/><path d="M244 52 L251 36 L258 52 Z"/><path d="M272 78 L272 58 L294 58 L294 78 Z"/><path d="M278 58 L284 46 L290 58 Z"/>`,
+  slovakia:`<path d="M0 78 L0 56 L24 56 L24 78 Z"/><path d="M28 78 L28 46 L52 46 L52 78 Z"/><path d="M24 46 L52 46 L52 50 L24 50 Z"/><path d="M26 46 L26 34 L38 34 L38 46 Z"/><path d="M24 34 L32 26 L40 34 Z"/><path d="M40 46 L40 30 L52 30 L52 46 Z"/><path d="M42 30 L46 22 L50 30 Z"/><path d="M64 78 L64 50 L88 50 L88 78 Z"/><path d="M60 50 L88 50 L88 54 L60 54 Z"/><path d="M62 50 L62 38 L74 38 L74 50 Z"/><path d="M60 38 L68 30 L76 38 Z"/><path d="M76 50 L76 34 L88 34 L88 50 Z"/><path d="M78 34 L82 26 L86 34 Z"/><path d="M100 78 L100 54 L124 54 L124 78 Z"/><path d="M96 54 L124 54 L124 58 L96 58 Z"/><path d="M98 54 L98 42 L110 42 L110 54 Z"/><path d="M96 42 L104 34 L112 42 Z"/><path d="M136 78 L136 56 L160 56 L160 78 Z"/><path d="M132 56 L160 56 L160 60 L132 60 Z"/><path d="M134 56 L134 44 L146 44 L146 56 Z"/><path d="M132 44 L140 36 L148 44 Z"/><path d="M172 78 L172 52 L196 52 L196 78 Z"/><path d="M168 52 L196 52 L196 56 L168 56 Z"/><path d="M170 52 L170 40 L182 40 L182 52 Z"/><path d="M168 40 L176 32 L184 40 Z"/><path d="M208 78 L208 56 L232 56 L232 78 Z"/><path d="M204 56 L232 56 L232 60 L204 60 Z"/><path d="M206 56 L206 44 L218 44 L218 56 Z"/><path d="M204 44 L212 36 L220 44 Z"/><path d="M244 78 L244 52 L268 52 L268 78 Z"/><path d="M240 52 L268 52 L268 56 L240 56 Z"/><path d="M242 52 L242 40 L254 40 L254 52 Z"/><path d="M240 40 L248 32 L256 40 Z"/><path d="M280 78 L280 58 L300 58 L300 78 Z"/>`,
+  czech:`<path d="M0 78 L0 56 L22 56 L22 78 Z"/><path d="M12 56 L20 42 L28 56 Z"/><path d="M40 78 L40 44 L56 44 L56 78 Z"/><path d="M44 44 L48 30 L52 44 Z"/><path d="M48 30 L48 22 L52 22 L52 30 Z"/><path d="M70 78 L70 50 L92 50 L92 78 Z"/><path d="M74 50 L81 34 L88 50 Z"/><path d="M104 78 L104 46 L120 46 L120 78 Z"/><path d="M108 46 L112 32 L116 46 Z"/><path d="M112 32 L112 24 L116 24 L116 32 Z"/><path d="M134 78 L134 52 L156 52 L156 78 Z"/><path d="M138 52 L145 36 L152 52 Z"/><path d="M168 78 L168 48 L184 48 L184 78 Z"/><path d="M172 48 L176 34 L180 48 Z"/><path d="M176 34 L176 26 L180 26 L180 34 Z"/><path d="M198 78 L198 52 L220 52 L220 78 Z"/><path d="M202 52 L209 36 L216 52 Z"/><path d="M230 78 L230 58 L252 58 L252 78 Z"/><path d="M234 58 L241 44 L248 58 Z"/><path d="M262 78 L262 54 L284 54 L284 78 Z"/><path d="M266 54 L273 38 L280 54 Z"/>`,
+  poland:`<path d="M0 78 L0 58 L22 58 L22 78 Z"/><path d="M10 58 L18 46 L26 58 Z"/><path d="M38 78 L38 54 L58 54 L58 78 Z"/><path d="M40 54 L48 42 L56 54 Z"/><path d="M40 42 L48 34 L56 42 Z"/><path d="M72 78 L72 56 L92 56 L92 78 Z"/><path d="M74 56 L82 44 L90 56 Z"/><path d="M74 44 L82 36 L90 44 Z"/><path d="M106 78 L106 52 L126 52 L126 78 Z"/><path d="M108 52 L116 40 L124 52 Z"/><path d="M108 40 L116 32 L124 40 Z"/><path d="M140 78 L140 56 L160 56 L160 78 Z"/><path d="M142 56 L150 44 L158 56 Z"/><path d="M142 44 L150 36 L158 44 Z"/><path d="M174 78 L174 54 L194 54 L194 78 Z"/><path d="M176 54 L184 42 L192 54 Z"/><path d="M208 78 L208 48 L228 48 L228 78 Z"/><path d="M204 48 L228 48 L228 52 L204 52 Z"/><path d="M212 48 L212 34 L224 34 L224 48 Z"/><path d="M210 34 L218 24 L226 34 Z"/><path d="M212 24 L212 16 L216 16 L216 24 Z"/><path d="M242 78 L242 58 L264 58 L264 78 Z"/><path d="M246 58 L253 44 L260 58 Z"/><path d="M272 78 L272 54 L294 54 L294 78 Z"/><path d="M276 54 L283 40 L290 54 Z"/>`,
+  hungary:`<path d="M0 78 L0 62 L24 62 L24 78 Z"/><path d="M32 78 L32 56 L52 56 L52 78 Z"/><path d="M36 56 L44 48 L52 56 Z"/><path d="M60 78 L60 56 L80 56 L80 78 Z"/><path d="M64 56 L72 48 L80 56 Z"/><path d="M88 78 L88 58 L106 58 L106 78 Z"/><path d="M94 58 L100 50 L106 58 Z"/><path d="M114 78 L114 54 L136 54 L136 78 Z"/><path d="M114 48 L136 48 L136 54 L114 54 Z"/><path d="M120 48 L120 38 L130 38 L130 48 Z"/><path d="M118 38 L125 28 L132 38 Z"/><path d="M144 78 L144 58 L162 58 L162 78 Z"/><path d="M150 58 L156 50 L162 58 Z"/><path d="M170 78 L170 56 L190 56 L190 78 Z"/><path d="M174 56 L180 48 L186 56 Z"/><path d="M198 78 L198 54 L220 54 L220 78 Z"/><path d="M198 48 L220 48 L220 54 L198 54 Z"/><path d="M204 48 L204 38 L214 38 L214 48 Z"/><path d="M202 38 L209 28 L216 38 Z"/><path d="M228 78 L228 58 L246 58 L246 78 Z"/><path d="M234 58 L240 50 L246 58 Z"/><path d="M256 78 L256 56 L276 56 L276 78 Z"/><path d="M260 56 L268 48 L276 56 Z"/><path d="M284 78 L284 60 L300 60 L300 78 Z"/><path d="M288 60 L294 52 L300 60 Z"/>`,
+  romania:`<path d="M0 78 L28 42 L52 64 L28 78 Z"/><path d="M40 78 L60 50 L80 78 Z"/><path d="M74 78 L74 56 L96 56 L96 78 Z"/><path d="M78 56 L78 44 L92 44 L92 56 Z"/><path d="M76 44 L84 36 L92 44 Z"/><path d="M84 36 L84 26 L90 26 L90 36 Z"/><path d="M104 78 L104 54 L126 54 L126 78 Z"/><path d="M108 54 L108 40 L124 40 L124 54 Z"/><path d="M106 40 L115 32 L124 40 Z"/><path d="M116 32 L116 22 L122 22 L122 32 Z"/><path d="M134 78 L134 56 L156 56 L156 78 Z"/><path d="M138 56 L138 42 L154 42 L154 56 Z"/><path d="M136 42 L145 34 L154 42 Z"/><path d="M166 78 L166 52 L188 52 L188 78 Z"/><path d="M170 52 L170 38 L186 38 L186 52 Z"/><path d="M168 38 L177 30 L186 38 Z"/><path d="M178 30 L178 20 L184 20 L184 30 Z"/><path d="M196 78 L196 56 L218 56 L218 78 Z"/><path d="M200 56 L200 42 L216 42 L216 56 Z"/><path d="M198 42 L207 34 L216 42 Z"/><path d="M228 78 L228 54 L250 54 L250 78 Z"/><path d="M232 54 L232 40 L248 40 L248 54 Z"/><path d="M230 40 L239 32 L248 40 Z"/><path d="M240 32 L240 22 L246 22 L246 32 Z"/><path d="M260 78 L288 46 L300 78 Z"/>`,
+  bulgaria:`<path d="M0 78 L0 58 L24 58 L24 78 Z"/><path d="M10 58 C10 46 14 40 14 40 C14 40 18 46 18 58 Z"/><path d="M14 40 L14 32 L16 32 L16 40 Z"/><path d="M42 78 L42 54 L66 54 L66 78 Z"/><path d="M44 54 C44 42 49 35 54 35 C59 35 64 42 64 54 Z"/><path d="M54 35 L54 26 L56 26 L56 35 Z"/><path d="M84 78 L84 56 L106 56 L106 78 Z"/><path d="M86 56 C86 45 91 38 95 38 C99 38 104 45 104 56 Z"/><path d="M95 38 L95 30 L97 30 L97 38 Z"/><path d="M124 78 L124 52 L152 52 L152 78 Z"/><path d="M126 52 C126 40 133 32 138 32 C143 32 150 40 150 52 Z"/><path d="M138 32 L138 22 L140 22 L140 32 Z"/><path d="M170 78 L170 56 L192 56 L192 78 Z"/><path d="M172 56 C172 45 177 38 181 38 C185 38 190 45 190 56 Z"/><path d="M181 38 L181 30 L183 30 L183 38 Z"/><path d="M210 78 L210 54 L234 54 L234 78 Z"/><path d="M212 54 C212 42 217 35 222 35 C227 35 232 42 232 54 Z"/><path d="M222 35 L222 26 L224 26 L224 35 Z"/><path d="M252 78 L252 58 L274 58 L274 78 Z"/><path d="M254 58 C254 46 259 40 262 40 C265 40 272 46 272 58 Z"/><path d="M262 40 L262 32 L264 32 L264 40 Z"/><path d="M284 78 L284 60 L300 60 L300 78 Z"/>`,
+  serbia:`<path d="M0 78 L0 58 L26 58 L26 78 Z"/><path d="M14 58 L22 46 L30 58 Z"/><path d="M42 78 L42 52 L68 52 L68 78 Z"/><path d="M40 52 L70 52 L70 55 L40 55 Z"/><path d="M46 52 L52 42 L58 52 Z"/><path d="M52 52 L52 40 L56 40 L56 52 Z"/><path d="M80 78 L80 54 L104 54 L104 78 Z"/><path d="M78 54 L106 54 L106 57 L78 57 Z"/><path d="M86 54 L91 44 L96 54 Z"/><path d="M118 78 L118 56 L140 56 L140 78 Z"/><path d="M116 56 L142 56 L142 59 L116 59 Z"/><path d="M124 56 L129 46 L134 56 Z"/><path d="M154 78 L154 52 L180 52 L180 78 Z"/><path d="M152 52 L182 52 L182 55 L152 55 Z"/><path d="M160 52 L166 42 L172 52 Z"/><path d="M166 52 L166 40 L170 40 L170 52 Z"/><path d="M194 78 L194 56 L216 56 L216 78 Z"/><path d="M192 56 L218 56 L218 59 L192 59 Z"/><path d="M200 56 L205 46 L210 56 Z"/><path d="M230 78 L230 54 L254 54 L254 78 Z"/><path d="M228 54 L256 54 L256 57 L228 57 Z"/><path d="M236 54 L241 44 L246 54 Z"/><path d="M266 78 L266 58 L290 58 L290 78 Z"/><path d="M280 58 L286 48 L292 58 Z"/>`,
+  malta:`<path d="M0 78 L0 60 L24 60 L24 78 Z"/><path d="M12 60 C12 48 17 42 17 42 C17 42 22 48 22 60 Z"/><path d="M17 42 L17 34 L19 34 L19 42 Z"/><path d="M40 78 L40 56 L58 56 L58 78 Z"/><path d="M44 56 C44 46 49 40 49 40 C49 40 54 46 54 56 Z"/><path d="M49 40 L49 32 L51 32 L51 40 Z"/><path d="M74 78 L74 54 L90 54 L90 78 Z"/><path d="M78 54 C78 44 82 38 82 38 C82 38 86 44 86 54 Z"/><path d="M82 38 L82 30 L84 30 L84 38 Z"/><path d="M106 78 L106 58 L122 58 L122 78 Z"/><path d="M110 58 C110 48 114 42 114 42 C114 42 118 48 118 58 Z"/><path d="M136 78 L136 54 L152 54 L152 78 Z"/><path d="M140 54 C140 44 144 38 144 38 C144 38 148 44 148 54 Z"/><path d="M144 38 L144 30 L146 30 L146 38 Z"/><path d="M170 78 L170 56 L188 56 L188 78 Z"/><path d="M174 56 C174 46 179 40 179 40 C179 40 184 46 184 56 Z"/><path d="M179 40 L179 32 L181 32 L181 40 Z"/><path d="M206 78 L206 54 L222 54 L222 78 Z"/><path d="M210 54 C210 44 214 38 214 38 C214 38 218 44 218 54 Z"/><path d="M214 38 L214 30 L216 30 L216 38 Z"/><path d="M242 78 L242 58 L258 58 L258 78 Z"/><path d="M246 58 C246 48 250 42 250 42 C250 42 254 48 254 58 Z"/><path d="M274 78 L274 56 L296 56 L296 78 Z"/><path d="M280 56 C280 46 285 40 285 40 C285 40 290 46 290 56 Z"/>`,
+  cyprus:`<path d="M0 78 L0 60 L26 60 L26 78 Z"/><path d="M30 78 L30 52 L58 52 L58 78 Z"/><path d="M30 48 L58 48 L58 52 L30 52 Z"/><path d="M30 44 L58 44 L58 48 L30 48 Z"/><path d="M30 40 L58 40 L58 44 L30 44 Z"/><path d="M33 40 L37 30 L41 40 Z"/><path d="M44 40 L48 30 L52 40 Z"/><path d="M66 78 L66 54 L94 54 L94 78 Z"/><path d="M66 50 L94 50 L94 54 L66 54 Z"/><path d="M66 46 L94 46 L94 50 L66 50 Z"/><path d="M69 46 L73 36 L77 46 Z"/><path d="M80 46 L84 36 L88 46 Z"/><path d="M102 78 L102 56 L130 56 L130 78 Z"/><path d="M102 52 L130 52 L130 56 L102 56 Z"/><path d="M105 52 L109 42 L113 52 Z"/><path d="M116 52 L120 42 L124 52 Z"/><path d="M142 78 L142 58 L168 58 L168 78 Z"/><path d="M150 58 C150 48 154 42 154 42 C154 42 158 48 158 58 Z"/><path d="M178 78 L178 60 L204 60 L204 78 Z"/><path d="M196 60 C196 52 200 47 200 47 C200 47 204 52 204 60 Z"/><path d="M214 78 L214 62 L240 62 L240 78 Z"/><path d="M222 62 C222 54 226 49 226 49 C226 49 230 54 230 62 Z"/><path d="M252 78 L252 60 L278 60 L278 78 Z"/><path d="M260 60 C260 52 264 47 264 47 C264 47 268 52 268 60 Z"/><path d="M288 78 L288 62 L300 62 L300 78 Z"/>`,
+  russia:`<path d="M0 78 L0 60 L24 60 L24 78 Z"/><path d="M6 60 C6 50 12 42 12 42 C12 42 18 50 18 60 Z"/><path d="M12 42 L12 34 L14 34 L14 42 Z"/><path d="M40 78 L40 56 L60 56 L60 78 Z"/><path d="M44 56 C44 44 50 34 50 34 C50 34 56 44 56 56 Z"/><path d="M50 34 L50 24 L52 24 L52 34 Z"/><path d="M76 78 L76 54 L98 54 L98 78 Z"/><path d="M80 54 C80 42 87 30 87 30 C87 30 94 42 94 54 Z"/><path d="M87 30 L87 20 L89 20 L89 30 Z"/><path d="M114 78 L114 56 L136 56 L136 78 Z"/><path d="M118 56 C118 44 125 32 125 32 C125 32 132 44 132 56 Z"/><path d="M125 32 L125 22 L127 22 L127 32 Z"/><path d="M152 78 L152 54 L174 54 L174 78 Z"/><path d="M156 54 C156 42 163 30 163 30 C163 30 170 42 170 54 Z"/><path d="M163 30 L163 20 L165 20 L165 30 Z"/><path d="M190 78 L190 56 L212 56 L212 78 Z"/><path d="M194 56 C194 44 201 32 201 32 C201 32 208 44 208 56 Z"/><path d="M228 78 L228 58 L250 58 L250 78 Z"/><path d="M232 58 C232 46 239 36 239 36 C239 36 246 46 246 58 Z"/><path d="M274 78 L274 60 L298 60 L298 78 Z"/><path d="M280 60 C280 48 287 38 287 38 C287 38 294 48 294 60 Z"/>`,
+  belarus:`<path d="M0 78 L0 58 L26 58 L26 78 Z"/><path d="M10 58 L18 46 L26 58 Z"/><path d="M42 78 L42 52 L68 52 L68 78 Z"/><path d="M40 52 L70 52 L70 55 L40 55 Z"/><path d="M46 52 L46 38 L62 38 L62 52 Z"/><path d="M44 38 L54 30 L64 38 Z"/><path d="M80 78 L80 54 L106 54 L106 78 Z"/><path d="M78 54 L108 54 L108 57 L78 57 Z"/><path d="M84 54 L84 40 L100 40 L100 54 Z"/><path d="M82 40 L92 32 L102 40 Z"/><path d="M118 78 L118 56 L144 56 L144 78 Z"/><path d="M116 56 L146 56 L146 59 L116 59 Z"/><path d="M122 56 L122 42 L138 42 L138 56 Z"/><path d="M120 42 L130 34 L140 42 Z"/><path d="M156 78 L156 52 L182 52 L182 78 Z"/><path d="M154 52 L184 52 L184 55 L154 55 Z"/><path d="M160 52 L160 38 L176 38 L176 52 Z"/><path d="M158 38 L168 30 L178 38 Z"/><path d="M194 78 L194 56 L220 56 L220 78 Z"/><path d="M192 56 L222 56 L222 59 L192 59 Z"/><path d="M198 56 L198 42 L214 42 L214 56 Z"/><path d="M196 42 L206 34 L216 42 Z"/><path d="M232 78 L232 54 L258 54 L258 78 Z"/><path d="M230 54 L260 54 L260 57 L230 57 Z"/><path d="M236 54 L236 40 L252 40 L252 54 Z"/><path d="M234 40 L244 32 L254 40 Z"/><path d="M270 78 L270 58 L296 58 L296 78 Z"/><path d="M280 58 L288 46 L296 58 Z"/>`,
+  ukraine:`<path d="M0 78 L0 58 L24 58 L24 78 Z"/><path d="M8 58 C8 46 14 38 14 38 C14 38 20 46 20 58 Z"/><path d="M14 38 L14 28 L16 28 L16 38 Z"/><path d="M40 78 L40 56 L62 56 L62 78 Z"/><path d="M44 56 C44 44 51 34 51 34 C51 34 58 44 58 56 Z"/><path d="M51 34 L51 24 L53 24 L53 34 Z"/><path d="M78 78 L78 54 L102 54 L102 78 Z"/><path d="M82 54 C82 42 90 30 90 30 C90 30 98 42 98 54 Z"/><path d="M90 30 L90 20 L92 20 L92 30 Z"/><path d="M118 78 L118 54 L142 54 L142 78 Z"/><path d="M122 54 C122 42 130 30 130 30 C130 30 138 42 138 54 Z"/><path d="M130 30 L130 20 L132 20 L132 30 Z"/><path d="M158 78 L158 56 L182 56 L182 78 Z"/><path d="M162 56 C162 44 170 34 170 34 C170 34 178 44 178 56 Z"/><path d="M170 34 L170 24 L172 24 L172 34 Z"/><path d="M198 78 L198 58 L222 58 L222 78 Z"/><path d="M202 58 C202 46 210 36 210 36 C210 36 218 46 218 58 Z"/><path d="M242 78 L242 60 L266 60 L266 78 Z"/><path d="M246 60 C246 48 254 38 254 38 C254 38 262 48 262 60 Z"/><path d="M282 78 L282 62 L300 62 L300 78 Z"/>`,
+  ireland:`<path d="M0 78 L0 62 L30 62 L30 78 Z"/><path d="M40 78 L40 56 L70 56 L70 78 Z"/><path d="M50 56 L60 44 L70 56 Z"/><path d="M84 78 L84 52 L118 52 L118 78 Z"/><path d="M88 52 L88 40 L114 40 L114 52 Z"/><path d="M86 40 L114 38 L114 42 L86 44 Z"/><path d="M132 78 L132 54 L164 54 L164 78 Z"/><path d="M136 54 L136 42 L160 42 L160 54 Z"/><path d="M134 42 L162 40 L162 44 L134 46 Z"/><path d="M178 78 L178 56 L210 56 L210 78 Z"/><path d="M182 56 L182 44 L206 44 L206 56 Z"/><path d="M180 44 L208 42 L208 46 L180 48 Z"/><path d="M224 78 L224 58 L256 58 L256 78 Z"/><path d="M228 58 L228 46 L252 46 L252 58 Z"/><path d="M226 46 L254 44 L254 48 L226 50 Z"/><path d="M270 78 L270 60 L300 60 L300 78 Z"/><path d="M276 60 L276 46 L296 46 L296 60 Z"/>`,
   // 美洲
   america:`<path d="M0 78 L0 50 L26 50 L26 78 Z"/><path d="M10 50 L20 32 L30 50 Z"/><path d="M44 78 L44 44 L62 44 L62 78 Z"/><path d="M50 44 L58 24 L66 24 L70 44 Z"/><path d="M82 78 L82 40 L100 40 L100 78 Z"/><path d="M92 40 L104 22 L116 22 L116 40 Z"/><path d="M124 78 Q132 32 140 78 Z"/><path d="M154 78 L154 46 L178 46 L178 78 Z"/><path d="M164 46 L172 28 L180 46 Z"/><path d="M194 78 L194 52 L220 52 L220 78 Z"/><path d="M234 78 Q244 34 254 78 Z"/><path d="M268 78 L268 48 L292 48 L292 78 Z"/>`,
   // 非洲
@@ -1448,6 +1475,16 @@ function _roofOrient(x1,x2,ys,yb,cls,ov){
 function _dome(cx,b,r,cls,st){
   const f=v=>v.toFixed(1), hh=r*(st||1.34);
   return `<path class="${cls||'lm-c0'}" d="M${f(cx-r)} ${f(b)} C${f(cx-r)} ${f(b-hh*.5)} ${f(cx-r*.7)} ${f(b-hh*.83)} ${f(cx)} ${f(b-hh)} C${f(cx+r*.7)} ${f(b-hh*.83)} ${f(cx+r)} ${f(b-hh*.5)} ${f(cx+r)} ${f(b)} Z"/>`;
+}
+/* 洋葱穹顶（俄式 / 拜占庭）：**鼓腹在中段**、宽于基座，顶部收成一个尖。
+   不能复用 _dome —— 它的两个控制点落在 ±r 之内，画出来是"子弹头"，
+   缩到卡片尺寸就成一排白蘑菇，俄式穹顶的读点（那个圆肚子）完全出不来。 */
+function _onion(cx,b,r,cls){
+  const f=v=>v.toFixed(1), hh=r*1.62, C=cls||'lm-c0';
+  return `<path class="${C}" d="M${f(cx-r)} ${f(b)}`
+   +` C${f(cx-r*1.34)} ${f(b-hh*.3)} ${f(cx-r*1.2)} ${f(b-hh*.6)} ${f(cx-r*.3)} ${f(b-hh*.88)}`
+   +` L${f(cx)} ${f(b-hh)}`
+   +` C${f(cx+r*1.2)} ${f(b-hh*.6)} ${f(cx+r*1.34)} ${f(b-hh*.3)} ${f(cx+r)} ${f(b)} Z"/>`;
 }
 /* 泰式/缅式多层收分尖塔 */
 function _spire(x,b,w,h,layers,cls){
@@ -1685,6 +1722,138 @@ function _crater(cx,y,r){
    而左坡在 t=.2 处有个折点（山脊外挑），直线一穿就跑到天幕上去了 —— 表现是
    山顶挂了一块"悬空白斑"，w 越大越离谱（kyrgyzstan 的 w=96 直接读成纸飞机）。
    现在用 LX/RX 两个切线函数去求交点，雪盖永远是山体的一部分，w 随便改都不会漏。 */
+
+/* ==================== round 4 新增通用件（欧洲）==================== */
+
+/* 双层巴士（伦敦）：矮而长的方盒 + 一排横向腰线 + 两个轮。
+   78 单位画布里巴士只有 8~9 个单位高，"两层"只能靠**一条腰线 + 两排浅窗**暗示 ——
+   真画两排完整车窗会糊成一片灰点。
+   轮子必须画：没有轮子的方盒，缩到卡片尺寸读成"一块广告牌"。 */
+function _bus(x,b,w,cls,winCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-near', W=winCls||'lm-c0h', h=w*.6, hw=w/2, top=b-h;
+  return `<g class="${C}">`
+   +`<rect x="${f(x-hw)}" y="${f(top+h*.1)}" width="${f(w)}" height="${f(h*.9)}"/>`
+   +`<path d="M${f(x-hw)} ${f(top+h*.1)} q${f(hw*.2)} ${f(-h*.14)} ${f(hw)} ${f(-h*.14)} q${f(hw*.8)} 0 ${f(hw)} ${f(h*.14)} Z"/>`
+   +`<circle cx="${f(x-hw*.5)}" cy="${f(b-h*.04)}" r="${f(h*.15)}"/>`
+   +`<circle cx="${f(x+hw*.46)}" cy="${f(b-h*.04)}" r="${f(h*.15)}"/>`
+   +`</g>`
+   +`<g class="${W}" opacity=".82">`
+   +`<rect x="${f(x-hw*.72)}" y="${f(top+h*.22)}" width="${f(w*.5)}" height="${f(h*.2)}"/>`
+   +`<rect x="${f(x-hw*.72)}" y="${f(top+h*.5)}" width="${f(w*.5)}" height="${f(h*.2)}"/>`
+   +`<rect x="${f(x+hw*.1)}" y="${f(top+h*.5)}" width="${f(w*.16)}" height="${f(h*.2)}"/>`
+   +`</g>`;
+}
+
+/* 运河山墙屋（荷兰 / 比利时）：一排窄而高的房子 + 三个一组的山墙形。
+   山墙必须**交替三种形状**（阶梯 / 钟形 / 三角）—— 同一形状重复排开就成"城墙垛口"；
+   每栋高度再给 ±8% 的差，等高的排是"货架"不是"街"。 */
+function _houseRow(x,b,n,w,h,cls,gableCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c1', G=gableCls||'lm-c0', hw=w/2;
+  let out='';
+  for(let i=0;i<n;i++){
+    const cx=x+i*w, hh=h*(0.9+((i*37)%21)/100), top=b-hh, k=i%3;
+    out+=`<rect class="${C}" x="${f(cx-hw*.92)}" y="${f(top)}" width="${f(w*.92)}" height="${f(hh)}"/>`;
+    if(k===0){
+      out+=`<g class="${G}">`
+        +`<rect x="${f(cx-w*.46)}" y="${f(top-h*.15)}" width="${f(w*.92)}" height="${f(h*.15)}"/>`
+        +`<rect x="${f(cx-w*.32)}" y="${f(top-h*.28)}" width="${f(w*.64)}" height="${f(h*.13)}"/>`
+        +`<rect x="${f(cx-w*.18)}" y="${f(top-h*.4)}" width="${f(w*.36)}" height="${f(h*.12)}"/>`
+        +`</g>`;
+    } else if(k===1){
+      out+=`<path class="${G}" d="M${f(cx-w*.46)} ${f(top)} Q${f(cx-w*.3)} ${f(top-h*.36)} ${f(cx)} ${f(top-h*.36)}`
+        +` Q${f(cx+w*.3)} ${f(top-h*.36)} ${f(cx+w*.46)} ${f(top)} Z"/>`;
+    } else {
+      out+=`<path class="${G}" d="M${f(cx-w*.46)} ${f(top)} L${f(cx)} ${f(top-h*.42)} L${f(cx+w*.46)} ${f(top)} Z"/>`;
+    }
+    out+=`<g class="lm-c3" opacity=".52">`
+      +`<rect x="${f(cx-w*.24)}" y="${f(top+hh*.3)}" width="${f(w*.19)}" height="${f(hh*.24)}"/>`
+      +`<rect x="${f(cx+w*.05)}" y="${f(top+hh*.3)}" width="${f(w*.19)}" height="${f(hh*.24)}"/>`
+      +`<rect x="${f(cx-w*.1)}" y="${f(top+hh*.66)}" width="${f(w*.2)}" height="${f(hh*.24)}"/>`
+      +`</g>`;
+  }
+  return out;
+}
+
+/* 风车（荷兰）：收分塔身 + 四叶十字风轮。
+   唯一读点就是"十字 + 四片张开的叶"，所以叶片要够长（>= 塔高 0.4）且末端略宽；
+   叶片做短了，整座塔立刻读成"灯塔"。风轮整体再 rotate 一个角度，
+   十字摆正会读成"风向标"，斜一点才有转动感。 */
+function _windmill(cx,b,h,cls,wheelCls,ang){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0h', W=wheelCls||'lm-c0', hw=h*.3;
+  const top=b-h*.72, wy=top+2, len=h*.44, bw=len*.16;
+  /* 注意：四片必须**各自 rotate**。写成 forEach 里拼同一个 path，
+     四次叠的是同一片，风车只剩一根斜杠（这里踩过一次）。 */
+  let bl='';
+  [0,90,180,270].forEach(a=>{
+    bl+=`<path transform="rotate(${a})" d="M${f(-bw*.55)} 0 L${f(-bw)} ${f(-len)} L${f(bw)} ${f(-len)} L${f(bw*.55)} 0 Z"/>`;
+  });
+  return `<g class="${C}">`
+   +`<path d="M${f(cx-hw)} ${f(b)} L${f(cx-hw*.44)} ${f(top)} L${f(cx+hw*.44)} ${f(top)} L${f(cx+hw)} ${f(b)} Z"/>`
+   +`<rect x="${f(cx-hw*.56)}" y="${f(top-h*.05)}" width="${f(hw*1.12)}" height="${f(h*.05)}"/>`
+   +`</g>`
+   +`<g class="${W}" transform="translate(${f(cx)} ${f(wy)}) rotate(${ang||0})">${bl}</g>`
+   +`<circle class="${W}" cx="${f(cx)}" cy="${f(wy)}" r="${f(bw*1.5)}"/>`;
+}
+
+
+/* 柱廊（帕特农 / 神庙 / 教堂门廊）：等距圆柱。
+   柱子就是它的全部身份 —— 柱距小于 2.6 个单位，缩到卡片上柱间会被填满，
+   整排读成"一堵栅栏"。所以 n 不能取大。 */
+function _colonnade(x,b,w,h,n,cls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0h', st=w/n, cw=st*.54;
+  let out=`<g class="${C}">`;
+  for(let i=0;i<n;i++) out+=`<rect x="${f(x+i*st+st*.5-cw*.5)}" y="${f(b-h)}" width="${f(cw)}" height="${f(h)}"/>`;
+  return out+`</g>`;
+}
+
+/* 一排拱券（斗兽场 / 教堂拱廊）：等距方拱 + 拱间壁柱。
+   拱洞要"下直上圆"—— 全画成方洞会读成"一排窗"，全画成半圆会读成"一串糖葫芦"。 */
+function _archRow(x,b,w,h,n,cls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c1', st=w/n, aw=st*.62, ah=h*.68;
+  let out=`<g class="${C}">`;
+  for(let i=0;i<n;i++){
+    const ax=x+i*st+st*.5;
+    out+=`<path d="M${f(ax-aw*.5)} ${f(b)} v${f(-ah*.62)}`
+      +` q${f(aw*.5)} ${f(-ah*.76)} ${f(aw)} 0 v${f(ah*.62)} Z"/>`;
+  }
+  return out+`</g>`;
+}
+
+/* 三桅帆船（大航海时代）：梭形船身 + 三根桅 + 三面方帆。
+   帆**必须远大于船身** —— 船在 78 单位的画布里只有 4 个单位高，
+   只画船身会读成"一根浮木"；帆一立起来，"帆船"立刻成立。 */
+function _ship(x,b,len,cls,sailCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0h', S=sailCls||'lm-c0', hw=len/2, mh=len*.92;
+  return `<g class="${C}">`
+   +`<path d="M${f(x-hw)} ${f(b)} Q${f(x)} ${f(b+3.2)} ${f(x+hw)} ${f(b)}`
+   +` Q${f(x+hw*.5)} ${f(b-2.4)} ${f(x)} ${f(b-2.8)} Q${f(x-hw*.5)} ${f(b-2.4)} ${f(x-hw)} ${f(b)} Z"/>`
+   +`<rect x="${f(x-3.4)}" y="${f(b-mh)}" width="1.2" height="${f(mh)}"/>`
+   +`<rect x="${f(x+.6)}" y="${f(b-mh*.84)}" width="1.2" height="${f(mh*.84)}"/>`
+   +`<rect x="${f(x+4.2)}" y="${f(b-mh*.66)}" width="1.2" height="${f(mh*.66)}"/>`
+   +`</g>`
+   +`<g class="${S}">`
+   +`<path d="M${f(x-2.8)} ${f(b-mh)} h-8.6 v${f(mh*.42)} h8.6 Z"/>`
+   +`<path d="M${f(x+1.8)} ${f(b-mh*.84)} h8.4 v${f(mh*.36)} h-8.4 Z"/>`
+   +`<path d="M${f(x+5.4)} ${f(b-mh*.66)} h7.4 v${f(mh*.3)} h-7.4 Z"/>`
+   +`</g>`;
+}
+
+/* 向日葵（乌克兰）：细直茎 + 一圈花瓣 + 深色花盘。
+   花盘必须**深**、花瓣必须**亮** —— 两者同色时整朵花缩成一个圆点。
+   78 单位里一朵花只有 6~8 个单位，田里靠"重复 + 高矮错落"才是"田"。 */
+function _sunflower(x,b,h,cls,diskCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0h', D=diskCls||'lm-c2';
+  const ty=b-h, r=h*.36;
+  let pet='';
+  for(let i=0;i<8;i++){
+    const a=i*45*Math.PI/180, px=x+Math.cos(a)*r*.92, py=ty+Math.sin(a)*r*.92;
+    pet+=`<ellipse cx="${f(px)}" cy="${f(py)}" rx="${f(r*.56)}" ry="${f(r*.3)}" transform="rotate(${i*45} ${f(px)} ${f(py)})"/>`;
+  }
+  return `<rect class="${C}" x="${f(x-.7)}" y="${f(ty)}" width="1.4" height="${f(h)}"/>`
+   +`<g class="${C}">${pet}</g>`
+   +`<circle class="${D}" cx="${f(x)}" cy="${f(ty)}" r="${f(r*.6)}"/>`;
+}
+
 function _snowpeak(cx,b,w,h,cls,snow){
   const f=v=>v.toFixed(1), hw=w/2, top=b-h;
   /* 深度比例夹到 [.22,.29]：小于 .2 会踩在山脊折点上（多边形自交），
@@ -3172,7 +3341,837 @@ const LM_SCENE={
       +`</g>`
       +`<path class="lm-near" opacity=".5" d="M-2 78 L-2 70 Q48 66 96 70 L112 78 Z"/>` },
 
-  /* ==================== 热带兜底 ==================== */
+
+  /* ==================== 欧洲 · round 4a 西欧 ==================== */
+
+  france:{ sun:[120,13,9.5], clouds:[[176,11,10,2.3],[232,8.6,8,1.9]],
+    far:`<path d="M-12 64 L40 54 L92 64 Z"/>`,
+    mid:
+      // 埃菲尔铁塔：两条张开的塔腿 + 两道平台 + 收分塔身 + 塔尖天线。
+      // 塔腿之间必须"留空"（透出天空）—— 填满就成了一座方尖碑，这是最致命的简化。
+      // 腿内侧的交叉斜撑走 .lm-brace（stroke）：开放路径套 .lm-c* 等于什么都没画。
+      // 塔腿：底宽 26 单位 / 塔高 52 —— 真实埃菲尔底宽约为塔高的 0.39，
+      // 第一版给到 48/52（0.92），整座塔读成一顶"浅色灯罩压在一个大黑三角上"。
+      // 两条腿之间必须留出**向上的梯形拱洞**（透天空），这是它最好认的一笔。
+      `<path class="lm-c0h" d="M137 52 L141.5 40 L147 40 L144 52 Z"/>`
+     +`<path class="lm-c0h" d="M163 52 L158.5 40 L153 40 L156 52 Z"/>`
+     +`<g class="lm-brace" opacity=".45">`
+       +`<path d="M139.4 48 L144.8 41.2"/><path d="M142.6 48.4 L146.4 41.2"/>`
+       +`<path d="M160.6 48 L155.2 41.2"/><path d="M157.4 48.4 L153.6 41.2"/>`
+     +`</g>`
+      // 第一层平台 → 收分塔身 → 第二层平台 → 塔尖天线
+     +`<path class="lm-c0h" d="M141.5 40 L144.5 24 L155.5 24 L158.5 40 Z"/>`
+     +`<path class="lm-c1" d="M150 24 h8.5 v16 h-8.5 Z" opacity=".3"/>`
+     +`<path class="lm-c0h" d="M140.2 37.4 h19.6 v-2.8 h-19.6 Z"/>`
+     +`<path class="lm-c0h" d="M144.5 24 L146.5 8 L153.5 8 L155.5 24 Z"/>`
+     +`<path class="lm-c0h" d="M143.8 21.6 h12.4 v-2.4 h-12.4 Z"/>`
+     +`<path class="lm-c0h" d="M146.5 8 L148.5 2 L151.5 2 L153.5 8 Z"/>`
+     +`<path class="lm-c0h" d="M149.3 2 h1.4 v-1.4 h-1.4 Z"/>`
+      // 凯旋门（右）：近正方形体量 + 中央圆拱（走暗档才读作"透空"）+ 檐口
+     +`<path class="lm-c0h" d="M198 52 v-21 h26 v21 Z"/>`
+     +`<path class="lm-near" d="M205.6 52 v-10.4 q0 -5.8 5.4 -5.8 q5.4 0 5.4 5.8 v10.4 Z"/>`
+     +`<path class="lm-c0h" d="M196 31 h30 v-3 h-30 Z"/>`
+     +`<path class="lm-c0b" d="M200.4 28 v-2.4 h21.2 v2.4 Z"/>`
+     +`<path class="lm-c1" d="M226 52 v-16 h7 v16 Z" opacity=".5"/>`
+      // 塞纳河岸台地
+     +`<path class="lm-c1" d="M-12 64 L-12 52 L302 50.4 L302 64 Z" opacity=".9"/>`
+     +`<path class="lm-c2" d="M-12 64 L-12 55 L302 53.4 L302 64 Z"/>`,
+    fore:_water(60)
+      +`<g class="lm-c3" opacity=".6">`
+        +`<path d="M38 63.4 h36 v-3 h-36 Z"/><path d="M70 63.4 h5 v-6.6 h-5 Z"/>`
+      +`</g>`
+      +_pine(22,58,17) + _pine(44,58,12) + _pine(180,52,13) + _pine(191,52,10) + _bush(272,60,15) },
+
+  gb:{ sun:[52,12,9], clouds:[[130,11.5,10,2.2]], birds:[248,20,2.4],
+    far:`<path d="M-12 64 L36 51 L84 64 Z"/>`
+       +`<path d="M76 64 L126 55 L176 64 Z" opacity=".55"/>`,
+    mid:
+      // 威斯敏斯特宫（议会大厦）：左侧横向哥特体量，做成"中调剪影"。
+      // 它是配景，色档选 lm-c2 而不是 lm-c0h ——
+      // 一条亮白的长横带会把右边的主塔彻底压下去，主角就没了。
+      // 大本钟塔（主角）：塔身 + 右暗面 + 出檐 + 四面钟 + 四角小尖 + 中央尖顶。
+      // 塔身 18x34（1:1.9）—— 真塔是 1:8，画到那个比例就只剩一根针，这里收到接近 1:2。
+      // 塔基停在 y=48：卡头左下有 scrim 的双重压暗，y>50 的东西一律会被压回背景色。
+      `<path class="lm-c0h" d="M154 48 v-34 h18 v34 Z"/>`
+     +`<path class="lm-c1" d="M167 14 h5 v34 h-5 Z" opacity=".5"/>`
+     +`<path class="lm-c0h" d="M150 14 h26 v-3 h-26 Z"/>`
+      // 钟盘：亮面 + 内圈压深 + 指针（指针是开放路径，必须走 lm-brace 的 stroke）
+     +`<circle class="lm-sky" cx="163" cy="26" r="5.4"/>`
+     +`<circle class="lm-c1" cx="163" cy="26" r="5.4" opacity=".3"/>`
+     +`<g class="lm-brace" opacity=".9"><path d="M163 26 v-3.2"/><path d="M163 26 l2.5 1.5"/></g>`
+     +`<g class="lm-c0h">`
+       +`<path d="M151 11 l2.4 -6.4 l2.4 6.4 Z"/><path d="M158.6 11 l2.4 -7 l2.4 7 Z"/>`
+       +`<path d="M166.6 11 l2.4 -7 l2.4 7 Z"/><path d="M174.2 11 l2.4 -6.4 l2.4 6.4 Z"/>`
+       +`<path d="M159.4 11 L163 2.6 L166.6 11 Z"/>`
+     +`</g>`
+     +_finial(163,2.6,4,'lm-c0h')
+      // 威斯敏斯特宫（议会大厦）：钟塔**右侧**的横向体量 + 屋脊尖塔齿。
+      // 放右侧是因为左侧 x<152 且 y<36 是国名文字带，尖塔齿一放上去就撞字。
+      // 体量顶 y=28、齿顶 y=20 —— 全落在中间留白带里。
+     +`<path class="lm-c0" d="M178 44 v-16 h62 v16 Z"/>`
+     +`<path class="lm-c1" d="M212 28 h28 v16 h-28 Z" opacity=".5"/>`
+     +`<path class="lm-c0h" d="M178 27 h62 v1.6 h-62 Z"/>`
+     +`<g class="lm-c0h">`
+       +`<path d="M184 27.4 l2.4 -7.4 l2.4 7.4 Z"/><path d="M199 27.4 l2.4 -7.4 l2.4 7.4 Z"/>`
+       +`<path d="M214 27.4 l2.4 -7.4 l2.4 7.4 Z"/><path d="M229 27.4 l2.4 -7.4 l2.4 7.4 Z"/>`
+     +`</g>`
+      // 窗户点阵：一条光板体量会读成"围墙"，几个暗窗才有"宫"的体量感
+     +`<g class="lm-c1" opacity=".55">`
+       +`<rect x="186" y="36" width="4" height="6"/><rect x="196" y="36" width="4" height="6"/>`
+       +`<rect x="206" y="36" width="4" height="6"/><rect x="216" y="36" width="4" height="6"/>`
+       +`<rect x="226" y="36" width="4" height="6"/>`
+     +`</g>`
+      // 河岸：把塔基和地平线之间那一截接上，否则建筑全"悬空"
+     +`<path class="lm-c1" d="M-12 62 L-12 48.6 L302 45.4 L302 62 Z" opacity=".9"/>`
+     +`<path class="lm-c2" d="M-12 62 L-12 52 L302 49 L302 62 Z"/>`,
+      // 双层巴士走"亮车身 + 暗窗"：它站在最深的前景地面上，车体再用暗档就整个消失
+      // （第一版 lm-near 车身 + 26 宽 / b=77，车顶被地面吃掉，一点都看不见）。
+    fore:_ground() + _bus(266,74,23,'lm-c0h','lm-c3') + _pine(36,66,16) },
+
+  de:{ sun:[56,12,9], clouds:[[128,11.5,10,2.2]], birds:[250,20,2.4],
+    far:`<path d="M-12 64 L30 48 L70 64 Z"/>`
+       +`<path d="M62 64 L106 52 L150 64 Z" opacity=".6"/>`,
+    mid:
+      // 山岩基座：新天鹅堡是"骑"在一块陡峭岩台上的，抽掉岩台就只剩一栋白房子。
+      // 用 lm-near（最深档）做岩体，白墙压上去的明度差最大。
+      `<path class="lm-near" d="M116 64 L134 47 L202 43 L238 64 Z"/>`
+     +`<path class="lm-c3" d="M116 64 L134 47 L162 45 L168 64 Z" opacity=".66"/>`
+      // 岩台顶的受光棱：没有这一条，岩台和前景地面就是同一团黑，城堡像浮在空中
+     +`<path class="lm-c3" d="M134 47 L202 43 L204 44.4 L136 48.4 Z"/>`
+      // 城堡白墙群：lm-c0h 是整张画布最亮的一档，正好用来演新天鹅堡的白。
+      // 锥顶必须换到 lm-c2 —— 也走 lm-c0h 的话，顶和墙会连成一根白柱子。
+     +`<path class="lm-c0h" d="M128 47 v-16 h19 v16 Z"/>`
+     +`<path class="lm-c0h" d="M125 31 h25 v-2.6 h-25 Z"/>`
+     +`<path class="lm-c3" d="M132.4 28.4 L137.5 15 L142.6 28.4 Z"/>`
+     +`<path class="lm-c3" d="M137.5 15 L142.6 28.4 L137.5 28.4 Z" opacity=".4"/>`
+     +`<path class="lm-c0h" d="M147 45 v-16 h42 v16 Z"/>`
+      // 主塔要高瘦（16 宽 / 27 高 ≈ 1:1.7），矮胖就没有新天鹅堡的童话感
+     +`<path class="lm-c0h" d="M189 45 v-27 h17 v27 Z"/>`
+     +`<path class="lm-c0h" d="M186 18 h23 v-2.6 h-23 Z"/>`
+     +`<path class="lm-c3" d="M192.4 15.4 L197.5 4.4 L202.6 15.4 Z"/>`
+     +`<path class="lm-c3" d="M197.5 4.4 L202.6 15.4 L197.5 15.4 Z" opacity=".4"/>`
+     +`<path class="lm-c0h" d="M206 46 v-15 h16 v15 Z"/>`
+     +`<path class="lm-c3" d="M208 31 L214 19 L220 31 Z"/>`
+      // 窗洞：暗窗是"墙"的唯一读点，全白一片会读成纸片
+     +`<g class="lm-c3" opacity=".5">`
+       +`<rect x="153" y="35" width="3.2" height="5"/><rect x="161" y="35" width="3.2" height="5"/>`
+       +`<rect x="169" y="35" width="3.2" height="5"/><rect x="177" y="35" width="3.2" height="5"/>`
+       +`<rect x="192" y="32" width="3.2" height="6"/><rect x="199.4" y="32" width="3.2" height="6"/>`
+       +`<rect x="134" y="38" width="2.8" height="5"/><rect x="141.4" y="38" width="2.8" height="5"/>`
+       +`<rect x="211" y="38" width="2.8" height="5"/>`
+     +`</g>`,
+    fore:_ground() + _pine(38,66,18) + _pine(60,66,12.6) + _pine(272,66,15) + _bush(292,66,11) },
+
+  nl:{ sun:[240,12,9], clouds:[[100,11.5,10,2.2]], birds:[52,20,2.4],
+    far:`<path d="M-12 64 L60 58.4 L140 62 L230 57.4 L312 62 L312 64 Z"/>`,
+    mid:
+      // 运河山墙屋列（左）：窄 + 高 + 三种山墙轮换，是"运河街"的读点。
+      // 屋子只排到 x=96（太阳固定在 100）：再往右就顶到日头上。
+      // 屋身 lm-c1 + 山墙 lm-c0h —— 山墙是整排屋子的"读点"，必须比屋身亮。
+      _houseRow(24,64,3,25,32,'lm-c1','lm-c0h')
+      // 风车（主角，右）：收分塔身 + 四叶十字风轮，风轮斜 18 度
+     +_windmill(204,64,35,'lm-c0h','lm-c0',18),
+    fore:_ground()
+      +`<g opacity=".5">`
+        +`<path class="lm-c2" d="M-2 78 L-2 69 L302 66.6 L302 78 Z"/>`
+        +`<path class="lm-c3" d="M-2 78 L-2 73 L302 71 L302 78 Z"/>`
+      +`</g>`
+      +_bush(276,66,14) },
+
+  be:{ sun:[240,12,9], clouds:[[96,11.5,10,2.2]], birds:[56,20,2.4],
+    far:`<path d="M-12 64 L40 53 L92 64 Z"/>`
+       +`<path d="M84 64 L132 56 L180 64 Z" opacity=".55"/>`,
+    mid:
+      // 大广场的山墙屋列（左）+ 布鲁塞尔市政厅（右）。
+      // 屋列顶压在 y≈24 —— 左三分之一是国名/英文名文字带，主体压进去就会被 scrim 压回背景色。
+      _houseRow(106,52,3,26,26,'lm-c0','lm-c0h')
+      // 市政厅：哥特尖拱立面 + 一座不对称的钟塔。
+      // 钟塔塔身必须走最亮档：tone-euro 的 band2 是中等明度的灰玫瑰，
+      // 塔身用 lm-c0b（30% 白）会与天空同明度，整座塔"陷"进去 —— be 第一版的病根就在这。
+     +`<path class="lm-c0" d="M186 52 v-17 h44 v17 Z"/>`
+     +`<g class="lm-c0h">`
+       +`<path d="M191 46 v-6.6 q0 -5.6 4.8 -5.6 q4.8 0 4.8 5.6 v6.6 Z"/>`
+       +`<path d="M204 46 v-6.6 q0 -5.6 4.8 -5.6 q4.8 0 4.8 5.6 v6.6 Z"/>`
+       +`<path d="M217 46 v-6.6 q0 -5.6 4.8 -5.6 q4.8 0 4.8 5.6 v6.6 Z"/>`
+     +`</g>`
+     +`<path class="lm-c1" d="M186 35 h44 v-2.6 h-44 Z" opacity=".8"/>`
+     +`<path class="lm-c0h" d="M184 32.4 v-13 h30 v13 Z"/>`
+     +`<path class="lm-c1" d="M204 19.4 h10 v13 h-10 Z" opacity=".42"/>`
+     +`<g class="lm-c3" opacity=".5">`
+       +`<rect x="188" y="24" width="4" height="6"/><rect x="200" y="24" width="4" height="6"/>`
+     +`</g>`
+     +`<path class="lm-c0h" d="M182 19.4 h34 v-3.2 h-34 Z"/>`
+     +`<path class="lm-c0h" d="M188 16.2 v-4 h12 v4 Z"/>`
+     +`<g class="lm-c0h">`
+       +`<path d="M186.6 16.2 l2.4 -6.8 l2.4 6.8 Z"/><path d="M202 16.2 l2.4 -6.8 l2.4 6.8 Z"/>`
+       +`<path d="M191.2 11.8 L199 1 L206.8 11.8 Z"/>`
+     +`</g>`
+     +`<path class="lm-c1" d="M199 11.8 L206.8 11.8 L199 1 Z" opacity=".3"/>`
+      // 广场地面
+     +`<path class="lm-c1" d="M-12 64 L-12 52 L302 50.4 L302 64 Z" opacity=".9"/>`
+     +`<path class="lm-c2" d="M-12 64 L-12 55.4 L302 53.8 L302 64 Z"/>`,
+    fore:_ground() + _bush(272,66,14) + _pine(42,66,14) },
+
+  lu:{ sun:[240,12,9], clouds:[[96,11.5,10,2.2]], birds:[56,20,2.4],
+    far:`<path d="M-12 64 L28 44 L68 64 Z"/>`
+       +`<path d="M240 64 L280 46 L312 64 Z" opacity=".6"/>`,
+    mid:
+      // 佩特罗斯要塞：一道横贯画面的岩壁 + 崖顶要塞城墙；左下的深谷里跨一座阿道夫桥。
+      // 岩壁原来走 lm-c0b（30% 白）：tone-euro 的 band2 是中等明度的灰玫瑰，
+      // 30% 白混出来和天空几乎同明度 → 整道岩壁"化"进背景。提到 lm-c0（48% 白）才立得住。
+      // 城墙整体再压低 5 个单位：垛口（_merlons 会往上探 7.4）原来顶在 y=29.6，
+      // 正好戳进 .dh-sub（英文名）的文字带，移动端 slice 一裁就只剩"白字压白石"。
+      // 同时城墙/垛口由 lm-c0h 降到 lm-c0：这一档才压得住白字（实测 P99 底图亮度 0.275 → 需 <0.183）。
+      `<path class="lm-c0" d="M-12 62 L-12 46 L40 42 L112 47 L182 43 L252 46 L302 44 L302 62 Z"/>`
+     +`<path class="lm-c1" d="M-12 62 L-12 51 L44 47 L114 52 L184 48 L254 51 L302 49 L302 62 Z" opacity=".5"/>`
+      // 岩壁石缝
+     +`<g class="lm-brace" opacity=".22">`
+       +`<path d="M20 48 L22 62"/><path d="M74 44 L76 62"/><path d="M136 45 L138 62"/>`
+       +`<path d="M196 44 L198 62"/><path d="M266 45 L268 62"/>`
+     +`</g>`
+      // 崖顶要塞城墙（垛口是"要塞"唯一的身份）
+     +_merlons(72,42,168,6.6,'lm-c0',11)
+     +_tower(104,42,19,13,'lm-c0')
+     +_tower(214,42,17,11,'lm-c0')
+      // 岩壁上的窗洞 / 裂口（光板岩壁会读成"一堵挡墙"）
+     +`<g class="lm-c2" opacity=".4">`
+       +`<rect x="52" y="50" width="5" height="7"/><rect x="130" y="49" width="5" height="7"/>`
+       +`<rect x="248" y="48" width="5" height="7"/><rect x="20" y="51" width="4.4" height="6"/>`
+     +`</g>`
+      // 阿道夫桥（左侧深谷上的一道石拱桥：拱 + 桥面 + 栏杆）
+     +`<path class="lm-c0h" d="M6 56 h52 v-2.6 h-52 Z"/>`
+     +`<path class="lm-c0b" d="M8 53.4 q13 -7.6 26 0 q11 -6.4 22 0 v2.6 h-48 Z"/>`
+     +`<g class="lm-c3" opacity=".55">`
+       +`<rect x="14" y="49" width="3" height="4"/><rect x="32" y="49" width="3" height="4"/>`
+       +`<rect x="50" y="49" width="3" height="4"/>`
+     +`</g>`
+      // 崖下的深谷
+     +`<path class="lm-near" d="M-12 78 L-12 56 L302 52 L302 78 Z"/>`,
+    fore:_bush(34,72,13,'lm-c1') + _bush(272,72,13,'lm-c1') },
+
+  /* ==================== 欧洲 · round 4b 南欧 + 地中海 ==================== */
+
+  italy:{ sun:[246,12,9], clouds:[[92,11.5,10,2.2]], birds:[52,20,2.4],
+    far:`<path d="M-12 64 L34 52 L80 64 Z"/>`
+       +`<path d="M72 64 L118 56 L164 64 Z" opacity=".55"/>`,
+    mid:
+      // 斗兽场（左）：叠层拱券的椭圆外墙。
+      // 拱洞必须走"暗档"—— 走中调会和墙身同明度，"一排拱"直接消失，只剩一个灰桶。
+      `<path class="lm-c0" d="M92 52 L92 30 Q132 23 172 30 L172 52 Z"/>`
+     +`<path class="lm-c0h" d="M92 30 Q132 23 172 30 L172 27.4 Q132 20.4 92 27.4 Z"/>`
+     +_archRow(94,44,76,11.6,8,'lm-c2')
+     +`<g class="lm-c2" opacity=".55">`
+       +`<rect x="98" y="46" width="5" height="6"/><rect x="112" y="45.4" width="5" height="6.6"/>`
+       +`<rect x="126" y="45" width="5" height="7"/><rect x="140" y="45" width="5" height="7"/>`
+       +`<rect x="154" y="45.6" width="5" height="6.4"/><rect x="166" y="46.6" width="5" height="5.4"/>`
+     +`</g>`
+      // 顶层残缺：右上一角塌掉 —— 斗兽场最标志的一笔
+     +`<path class="lm-near" d="M150 52 L150 27.2 Q161 24.2 172 30 L172 52 Z" opacity=".9"/>`
+      // 比萨斜塔（右）：细圆柱塔身 + 四道环廊 + 顶，整体右倾 6 度
+     +`<g transform="rotate(-6 206 52)">`
+       +`<path class="lm-c0h" d="M198 52 v-30 h16 v30 Z"/>`
+       +`<path class="lm-c1" d="M208 22 h6 v30 h-6 Z" opacity=".34"/>`
+       +`<g class="lm-c1" opacity=".58">`
+         +`<rect x="196.4" y="42.6" width="19.2" height="2"/><rect x="196.4" y="36" width="19.2" height="2"/>`
+         +`<rect x="196.4" y="29.6" width="19.2" height="2"/><rect x="196.4" y="25" width="19.2" height="2"/>`
+       +`</g>`
+       +`<path class="lm-c0h" d="M194.6 22.4 h22.8 v-3.2 h-22.8 Z"/>`
+       +`<path class="lm-near" d="M199.4 19.2 L206 12.4 L212.6 19.2 Z"/>`
+     +`</g>`
+      // 台地（填住两座主体之间的空档，避免"两块孤立的道具"）
+     +`<path class="lm-c1" d="M-12 64 L-12 52 L302 50.4 L302 64 Z" opacity=".9"/>`
+     +`<path class="lm-c2" d="M-12 64 L-12 55.4 L302 53.8 L302 64 Z"/>`,
+    fore:_ground() + _pine(44,66,17) + _pine(64,66,12) + _pine(276,66,14) },
+
+  spain:{ sun:[52,12,9], clouds:[[126,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 64 L40 54 L92 64 Z"/>`,
+    mid:
+      // 圣家堂：高迪的"沙堡"= 一组细高塔。
+      // 塔高**必须参差** —— 四根一样高就读成"一排烟囱"，这是 spain 第一版的病根。
+      // 还要有一根明显更高的主塔，把"十八塔"的层次立起来。
+      `<path class="lm-c0" d="M112 52 v-12 h88 v12 Z"/>`
+     +`<g class="lm-c2" opacity=".42">`
+       +`<rect x="119" y="45" width="5" height="6"/><rect x="133" y="45" width="5" height="6"/>`
+       +`<rect x="147" y="45" width="5" height="6"/><rect x="161" y="45" width="5" height="6"/>`
+       +`<rect x="175" y="45" width="5" height="6"/><rect x="189" y="45" width="5" height="6"/>`
+     +`</g>`
+     +`<path class="lm-c0h" d="M110 40 h92 v-3.4 h-92 Z"/>`
+      // 四根细高塔：高度 17 / 23 / 19 / 25（参差）
+     +`<g class="lm-c0h">`
+       +`<path d="M116 40 v-17 h10 v17 Z"/><path d="M142 40 v-23 h10 v23 Z"/>`
+       +`<path d="M160 40 v-19 h10 v19 Z"/><path d="M186 40 v-25 h10 v25 Z"/>`
+     +`</g>`
+      // 塔身暗窗槽：光板塔身会读成"四根柱子"
+     +`<g class="lm-c3" opacity=".4">`
+       +`<rect x="119.4" y="27" width="3.2" height="11"/><rect x="145.4" y="21" width="3.2" height="17"/>`
+       +`<rect x="163.4" y="25" width="3.2" height="13"/><rect x="189.4" y="19" width="3.2" height="19"/>`
+     +`</g>`
+      // 塔顶"主教冠"：尖锥收在一个点上
+     +`<g class="lm-c0h">`
+       +`<path d="M113.8 23 L121 16 L128.2 23 Z"/><path d="M139.8 17 L147 9.6 L154.2 17 Z"/>`
+       +`<path d="M157.8 21 L165 14 L172.2 21 Z"/><path d="M183.8 15 L191 7.6 L198.2 15 Z"/>`
+     +`</g>`
+      // 主塔（比四根都高一截 —— 少了它，圣家堂就只是"四根带刺的柱子"）
+     +`<path class="lm-c0h" d="M204 40 v-32 h13 v32 Z"/>`
+     +`<path class="lm-c1" d="M212 8 h5 v32 h-5 Z" opacity=".38"/>`
+     +`<g class="lm-c3" opacity=".4">`
+       +`<rect x="207.4" y="18" width="3.2" height="18"/>`
+     +`</g>`
+     +`<path class="lm-c0h" d="M202 8 h17 v-3 h-17 Z"/>`
+     +`<path class="lm-c0h" d="M205 5 L210.5 0.6 L216 5 Z"/>`,
+    fore:_ground() + _pine(40,66,16) + _bush(276,66,14) },
+
+  portugal:{ sun:[50,12,9], clouds:[[124,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 64 L30 56 L72 64 Z"/>`,
+    mid:
+      // 贝伦塔：下方方形堡垒（带垛口）+ 上方方形塔楼 + 屋脊四角小尖。
+      // "下宽上窄的两段方体 + 垛口"就是它的身份；垛口一省就成一座普通碉楼。
+      `<path class="lm-c0b" d="M96 50 v-13 h58 v13 Z"/>`
+     +_merlons(94,37,62,3.8,'lm-c0h',8)
+     +`<path class="lm-c0h" d="M108 33.2 v-15 h34 v15 Z"/>`
+     +`<path class="lm-c0h" d="M106 18.2 h38 v-2.8 h-38 Z"/>`
+     +`<g class="lm-c0b">`
+       +`<path d="M106.6 15.4 l3 -4.8 l3 4.8 Z"/><path d="M117 15.4 l3 -4.8 l3 4.8 Z"/>`
+       +`<path d="M127.4 15.4 l3 -4.8 l3 4.8 Z"/><path d="M137.8 15.4 l3 -4.8 l3 4.8 Z"/>`
+     +`</g>`
+     +`<g class="lm-c1" opacity=".55">`
+       +`<rect x="114" y="23" width="4" height="6"/><rect x="126" y="23" width="4" height="6"/>`
+       +`<rect x="136" y="23" width="4" height="6"/><rect x="104" y="42" width="4" height="6"/>`
+       +`<rect x="122" y="42" width="4" height="6"/><rect x="140" y="42" width="4" height="6"/>`
+     +`</g>`
+      // 三桅帆船（右）：大航海时代的葡萄牙，一半的辨识度在这艘船上
+     +_ship(214,50,26,'lm-c0h','lm-c0'),
+    fore:_water(62) + _pine(40,64,15) },
+
+  greece:{ sun:[52,12,9], clouds:[[126,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 64 L34 56 L80 64 Z"/>`,
+    mid:
+      // 帕特农：多立克柱廊 + 山花三角。柱子是它唯一的身份。
+      `<path class="lm-c0b" d="M90 46 v-8 h86 v8 Z"/>`
+     +_colonnade(94,46,78,13.6,8,'lm-c0h')
+     +`<path class="lm-c0" d="M88 32.4 h90 v-3.2 h-90 Z"/>`
+     +`<path class="lm-c0h" d="M90 29.2 L133 18.4 L176 29.2 Z"/>`
+     +`<path class="lm-c1" d="M126 32.4 h14 v-9 h-14 Z" opacity=".7"/>`
+      // 崖下的白墙小教堂（右）：穹顶走深档，正好演"爱琴海的蓝顶"
+     +`<path class="lm-c0h" d="M198 50 v-12 h30 v12 Z"/>`
+     +`<path class="lm-c1" d="M200 38 C200 31 204.4 27 213 27 C221.6 27 226 31 226 38 Z"/>`
+     +`<path class="lm-c1" d="M211.6 27 v-3.4 h2.8 v3.4 Z"/>`
+     +`<g class="lm-c1" opacity=".5">`
+       +`<rect x="204" y="42" width="4" height="6"/><rect x="218" y="42" width="4" height="6"/>`
+     +`</g>`,
+    fore:_ground() + _bush(40,66,14) + _pine(276,66,15) },
+
+  croatia:{ sun:[52,12,9], clouds:[[126,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 62 L60 57 L140 60 L220 56 L312 60 L312 62 Z"/>`,
+    mid:
+      // 杜布罗夫尼克：绕海的红顶古城。
+      // 两个"读点"必须同时在：① Minčeta 大圆堡垒 ② 带垛口的城墙。
+      // 去掉圆堡垒，剩下"城墙 + 一串屋顶"和任何一座地中海小城都分不出来 —— croatia 第一版就这样。
+      // 石岸台地
+      `<path class="lm-c0b" d="M78 64 L78 51 L248 47.6 L248 64 Z" opacity=".85"/>`
+      // Minčeta 圆堡垒（左）：大圆柱 + 顶圈垛口 + 暗窗
+     +`<path class="lm-c0h" d="M92 50 v-20 h44 v20 Z"/>`
+     +`<path class="lm-c1" d="M124 30 h12 v20 h-12 Z" opacity=".34"/>`
+     +`<path class="lm-c0h" d="M88 30 h52 v-3.4 h-52 Z"/>`
+     +_merlons(90,26.6,48,4.2,'lm-c0b',6)
+     +`<g class="lm-c3" opacity=".42">`
+       +`<rect x="100" y="36" width="5" height="8.4"/><rect x="113" y="36" width="5" height="8.4"/>`
+       +`<rect x="126" y="36" width="5" height="8.4"/>`
+     +`</g>`
+      // 城墙（右）：一带垛口长墙（顶从 42 缓缓降到 47）
+     +`<path class="lm-c0b" d="M132 47 L234 43 L234 52 L132 52 Z"/>`
+     +_merlons(134,43.6,96,4,'lm-c0h',11)
+      // 城内屋群：高低参差（等高一片会读成"一块地毯"）
+     +`<g class="lm-c0h">`
+       +`<path d="M144 42 L150 35 L156 42 Z"/><path d="M156 41 L163 33.4 L170 41 Z"/>`
+       +`<path d="M170 40.6 L177 33 L184 40.6 Z"/><path d="M184 41.4 L191 34 L198 41.4 Z"/>`
+       +`<path d="M198 42 L205 35 L212 42 Z"/>`
+     +`</g>`
+     +`<g class="lm-c0b">`
+       +`<path d="M150 35 L156 27.6 L162 35 Z"/><path d="M177 33 L184 25.6 L191 33 Z"/>`
+     +`</g>`
+      // 城内钟楼：给"一串屋顶"一个重音
+     +`<path class="lm-c0h" d="M160 33 v-16 h11 v16 Z"/>`
+     +`<path class="lm-c0h" d="M158.4 17 h14.2 v-2.6 h-14.2 Z"/>`
+     +`<path class="lm-c0h" d="M161 14.4 L165.5 4.6 L170 14.4 Z"/>`
+     +`<g class="lm-c3" opacity=".4"><rect x="163.4" y="26" width="4" height="5"/></g>`,
+    fore:_water(56)
+      +`<g class="lm-c1" opacity=".3">`
+        +`<path d="M28 60 q22 -2.6 44 0 q-22 2.6 -44 0 Z"/>`
+        +`<path d="M244 62 q18 -2.2 36 0 q-18 2.2 -36 0 Z"/>`
+      +`</g>`
+      +_pine(36,64,14) + _pine(280,64,13) },
+
+  slovenia:{ sun:[246,12,9], clouds:[[98,11.5,10,2.2]], birds:[54,20,2.4],
+    far:_snowpeak(44,64,52,26,'lm-far',.26) + _snowpeak(90,64,42,20,'lm-far',.24),
+    mid:
+      // 布莱德湖：湖心小岛 + 教堂尖塔（中央），背后是阿尔卑斯。
+      // 岛体走中调、塔走亮档 —— "浮在水上的白塔"是这张图的全部重点。
+      `<path class="lm-c0b" d="M122 52 Q150 45 178 52 Z"/>`
+     +`<path class="lm-c0h" d="M140 47 v-13 h18 v13 Z"/>`
+     +`<path class="lm-c0h" d="M146.6 34 v-14 h4.8 v14 Z"/>`
+     +`<path class="lm-c0h" d="M144.6 20 L149 11 L153.4 20 Z"/>`
+     +`<g class="lm-c1" opacity=".55">`
+       +`<rect x="143" y="40" width="3.4" height="5"/><rect x="152" y="40" width="3.4" height="5"/>`
+     +`</g>`
+      // 湖岸城堡（右）：布莱德城堡立在崖上
+     +`<path class="lm-c0b" d="M228 52 v-16 h46 v16 Z" opacity=".62"/>`
+     +`<path class="lm-c0h" d="M234 36 v-13 h20 v13 Z"/>`
+     +`<path class="lm-c0h" d="M232 23 h24 v-2.6 h-24 Z"/>`
+     +`<g class="lm-c0h">`
+       +`<path d="M236 20.4 l2.2 -5.4 l2.2 5.4 Z"/><path d="M248.6 20.4 l2.2 -5.4 l2.2 5.4 Z"/>`
+     +`</g>`
+     +`<g class="lm-c1" opacity=".5">`
+       +`<rect x="239" y="28" width="3.4" height="5"/><rect x="247" y="28" width="3.4" height="5"/>`
+     +`</g>`,
+    fore:_water(62)
+      +`<g class="lm-c1" opacity=".32">`
+        +`<path d="M128 58 q22 -2.6 44 0 q-22 2.6 -44 0 Z"/>`
+        +`<path d="M222 60 q18 -2.2 36 0 q-18 2.2 -36 0 Z"/>`
+      +`</g>`
+      +_pine(40,62,16) + _pine(276,62,14) },
+
+
+  /* ==================== 欧洲 · round 4c 中欧 + 巴尔干 ==================== */
+
+  austria:{ sun:[50,12,9], clouds:[[124,11.5,10,2.2]], birds:[248,20,2.4],
+    far:`<path d="M-12 64 L30 54 L72 64 Z"/>`,
+    mid:
+      // 史蒂芬大教堂：屋顶的菱形拼花瓦 + 右侧一根冲天的高尖塔（比屋顶高出近一倍）。
+      // 两个读点：①菱形瓦屋顶 ②错开一倍的塔高。屋顶平了 / 两塔等高，都会读成"某座教堂"。
+      // 明度分配：墙身 lm-c0b、屋顶也 lm-c0b（靠一道 lm-c3 檐口切开）、
+      //          菱形瓦 lm-c0h 满不透明、塔 lm-c0h —— 一开始屋顶给 lm-c0，
+      //          与 lm-c0h 的瓦只差 30% 白，缩到卡片尺寸整块屋顶糊成一片粉。
+      `<path class="lm-c0b" d="M114 52 v-20 h90 v20 Z"/>`
+     +_archRow(118,52,82,8.4,7,'lm-c2')
+     +`<path class="lm-c1" d="M114 32 h90 v-2.4 h-90 Z" opacity=".65"/>`
+      // 陡坡屋顶（真实坡度接近 60 度）
+     +`<path class="lm-c0b" d="M114 29.6 L158 12.6 L204 29.6 Z"/>`
+      // 菱形瓦：用斜向亮条暗示。真画满格子在 78 单位里只会糊成噪点。
+     +`<g class="lm-c0h">`
+       +`<path d="M129 25.8 L143 25.8 L131.6 18.2 L117.6 18.2 Z"/>`
+       +`<path d="M153 25.8 L167 25.8 L155.6 18.2 L141.6 18.2 Z"/>`
+       +`<path d="M177 25.8 L190 25.8 L178.4 18.2 L164.4 18.2 Z"/>`
+       +`<path d="M141.6 18.2 L155.6 18.2 L147.8 13.2 L135.8 13.2 Z" opacity=".62"/>`
+       +`<path d="M164.4 18.2 L178.4 18.2 L168.6 13.2 L154.6 13.2 Z" opacity=".62"/>`
+     +`</g>`
+      // 南塔（高尖塔）：比屋顶高出一大截，是维也纳天际线的第一高度
+     +`<path class="lm-c0h" d="M182 29.6 v-9.4 h18 v9.4 Z"/>`
+     +`<path class="lm-c0h" d="M180 20.2 h22 v-3 h-22 Z"/>`
+     +`<path class="lm-c0h" d="M183 17.2 L191 1.4 L199 17.2 Z"/>`
+     +`<path class="lm-c1" d="M191 17.2 L199 17.2 L191 1.4 Z" opacity=".3"/>`
+      // 北塔（矮，与南塔不对称 —— 史蒂芬大教堂的两塔从来就不对称）
+     +`<path class="lm-c0h" d="M116 32 v-6.4 h15 v6.4 Z"/>`
+     +`<path class="lm-c3" d="M115 25.6 h17 v-6 h-17 Z"/>`
+     +`<path class="lm-c3" d="M117.8 19.6 L123.5 11 L129.2 19.6 Z"/>`,
+    fore:_ground() + _pine(42,66,16) + _bush(274,66,14) },
+
+  slovakia:{ sun:[52,12,9], clouds:[[126,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 64 L36 55 L84 64 Z"/>`,
+    mid:
+      // 布拉迪斯拉发城堡：一块四方白堡 + 四角凸出的塔楼。
+      // "四角塔"是这个堡唯一的结构特征 —— 去掉它们就是一个白盒子。
+      `<path class="lm-c0b" d="M106 48 v-22 h110 v22 Z"/>`
+     +`<path class="lm-c0h" d="M104 26 h114 v-3 h-114 Z"/>`
+     +`<g class="lm-c0h">`
+       +`<rect x="100" y="17" width="17" height="31"/>`
+       +`<rect x="205" y="17" width="17" height="31"/>`
+       +`<path d="M98 17 l10.5 -7 l10.5 7 Z"/><path d="M203 17 l10.5 -7 l10.5 7 Z"/>`
+     +`</g>`
+     +`<g class="lm-c1" opacity=".5">`
+       +`<rect x="116" y="34" width="4" height="6"/><rect x="132" y="34" width="4" height="6"/>`
+       +`<rect x="152" y="34" width="4" height="6"/><rect x="172" y="34" width="4" height="6"/>`
+       +`<rect x="192" y="34" width="4" height="6"/>`
+     +`</g>`,
+    fore:_water(66) + _pine(40,66,15) + _pine(276,66,15) },
+
+  czech:{ sun:[246,12,9], clouds:[[98,11.5,10,2.2]], birds:[54,20,2.4],
+    far:`<path d="M-12 64 L36 56 L84 64 Z"/>`,
+    mid:
+      // 布拉格老城广场：泰恩教堂的一对黑尖塔（右后）+ 市政厅天文钟塔（左前，主角）。
+      // 钟塔的读点就是两块表盘 —— 少了它，布拉格和"任意一座波希米亚老城"没区别。
+      // 原版画的是"查理大桥 + 桥塔"：78 单位里画不出"桥下有水"，
+      // 结果桥面 + 栏杆 + 一排雕像读成一堵带洞的墙。换主体比补细节有效。
+      // 泰恩教堂左塔
+      `<path class="lm-c0b" d="M148 48 v-30 h22 v30 Z"/>`
+     +`<g class="lm-c0b">`
+       +`<path d="M148 18 l2.6 -5.2 l2.6 5.2 Z"/><path d="M158.8 18 l2.6 -5.2 l2.6 5.2 Z"/>`
+       +`<path d="M167.6 18 l2.6 -5.2 l2.6 5.2 Z"/>`
+       +`<path d="M150.6 12.8 L159 2.6 L167.4 12.8 Z"/>`
+     +`</g>`
+      // 泰恩教堂右塔（略高：不等高才有"双尖"的错落）
+     +`<path class="lm-c0b" d="M186 48 v-32 h22 v32 Z"/>`
+     +`<g class="lm-c0b">`
+       +`<path d="M186 16 l2.6 -5.2 l2.6 5.2 Z"/><path d="M196.8 16 l2.6 -5.2 l2.6 5.2 Z"/>`
+       +`<path d="M205.6 16 l2.6 -5.2 l2.6 5.2 Z"/>`
+       +`<path d="M188.6 10.8 L197 0.6 L205.4 10.8 Z"/>`
+     +`</g>`
+      // 两塔之间的中殿山墙
+     +`<path class="lm-c1" d="M170 48 v-20 h16 v20 Z" opacity=".7"/>`
+     +`<path class="lm-c1" d="M170 28 L178 18.6 L186 28 Z" opacity=".7"/>`
+      // 老城钟塔（主角）：方塔身 + 下大上小两块表盘 + 陡尖顶
+     +`<path class="lm-c0h" d="M104 52 v-30 h24 v30 Z"/>`
+     +`<path class="lm-c1" d="M121 22 h7 v30 h-7 Z" opacity=".38"/>`
+     +`<circle class="lm-sky" cx="116" cy="36.4" r="6.6"/>`
+     +`<circle class="lm-c0b" cx="116" cy="25.4" r="4.6"/>`
+     +`<g class="lm-brace" opacity=".75">`
+       +`<path d="M116 36.4 l3.4 -1.7"/><path d="M116 36.4 l-1.1 3.6"/>`
+       +`<path d="M116 25.4 l2.4 -1.2"/>`
+     +`</g>`
+     +`<path class="lm-c0h" d="M101 22 h30 v-3.4 h-30 Z"/>`
+     +`<path class="lm-c1" d="M108 18.6 v-3.6 h12 v3.6 Z" opacity=".45"/>`
+     +`<path class="lm-c0h" d="M106.6 15 L116 1.4 L125.4 15 Z"/>`
+     +`<path class="lm-c1" d="M116 15 L125.4 15 L116 1.4 Z" opacity=".28"/>`
+     +`<path class="lm-c0h" d="M114.8 1.4 h2.4 v-1.4 h-2.4 Z"/>`
+      // 广场地面
+     +`<path class="lm-c1" d="M-12 64 L-12 52 L302 50.4 L302 64 Z" opacity=".9"/>`
+     +`<path class="lm-c2" d="M-12 64 L-12 55.4 L302 53.8 L302 64 Z"/>`,
+    fore:_ground() + _pine(40,66,15) + _bush(276,66,14) },
+
+  poland:{ sun:[50,12,9], clouds:[[124,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 64 L32 56 L76 64 Z"/>`,
+    mid:
+      // 克拉科夫圣母圣殿：**两座高度差一大截、塔顶形状也不同的塔**。
+      // 这个"不等高 + 不同顶"就是它的签名；拉平成一对等高塔就只是"又一座双塔教堂"（第一版的病根）。
+      // 高塔（左）：方塔身 + 八支小尖组成的"冠" + 陡尖顶
+      `<path class="lm-c0h" d="M112 52 v-30 h18 v30 Z"/>`
+     +`<path class="lm-c1" d="M124 22 h6 v30 h-6 Z" opacity=".38"/>`
+     +`<g class="lm-c3" opacity=".38"><rect x="116" y="32" width="3.4" height="7"/></g>`
+     +`<path class="lm-c0h" d="M109.6 22 h22.8 v-3.2 h-22.8 Z"/>`
+     +`<g class="lm-c0h">`
+       +`<path d="M111 18.8 l2.6 -7 l2.6 7 Z"/><path d="M119.4 18.8 l2.6 -7 l2.6 7 Z"/>`
+       +`<path d="M127.8 18.8 l2.6 -7 l2.6 7 Z"/>`
+       +`<path d="M113.6 11.8 L121 0.8 L128.4 11.8 Z"/>`
+     +`</g>`
+      // 矮塔（右）：收在一个文艺复兴式的方顶 —— 顶部形状也做出差异，两塔才彻底不像一对
+     +`<path class="lm-c0h" d="M176 52 v-20 h18 v20 Z"/>`
+     +`<path class="lm-c1" d="M188 32 h6 v20 h-6 Z" opacity=".38"/>`
+     +`<path class="lm-c0h" d="M173.6 32 h22.8 v-3 h-22.8 Z"/>`
+     +`<path class="lm-c1" d="M176 29 v-6.6 h18 v6.6 Z" opacity=".55"/>`
+     +`<path class="lm-c0h" d="M176 22.4 h18 v-2.6 h-18 Z"/>`
+      // 中殿（把两塔连成"一座教堂"；不连就是两根孤立柱子）
+     +`<path class="lm-c0" d="M126 52 v-22 h54 v22 Z"/>`
+     +`<path class="lm-c0h" d="M124 30 h58 v-3 h-58 Z"/>`
+     +`<path class="lm-c0b" d="M132 27 L153 16.6 L174 27 Z"/>`
+     +`<g class="lm-c2" opacity=".45">`
+       +`<rect x="134" y="40" width="5" height="9"/><rect x="148" y="40" width="5" height="9"/>`
+       +`<rect x="162" y="40" width="5" height="9"/>`
+     +`</g>`
+      // 广场地面
+     +`<path class="lm-c1" d="M-12 64 L-12 52 L302 50.4 L302 64 Z" opacity=".9"/>`
+     +`<path class="lm-c2" d="M-12 64 L-12 55.4 L302 53.8 L302 64 Z"/>`,
+    fore:_ground() + _pine(40,66,16) + _bush(276,66,14) },
+
+  hungary:{ sun:[52,12,9], clouds:[[126,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 64 L40 56 L92 64 Z"/>`,
+    mid:
+      // 布达佩斯国会大厦：**横向对称**——中央哥特式大穹顶，两侧对称的尖塔群，
+      // 底下是连续的拱窗带。对称就是它的身份；一破对称就成一座普通教堂。
+      `<path class="lm-c0b" d="M92 48 v-16 h150 v16 Z"/>`
+     +_archRow(96,48,142,8.4,13,'lm-c1')
+     +`<path class="lm-c0h" d="M92 32 h150 v-2.6 h-150 Z"/>`
+      // 中央穹顶：鼓座 + 洋葱穹 + 顶饰
+     +`<path class="lm-c0h" d="M153 29.4 v-5.6 h30 v5.6 Z"/>`
+     +_dome(168,23.8,13,'lm-c0h',1.1)
+     +`<path class="lm-c0h" d="M167 9.5 v-5 h2 v5 Z"/>`
+      // 两侧对称的尖塔群（各三座，高度递减）
+     +`<g class="lm-c0h">`
+       +[102,116,130].map(x=>`<rect x="${x}" y="20.4" width="7" height="9"/><path d="M${x-1.6} 20.4 L${x+3.5} 11 L${x+8.6} 20.4 Z"/>`).join('')
+       +[199,213,227].map(x=>`<rect x="${x}" y="20.4" width="7" height="9"/><path d="M${x-1.6} 20.4 L${x+3.5} 11 L${x+8.6} 20.4 Z"/>`).join('')
+     +`</g>`,
+    fore:_water(62)
+      +`<g class="lm-c0h" opacity=".5">`
+        +`<path d="M104 54 h44 v-3 h-44 Z"/><path d="M188 54 h44 v-3 h-44 Z"/>`
+      +`</g>` },
+
+  romania:{ sun:[52,12,9], clouds:[[126,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 64 L34 52 L78 64 Z"/>`,
+    mid:
+      // 布朗城堡：陡坡上的多塔小堡。山岩基座 + 白墙 + 高低错落的塔。
+      // "塔多且不等高"是它的读点；三座等高的塔会读成"厂房"。
+      `<path class="lm-near" d="M96 54 L122 36 L196 31 L238 54 Z"/>`
+     +`<path class="lm-c3" d="M96 54 L122 36 L154 33.6 L158 54 Z" opacity=".55"/>`
+     +`<path class="lm-c3" d="M122 36 L196 31 L198 32.6 L124 37.6 Z"/>`
+     +`<path class="lm-c0h" d="M134 36 v-13 h58 v13 Z"/>`
+     +`<path class="lm-c0h" d="M132 23 h62 v-2.6 h-62 Z"/>`
+      // 三座不等高的塔
+     +`<g class="lm-c0h">`
+       +`<rect x="136" y="13" width="13" height="10"/><path d="M134 13 l8.5 -6 l8.5 6 Z"/>`
+       +`<rect x="156" y="6" width="14" height="17"/><path d="M154 6 l9 -6.6 l9 6.6 Z"/>`
+       +`<rect x="176" y="15" width="13" height="8"/><path d="M174 15 l8.5 -5.6 l8.5 5.6 Z"/>`
+     +`</g>`
+     +`<g class="lm-c1" opacity=".5">`
+       +`<rect x="146" y="28" width="3.4" height="5"/><rect x="164" y="28" width="3.4" height="5"/>`
+       +`<rect x="182" y="28" width="3.4" height="5"/>`
+     +`</g>`,
+    fore:_ground() + _pine(40,66,17) + _pine(62,66,12) + _pine(274,66,16) },
+
+  bulgaria:{ sun:[52,12,9], clouds:[[126,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 64 L36 55 L84 64 Z"/>`,
+    mid:
+      // 亚历山大·涅夫斯基大教堂：中央一个大金穹 + 两侧半穹 + 连续的拱窗。
+      // 三个穹顶走亮档、墙身走中档；同色的话穹顶会整个吞进墙里。
+      `<path class="lm-c0b" d="M96 48 v-15 h142 v15 Z"/>`
+     +_archRow(100,48,134,7.6,12,'lm-c1')
+     +`<path class="lm-c0h" d="M96 33 h142 v-2.6 h-142 Z"/>`
+     +_dome(128,30.4,9,'lm-c0h',1.2)
+     +`<path class="lm-c0h" d="M126 19.6 v-3.6 h4 v3.6 Z"/>`
+     +_dome(206,30.4,9,'lm-c0h',1.2)
+     +`<path class="lm-c0h" d="M204 19.6 v-3.6 h4 v3.6 Z"/>`
+      // 中央大穹：鼓座 + 洋葱穹 + 十字
+     +`<path class="lm-c0h" d="M151 30.4 v-7.4 h34 v7.4 Z"/>`
+     +_dome(168,23,15,'lm-c0h',1.14)
+     +`<path class="lm-c0h" d="M167 5.9 v-5 h2 v5 Z"/><path d="M164.4 2.9 h7.2 v2 h-7.2 Z"/>`,
+    fore:_ground() + _pine(40,66,16) + _bush(276,66,14) },
+
+
+  /* ==================== 欧洲 · round 4d 东欧 + 岛屿 ==================== */
+
+  serbia:{ sun:[52,12,9], clouds:[[126,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 64 L36 55 L84 64 Z"/>`,
+    mid:
+      // 圣萨瓦教堂：一个巨大的穹顶坐在高高的鼓座上 + 四角各一个小穹。
+      // "高鼓座 + 四角小穹"是这个形状的全部身份 —— 少了四角小穹，就只是"一座圆顶教堂"。
+      // 原版画的是"贝尔格莱德要塞：132 宽的一条长墙 + 17 宽的方塔"，
+      // 78 单位里 132 宽的长墙必然读成一堵矮墙，主体等于没有。换主体比补细节有效。
+      // 十字平面的两臂
+      `<path class="lm-c0" d="M112 52 v-14 h96 v14 Z"/>`
+     +`<g class="lm-c2" opacity=".38">`
+       +`<rect x="118" y="44" width="6" height="8"/><rect x="132" y="44" width="6" height="8"/>`
+       +`<rect x="182" y="44" width="6" height="8"/><rect x="196" y="44" width="6" height="8"/>`
+     +`</g>`
+     +`<path class="lm-c0b" d="M112 38 h96 v-2.8 h-96 Z"/>`
+      // 高鼓座
+     +`<path class="lm-c0h" d="M140 38 v-12 h40 v12 Z"/>`
+     +`<g class="lm-c3" opacity=".3">`
+       +`<rect x="146" y="29" width="4" height="9"/><rect x="156" y="29" width="4" height="9"/>`
+       +`<rect x="166" y="29" width="4" height="9"/>`
+     +`</g>`
+     +`<path class="lm-c0h" d="M137 26 h46 v-3 h-46 Z"/>`
+      // 主穹（洋葱）+ 顶上的十字。注意 _onion 的 hh = r*1.62：
+      // r 给 15 时顶点算到 y=-5.3，整颗穹顶飞出画布顶 —— 这类越界静态看不出来，必须算。
+     +_onion(160,23,11.5,'lm-c0h')
+     +`<path class="lm-c0h" d="M159.2 0.6 h1.6 v4.4 h-1.6 Z"/><path d="M156.6 2 h6.8 v1.5 h-6.8 Z"/>`
+      // 四角小穹（不画就没有"五穹"的读法）
+     +`<path class="lm-c0h" d="M114 38 v-9 h14 v9 Z"/>`
+     +_onion(121,29,7,'lm-c0h')
+     +`<path class="lm-c0h" d="M192 38 v-9 h14 v9 Z"/>`
+     +_onion(199,29,7,'lm-c0h')
+     +`<path class="lm-c0h" d="M134 38 v-6 h10 v6 Z"/>`
+     +_onion(139,32,5.4,'lm-c0h')
+     +`<path class="lm-c0h" d="M176 38 v-6 h10 v6 Z"/>`
+     +_onion(181,32,5.4,'lm-c0h')
+      // 钟楼（左，与主穹高度错开）
+     +`<path class="lm-c0h" d="M96 52 v-24 h15 v24 Z"/>`
+     +`<path class="lm-c0h" d="M94.6 28 h17.8 v-2.6 h-17.8 Z"/>`
+     +`<path class="lm-c0b" d="M96.6 25.4 L103.5 16 L110.4 25.4 Z"/>`
+      // 河岸台地
+     +`<path class="lm-c1" d="M-12 64 L-12 52 L302 50.4 L302 64 Z" opacity=".9"/>`
+     +`<path class="lm-c2" d="M-12 64 L-12 55.4 L302 53.8 L302 64 Z"/>`,
+    fore:_ground() + _pine(42,66,15) + _pine(276,66,14) },
+
+  malta:{ sun:null, clouds:[[124,11.5,10,2.2]], birds:[248,20,2.4],
+    far:`<path d="M-12 62 L50 58 L120 60 L190 57 L312 60 L312 62 Z"/>`,
+    mid:
+      // 马耳他：石灰岩海崖 + 崖顶瓦莱塔的双钟楼教堂 + 崖下的传统彩船 Luzzu。
+      // 原版把崖画成 152 宽 × 13 高的平板，整张卡糊成"一条挡墙"。
+      // 改成"高崖 + 崖上建筑"的竖向构图 —— 高度差才是"海崖"的读法。
+      // 石灰岩海崖：近垂直的崖面 + 三道横向岩层（光板崖壁读成"一堵墙"）
+      `<path class="lm-c0b" d="M84 58 L88 32 L150 29 L156 58 Z"/>`
+     +`<g class="lm-c0h" opacity=".5">`
+       +`<path d="M87.4 38 L150.6 35.2 L150.9 37.6 L87.7 40.4 Z"/>`
+       +`<path d="M85.4 47 L153.4 44.4 L153.7 46.8 L85.7 49.4 Z"/>`
+     +`</g>`
+     +`<path class="lm-c0h" d="M88 32 L150 29 L150 26.6 L88 29.6 Z"/>`
+      // 瓦莱塔城墙（垛口）
+     +`<path class="lm-c0" d="M148 30 L244 26.6 L244 44 L148 47 Z"/>`
+     +_merlons(150,26.8,92,3.6,'lm-c0h',13)
+     +`<g class="lm-c2" opacity=".36">`
+       +`<rect x="160" y="36" width="6" height="9"/><rect x="182" y="36" width="6" height="9"/>`
+       +`<rect x="216" y="35" width="6" height="9"/>`
+     +`</g>`
+      // 圣约翰副主教堂：两座对称钟楼（各带一个小穹）+ 中间的低立面
+     +`<path class="lm-c0h" d="M162 30 v-12 h30 v12 Z"/>`
+     +`<path class="lm-c0h" d="M160 18 h34 v-3 h-34 Z"/>`
+     +`<path class="lm-c0h" d="M157 15 v-7 h9 v7 Z"/>`
+     +`<path class="lm-c0h" d="M188 15 v-7 h9 v7 Z"/>`
+     +`<path class="lm-c0h" d="M155.6 8.2 h11.8 v-2.2 h-11.8 Z"/>`
+     +`<path class="lm-c0h" d="M186.6 8.2 h11.8 v-2.2 h-11.8 Z"/>`
+     +_dome(161.5,6,5,'lm-c0h',1.06)
+     +_dome(192.5,6,5,'lm-c0h',1.06)
+     +`<g class="lm-c3" opacity=".35">`
+       +`<rect x="168" y="22" width="5" height="8"/><rect x="182" y="22" width="5" height="8"/>`
+     +`</g>`
+      // 崖下：传统彩船 Luzzu（船身 + 一条亮色舷侧条纹）
+     +`<path class="lm-c0h" d="M210 56 Q224 60.4 238 56 L238 53 Q224 56.8 210 53 Z"/>`
+     +`<path class="lm-c1" d="M211 54.8 Q224 58.4 237 54.8 L237 53.6 Q224 57.2 211 53.6 Z" opacity=".9"/>`,
+    fore:_water(58)
+      +`<g class="lm-c1" opacity=".3">`
+        +`<path d="M30 62 q20 -2.4 40 0 q-20 2.4 -40 0 Z"/>`
+        +`<path d="M244 64 q18 -2.2 36 0 q-18 2.2 -36 0 Z"/>`
+      +`</g>` },
+
+  cyprus:{ sun:[52,12,9], clouds:[[126,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 62 L40 58 L110 61 L190 57 L312 61 L312 62 Z"/>`,
+    mid:
+      // 塞浦路斯：地中海海崖 + 崖上的希腊神庙残柱。
+      // "残"只能靠**高度不等的断柱**读出来；一排齐整的柱子就是一座新神庙。
+      `<path class="lm-c0b" d="M92 52 v-14 h144 v14 Z"/>`
+     +_colonnade(114,40,76,15,6,'lm-c0h')
+     +`<path class="lm-c0h" d="M126 40 v-9 h8.4 v9 Z"/>`
+     +`<path class="lm-c0h" d="M112 25 h84 v-2.6 h-84 Z"/>`
+     +`<path class="lm-c0h" d="M114 22.4 L154 13.6 L194 22.4 Z"/>`
+      // 山花中部塌掉一段
+     +`<path class="lm-near" d="M148 22.4 L154 13.6 L160 22.4 Z" opacity=".85"/>`
+      // 崖下的柑橘园（右）
+     +`<g class="lm-c1" opacity=".55">`
+       +`<circle cx="212" cy="46" r="4"/><circle cx="222" cy="48" r="3.4"/><circle cx="204" cy="49" r="3"/>`
+     +`</g>`,
+    fore:_water(60) + _bush(36,62,13) },
+
+  russia:{ sun:[50,12,9], clouds:[[124,11.5,10,2.2]], birds:[248,20,2.4],
+    far:`<path d="M-12 64 L32 54 L76 64 Z"/>`,
+    mid:
+      // 圣瓦西里：一座高的"帐篷顶"中央塔 + 四周四座洋葱穹礼拜堂。
+      // 两个坑：① 用 _dome（子弹头）画俄式穹顶 → 一排白蘑菇；
+      //        ② 把穹顶直接坐在墙顶上 → 会和墙顶的亮带连成"一排城垛齿"。
+      // 所以每个穹顶下面**必须有鼓座**，且鼓座走中档、穹顶走亮档。
+      `<path class="lm-c0" d="M106 52 v-8 h124 v8 Z"/>`
+     +`<g class="lm-c2" opacity=".38">`
+       +`<rect x="112" y="46" width="7" height="6"/><rect x="126" y="46" width="7" height="6"/>`
+       +`<rect x="196" y="46" width="7" height="6"/><rect x="210" y="46" width="7" height="6"/>`
+     +`</g>`
+     +`<path class="lm-c0h" d="M104 44 h128 v-3 h-128 Z"/>`
+      // 四座洋葱穹礼拜堂（鼓座高矮不一 + 穹顶大中小）
+     +`<path class="lm-c0b" d="M114 41 v-10 h16 v10 Z"/>` + _onion(122,31,7.4,'lm-c0h')
+     +`<path class="lm-c0b" d="M140 41 v-14 h16 v14 Z"/>` + _onion(148,27,7.8,'lm-c0h')
+     +`<path class="lm-c0b" d="M182 41 v-12 h16 v12 Z"/>` + _onion(190,29,7.6,'lm-c0h')
+     +`<path class="lm-c0b" d="M208 41 v-9 h16 v9 Z"/>`  + _onion(216,32,7.2,'lm-c0h')
+      // 中央帐篷尖塔（全场最高 —— 这座塔是"圣瓦西里"而不是"拜占庭教堂"的关键）
+     +`<path class="lm-c0h" d="M158 41 L168 8 L178 41 Z"/>`
+     +`<path class="lm-c1" d="M168 8 L178 41 L168 41 Z" opacity=".3"/>`
+     +`<g class="lm-brace" opacity=".28"><path d="M168 9 L168 41"/></g>`
+     +_onion(168,9,4.2,'lm-c0h')
+      // 五个顶饰（小十字）
+     +`<g class="lm-c0h">`
+       +`<rect x="121.2" y="17" width="1.4" height="4.4"/><rect x="119.5" y="18.4" width="4.8" height="1.4"/>`
+       +`<rect x="147.2" y="12.4" width="1.4" height="4.4"/><rect x="145.5" y="13.8" width="4.8" height="1.4"/>`
+       +`<rect x="167.2" y="1.6" width="1.4" height="4.4"/><rect x="165.5" y="3" width="4.8" height="1.4"/>`
+       +`<rect x="189.2" y="14.4" width="1.4" height="4.4"/><rect x="187.5" y="15.8" width="4.8" height="1.4"/>`
+       +`<rect x="215.2" y="17.8" width="1.4" height="4.4"/><rect x="213.5" y="19.2" width="4.8" height="1.4"/>`
+     +`</g>`,
+    fore:_ground() + _pine(40,66,16) + _bush(276,66,14) },
+
+  belarus:{ sun:[52,12,9], clouds:[[126,11.5,10,2.2]], birds:[246,20,2.4],
+    far:`<path d="M-12 64 L36 55 L84 64 Z"/>`,
+    mid:
+      // 米尔城堡：紧凑的四方塔堡 —— 四角圆塔（带锥顶）+ 中央门楼 + 护城水面的倒影。
+      // 原版是 114 宽 × 20 高的长盒子 + 两端方塔，缩到卡片尺寸读成"一堵带塔的墙"。
+      // 收窄到 80 宽、抬到 20 以上，"一座堡"才立得起来。
+      `<path class="lm-c0" d="M116 52 v-21 h88 v21 Z"/>`
+     +`<path class="lm-c0h" d="M114 31 h92 v-3.2 h-92 Z"/>`
+     +`<g class="lm-c2" opacity=".36">`
+       +`<rect x="132" y="40" width="6" height="9"/><rect x="148" y="40" width="6" height="9"/>`
+       +`<rect x="166" y="40" width="6" height="9"/><rect x="182" y="40" width="6" height="9"/>`
+     +`</g>`
+      // 四角圆塔（前面两座完整、后面两座只露顶）
+     +`<path class="lm-c0b" d="M126 31 v-9 h11 v9 Z"/>`
+     +`<path class="lm-c0b" d="M183 31 v-9 h11 v9 Z"/>`
+     +`<path class="lm-c0b" d="M124.4 22 L131.5 13.6 L138.6 22 Z"/>`
+     +`<path class="lm-c0b" d="M181.4 22 L188.5 13.6 L195.6 22 Z"/>`
+     +`<path class="lm-c0h" d="M110 31 v-15 h16 v15 Z"/>`
+     +`<path class="lm-c0h" d="M194 31 v-15 h16 v15 Z"/>`
+     +`<path class="lm-c0h" d="M108.4 16 L118 5 L127.6 16 Z"/>`
+     +`<path class="lm-c0h" d="M192.4 16 L202 5 L211.6 16 Z"/>`
+      // 中央门楼（比角塔高，是构图的重音）
+     +`<path class="lm-c0h" d="M150 31 v-16 h18 v16 Z"/>`
+     +`<path class="lm-c0h" d="M148 15 h22 v-2.8 h-22 Z"/>`
+     +`<path class="lm-c0b" d="M149.4 12.2 L159 2 L168.6 12.2 Z"/>`
+      // 城门洞
+     +`<path class="lm-near" d="M153 52 v-11 q0 -5.4 6 -5.4 q6 0 6 5.4 v11 Z"/>`
+      // 河岸台地
+     +`<path class="lm-c1" d="M-12 64 L-12 52 L302 50.4 L302 64 Z" opacity=".86"/>`,
+    fore:_water(56)
+      +`<g class="lm-c0b" opacity=".3">`
+        +`<path d="M116 57.6 h88 v-3 h-88 Z"/><path d="M110 57.6 h16 v-3 h-16 Z"/>`
+        +`<path d="M194 57.6 h16 v-3 h-16 Z"/>`
+      +`</g>` + _pine(40,64,15) },
+
+  ukraine:{ sun:[50,12,9], clouds:[[124,11.5,10,2.2]], birds:[248,20,2.4],
+    far:`<path d="M-12 64 L40 56 L92 64 Z"/>`,
+    mid:
+      // 圣索菲亚：一片"金色洋葱穹"群（中央 1 大 + 两侧各 2 小）。
+      // 穹顶改走 _onion（鼓腹在中段、宽于基座）而不是 _dome ——
+      // 子弹头缩到卡片尺寸会读成"一排白蘑菇"，拜占庭的读点全在那个圆肚子上。
+      `<path class="lm-c0b" d="M104 52 v-17 h132 v17 Z"/>`
+     +`<path class="lm-c0h" d="M102 35 h136 v-2.8 h-136 Z"/>`
+     +`<g class="lm-c2" opacity=".34">`
+       +`<rect x="112" y="43" width="6" height="9"/><rect x="130" y="43" width="6" height="9"/>`
+       +`<rect x="192" y="43" width="6" height="9"/><rect x="210" y="43" width="6" height="9"/>`
+     +`</g>`
+     +`<g class="lm-c0b">`
+       +`<rect x="120" y="27" width="15" height="8"/><rect x="142" y="25" width="16" height="10"/>`
+       +`<rect x="166" y="21" width="20" height="14"/><rect x="192" y="25" width="16" height="10"/>`
+       +`<rect x="214" y="27" width="15" height="8"/>`
+     +`</g>`
+     +_onion(127.5,27,6.4,'lm-c0h')
+     +_onion(150,25,6.8,'lm-c0h')
+     +_onion(176,21,8.8,'lm-c0h')
+     +_onion(200,25,6.8,'lm-c0h')
+     +_onion(221.5,27,6.4,'lm-c0h')
+      // 顶饰：五个小十字
+     +`<g class="lm-c0h">`
+       +`<rect x="126.8" y="13.6" width="1.4" height="4"/><rect x="125.3" y="14.8" width="4.4" height="1.3"/>`
+       +`<rect x="149.3" y="10.8" width="1.4" height="4"/><rect x="147.8" y="12" width="4.4" height="1.3"/>`
+       +`<rect x="175.3" y="4.8" width="1.4" height="4"/><rect x="173.8" y="6" width="4.4" height="1.3"/>`
+       +`<rect x="199.3" y="10.8" width="1.4" height="4"/><rect x="197.8" y="12" width="4.4" height="1.3"/>`
+       +`<rect x="220.8" y="13.6" width="1.4" height="4"/><rect x="219.3" y="14.8" width="4.4" height="1.3"/>`
+     +`</g>`,
+    fore:_ground()
+      +`<g class="lm-c0h">`
+        +_sunflower(56,77,14)+_sunflower(76,78,11)+_sunflower(96,77,12.6)
+        +_sunflower(228,77,13)+_sunflower(248,78,10.6)+_sunflower(270,77,14)
+      +`</g>`
+      +`<g class="lm-c2" opacity=".6">`
+        +_tuft(48,78,7)+_tuft(66,78,5.4)+_tuft(86,78,6.4)
+        +_tuft(220,78,6)+_tuft(240,78,5)+_tuft(260,78,6.6)
+      +`</g>` },
+
+  ireland:{ sun:[246,12,9], clouds:[[96,11.5,10,2.2]], birds:[54,20,2.4],
+    far:`<path d="M-12 62 L60 59 L140 61 L220 58 L312 61 L312 62 Z"/>`
+       +`<path d="M-12 58 L34 50 L92 58 Z" opacity=".45"/>`,
+    mid:
+      // 莫赫悬崖：崖面走**暗**档、崖顶草坡走**亮**档 —— 这是这张图唯一的对比方向。
+      // 两面都走亮档就成了一大块灰板（第一版和第一轮返工都栽在这）。
+      // 崖体从 x=108 起：再往左就会把 (100,46) 的日头切掉大半。
+      // 崖面（沉积岩体，背光）
+      `<path class="lm-c0b" d="M108 62 L108 43 L122 37 L138 40 L154 34 L174 37 L194 31 L218 34 L234 29 L238 62 Z"/>`
+      // 崖脚阴影带：单一明度撑不起"崖"，必须有"上受光 / 下背光"两段
+     +`<path class="lm-c2" d="M108 62 L108 53 L238 39 L238 62 Z"/>`
+      // 崖面竖向节理（开放路径只能走 stroke）
+     +`<g class="lm-brace" opacity=".4">`
+       +`<path d="M120 45 L122 62"/><path d="M138 41 L140 62"/><path d="M160 37 L162 62"/>`
+       +`<path d="M182 35 L184 62"/><path d="M206 33 L208 62"/><path d="M228 31 L230 62"/>`
+     +`</g>`
+      // 崖面横向岩层
+     +`<path class="lm-c3" d="M109 52 L235 42 L235 45.6 L109 55.6 Z" opacity=".45"/>`
+      // 崖顶草坡（受光）
+     +`<path class="lm-c0" d="M108 43 L122 37 L138 40 L154 34 L174 37 L194 31 L218 34 L234 29 L234 24.4 L218 29.4 L194 26.4 L174 32.4 L154 29.4 L138 35.4 L122 32.4 L108 38.4 Z"/>`
+      // 崖顶的干砌石墙 + O'Brien's Tower（圆塔是莫赫悬崖最直接的身份证）
+     +`<path class="lm-c3" d="M126 37.6 v-4.6 h46 v4.6 Z" opacity=".3"/>`
+     +`<path class="lm-c0h" d="M180 29.6 v-13 h11 v13 Z"/>`
+     +`<path class="lm-c0h" d="M178.4 16.6 h14.2 v-2.6 h-14.2 Z"/>`
+     +`<path class="lm-c0b" d="M180.6 14 L185.5 7 L190.4 14 Z"/>`
+      // 崖壁上的海鸟（崖面是暗的，鸟就得走亮档）
+     +`<g class="lm-c0b" opacity=".55">`
+       +`<circle cx="146" cy="45" r="1.6"/><circle cx="166" cy="40" r="1.4"/>`
+       +`<circle cx="216" cy="37" r="1.5"/>`
+     +`</g>`,
+    fore:_water(56)
+      +`<g class="lm-c0h" opacity=".24">`
+        +`<path d="M30 64 q22 -2.6 44 0 q-22 2.6 -44 0 Z"/>`
+        +`<path d="M62 70 q18 -2.2 36 0 q-18 2.2 -36 0 Z"/>`
+      +`</g>` + _pine(38,62,14) },/* ==================== 热带兜底 ==================== */
   tropical:{ sun:[152,14,10], clouds:[[112,12,11,2.5]], birds:[214,21,2.7],
     far:`<path d="M-14 62 L24 50 L62 62 Z"/><path d="M198 62 L242 43 L288 62 Z"/>`,
     mid:
@@ -3252,40 +4251,40 @@ const DEST_THEME={
   MN:{tone:'tone-america',lm:'mongolia',tag:'草原、戈壁与星空'},
   KZ:{tone:'tone-america',lm:'kazakhstan',tag:'中亚大草原'},
   // 欧洲
-  GB:{tone:'tone-euro',lm:'euro',tag:'古堡、红色双层巴士与阴晴不定'},
-  FR:{tone:'tone-euro',lm:'euro',tag:'铁塔、美术馆与街角咖啡'},
-  DE:{tone:'tone-euro',lm:'euro',tag:'严谨与浪漫并存'},
-  IT:{tone:'tone-euro',lm:'euro',tag:'文艺复兴与意大利面'},
-  ES:{tone:'tone-imperial',lm:'euro',tag:'高迪、弗拉门戈与海鲜饭'},
-  PT:{tone:'tone-tropical',lm:'euro',tag:'瓷砖、电车与海风'},
-  NL:{tone:'tone-tropical',lm:'euro',tag:'运河、风车与郁金香'},
-  BE:{tone:'tone-euro',lm:'euro',tag:'巧克力、啤酒与中世纪广场'},
-  LU:{tone:'tone-euro',lm:'euro',tag:'小而富的峡谷之城'},
+  GB:{tone:'tone-euro',lm:'gb',tag:'古堡、红色双层巴士与阴晴不定'},
+  FR:{tone:'tone-euro',lm:'france',tag:'铁塔、美术馆与街角咖啡'},
+  DE:{tone:'tone-euro',lm:'de',tag:'严谨与浪漫并存'},
+  IT:{tone:'tone-euro',lm:'italy',tag:'文艺复兴与意大利面'},
+  ES:{tone:'tone-imperial',lm:'spain',tag:'高迪、弗拉门戈与海鲜饭'},
+  PT:{tone:'tone-tropical',lm:'portugal',tag:'瓷砖、电车与海风'},
+  NL:{tone:'tone-tropical',lm:'nl',tag:'运河、风车与郁金香'},
+  BE:{tone:'tone-euro',lm:'be',tag:'巧克力、啤酒与中世纪广场'},
+  LU:{tone:'tone-euro',lm:'lu',tag:'小而富的峡谷之城'},
   CH:{tone:'tone-nordic',lm:'nordic',tag:'雪山、湖泊与准点到秒'},
-  AT:{tone:'tone-euro',lm:'euro',tag:'音乐之都与阿尔卑斯'},
-  GR:{tone:'tone-nordic',lm:'euro',tag:'爱琴海的白与蓝'},
-  HR:{tone:'tone-nordic',lm:'euro',tag:'亚得里亚海的红顶古城'},
-  SI:{tone:'tone-nordic',lm:'euro',tag:'湖光与森林'},
-  SK:{tone:'tone-euro',lm:'euro',tag:'城堡与喀尔巴阡'},
-  CZ:{tone:'tone-euro',lm:'euro',tag:'百塔之城布拉格'},
-  PL:{tone:'tone-euro',lm:'euro',tag:'历史厚重，物价友好'},
-  HU:{tone:'tone-euro',lm:'euro',tag:'多瑙河明珠'},
-  RO:{tone:'tone-euro',lm:'euro',tag:'喀尔巴阡的传说'},
-  BG:{tone:'tone-euro',lm:'euro',tag:'玫瑰与黑海'},
-  RS:{tone:'tone-euro',lm:'euro',tag:'巴尔干的心脏'},
+  AT:{tone:'tone-euro',lm:'austria',tag:'音乐之都与阿尔卑斯'},
+  GR:{tone:'tone-nordic',lm:'greece',tag:'爱琴海的白与蓝'},
+  HR:{tone:'tone-nordic',lm:'croatia',tag:'亚得里亚海的红顶古城'},
+  SI:{tone:'tone-nordic',lm:'slovenia',tag:'湖光与森林'},
+  SK:{tone:'tone-euro',lm:'slovakia',tag:'城堡与喀尔巴阡'},
+  CZ:{tone:'tone-euro',lm:'czech',tag:'百塔之城布拉格'},
+  PL:{tone:'tone-euro',lm:'poland',tag:'历史厚重，物价友好'},
+  HU:{tone:'tone-euro',lm:'hungary',tag:'多瑙河明珠'},
+  RO:{tone:'tone-euro',lm:'romania',tag:'喀尔巴阡的传说'},
+  BG:{tone:'tone-euro',lm:'bulgaria',tag:'玫瑰与黑海'},
+  RS:{tone:'tone-euro',lm:'serbia',tag:'巴尔干的心脏'},
   EE:{tone:'tone-nordic',lm:'nordic',tag:'中世纪老城'},
   LV:{tone:'tone-nordic',lm:'nordic',tag:'波罗的海的明珠'},
   LT:{tone:'tone-nordic',lm:'nordic',tag:'十字架山冈'},
-  MT:{tone:'tone-tropical',lm:'euro',tag:'地中海骑士团故地'},
-  CY:{tone:'tone-tropical',lm:'euro',tag:'地中海的阳光岛'},
+  MT:{tone:'tone-tropical',lm:'malta',tag:'地中海骑士团故地'},
+  CY:{tone:'tone-tropical',lm:'cyprus',tag:'地中海的阳光岛'},
   IS:{tone:'tone-nordic',lm:'nordic',tag:'冰川、极光与黑沙滩'},
   NO:{tone:'tone-nordic',lm:'nordic',tag:'峡湾与午夜太阳'},
   SE:{tone:'tone-nordic',lm:'nordic',tag:'森林、设计与极简'},
   FI:{tone:'tone-nordic',lm:'nordic',tag:'千湖之国与圣诞老人'},
   DK:{tone:'tone-nordic',lm:'nordic',tag:'童话与新北欧设计'},
-  RU:{tone:'tone-imperial',lm:'euro',tag:'红场、洋葱顶与广袤'},
-  BY:{tone:'tone-euro',lm:'euro',tag:'森林与湖泊'},
-  UA:{tone:'tone-euro',lm:'euro',tag:'黑土地与金色圆顶'},
+  RU:{tone:'tone-imperial',lm:'russia',tag:'红场、洋葱顶与广袤'},
+  BY:{tone:'tone-euro',lm:'belarus',tag:'森林与湖泊'},
+  UA:{tone:'tone-euro',lm:'ukraine',tag:'黑土地与金色圆顶'},
   // 美洲
   US:{tone:'tone-america',lm:'america',tag:'摩天楼、公路与自由女神'},
   CA:{tone:'tone-america',lm:'america',tag:'枫叶、雪山与宽容'},
@@ -3321,7 +4320,7 @@ const DEST_THEME={
   GE:{tone:'tone-euro',lm:'georgia',tag:'高加索雪山与古老酒乡'},
   AZ:{tone:'tone-euro',lm:'azerbaijan',tag:'里海之滨 · 火焰之国'},
   AM:{tone:'tone-euro',lm:'armenia',tag:'高原修道院与阿拉拉特'},
-  IE:{tone:'tone-nordic',lm:'nordic',tag:'绿野、悬崖与健力士'},
+  IE:{tone:'tone-nordic',lm:'ireland',tag:'绿野、悬崖与健力士'},
   BD:{tone:'tone-tropical',lm:'bangladesh',tag:'恒河三角洲的水乡'},
   KG:{tone:'tone-nordic',lm:'kyrgyzstan',tag:'天山雪峰与伊塞克湖'},
   TJ:{tone:'tone-nordic',lm:'tajikistan',tag:'帕米尔高原的雪山'},
