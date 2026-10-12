@@ -1344,6 +1344,12 @@ const LANDMARKS={
   tunisia:`<path d="M0 78 L0 68 L300 68 L300 78 Z"/><path d="M20 68 L20 40 L60 40 L60 68 Z"/><path d="M28 68 L28 52 q6 -6 12 0 L40 68 Z"/><path d="M70 68 L70 46 L104 46 L104 68 Z"/><path d="M114 68 L114 40 L158 40 L158 68 Z"/><path d="M120 40 a17 15 0 0 1 32 0 Z"/><path d="M170 68 L170 44 L206 44 L206 68 Z"/><path d="M212 68 L212 52 L248 52 L248 68 Z"/>`,
   nigeria:`<path d="M0 78 L0 64 L300 78 Z"/><path d="M40 64 L40 44 L60 44 L60 30 L84 30 L84 40 L106 40 L106 22 L132 22 L132 40 L156 40 L156 34 L180 34 L180 64 Z"/><path d="M190 64 L190 48 L212 48 L212 64 Z"/><path d="M228 64 L228 38 L252 38 L252 64 Z"/>`,
   ghana:`<path d="M0 78 L0 66 L300 66 L300 78 Z"/><path d="M20 66 L24 40 L72 40 L76 66 Z"/><path d="M28 40 v-4 h6 v4 M46 40 v-4 h6 v4 M64 40 v-4 h6 v4"/><path d="M100 66 L104 34 L140 34 L144 66 Z"/><path d="M148 66 L152 36 L172 36 L176 66 Z"/><path d="M204 66 L208 30 L232 30 L236 66 Z"/><path d="M212 30 L214 14 L228 14 L230 30 Z"/>`,
+  newzealand:`<path d="M0 78 L0 64 L300 64 L300 78 Z"/><path d="M30 64 L84 22 L138 64 Z"/><path d="M64 64 L86 40 L108 64 Z"/><path d="M84 22 L96 12 L124 12 L138 64 Z"/><path d="M170 64 L176 30 L182 64 Z"/><path d="M170 40 L148 32 M170 34 L152 26 M170 28 L156 20 M170 44 L192 36 M170 38 L188 30 M170 32 L184 24"/>`,
+  papua:`<path d="M0 78 L0 66 L300 78 Z"/><path d="M196 66 L240 26 L284 66 Z"/><path d="M232 26 L250 22 L256 30 Z"/><path d="M40 66 L40 46 L74 46 L74 66 Z"/><path d="M36 46 L57 32 L78 46 Z"/><path d="M42 52 v14 M50 52 v14 M58 52 v14 M66 52 v14"/>`,
+  fiji:`<path d="M0 78 L0 68 L300 68 L300 78 Z"/><path d="M56 68 C56 52 68 46 80 46 C92 46 104 52 104 68 Z"/><path d="M62 68 v-8 h36 v8 Z"/><path d="M148 68 C148 54 158 48 168 48 C178 48 188 54 188 68 Z"/><path d="M164 48 Q164 34 164 28"/><path d="M150 32 C150 24 158 20 166 20 C174 20 182 24 182 32 C176 38 156 38 150 32 Z"/><path d="M226 68 L228 40"/><path d="M214 44 C214 36 221 32 228 32 C235 32 242 36 242 44 C236 50 220 50 214 44 Z"/>`,
+  guam:`<path d="M0 78 L0 68 L300 68 L300 78 Z"/><path d="M48 68 L48 40 L58 40 L58 68 Z"/><path d="M82 68 L82 40 L92 40 L92 68 Z"/><path d="M40 40 Q70 22 100 40 Z"/><path d="M150 68 L150 48 L158 48 L158 68 Z"/><path d="M182 68 L182 48 L190 48 L190 68 Z"/><path d="M144 48 Q170 34 196 48 Z"/><path d="M240 68 L240 54 L246 54 L246 68 Z"/><path d="M266 68 L266 54 L272 54 L272 68 Z"/><path d="M236 54 Q256 44 276 54 Z"/>`,
+  mauritius:`<path d="M0 78 L0 66 L300 78 Z"/><path d="M156 66 L162 34 L190 30 L232 32 L244 36 L250 66 Z"/><path d="M162 34 Q200 28 244 36 Z"/><path d="M170 66 L172 40 M186 66 L187 38 M204 66 L204 37 M222 66 L222 40"/>`,
+  seychelles:`<path d="M0 78 L0 68 L300 68 L300 78 Z"/><path d="M28 68 C28 52 42 44 58 44 C76 44 88 52 88 68 Z"/><path d="M100 68 C100 56 110 50 122 50 C134 50 144 56 144 68 Z"/><path d="M164 68 C164 54 176 46 190 46 C206 46 218 54 218 68 Z"/><path d="M232 68 C232 58 240 53 250 53 C260 53 268 58 268 68 Z"/>`,
   tropical:`<path d="M0 78 L0 58 Q20 48 40 58 Q60 68 80 58 Q100 48 120 58 Q140 68 160 58 Q180 48 200 58 Q220 68 240 58 Q260 48 280 58 L280 78 Z"/><path d="M28 56 Q32 40 40 36"/><path d="M40 36 Q56 32 66 42"/><path d="M40 36 Q30 26 20 32"/><path d="M150 56 Q154 40 162 36"/><path d="M162 36 Q178 32 188 42"/><path d="M162 36 Q152 26 142 32"/><path d="M256 56 Q260 42 268 38"/><path d="M268 38 Q282 34 292 44"/>`,
 };
 
@@ -1925,6 +1931,88 @@ function _camel(x,b,h,cls){
    +`<rect x="${f(x+bw*.32)}" y="${f(by+bh*.8)}" width="${f(lw)}" height="${f(legH)}"/>`
    +`</g>`;
 }
+/* ==================== round 8 新增通用件（大洋洲 / 海岛）==================== */
+
+/* 银蕨（新西兰的国徽符号）：一根主轴 + 两侧对称的羽片。
+   注意它和 `.lm-c*` 的开放路径坑无关 —— 每片羽叶都是**闭合**的叶形，
+   所以可以吃 fill。羽片必须**由下往上逐渐变短**（真蕨叶就是这么收的），
+   等长的羽片排下来会读成"一把梳子"。 */
+function _fern(x,y,len,ang,cls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c1', n=7;
+  let out=`<g class="${C}" transform="rotate(${f(ang)} ${f(x)} ${f(y)})">`;
+  out+=`<rect x="${f(x-.42)}" y="${f(y-len)}" width=".84" height="${f(len)}"/>`;
+  for(let i=0;i<n;i++){
+    const t=.2+i*(.74/n), ly=y-len*t, ln=len*(.30*(1-t*.7));
+    out+=`<path d="M${f(x)} ${f(ly)} Q${f(x-ln*.55)} ${f(ly-ln*.24)} ${f(x-ln)} ${f(ly-ln*.64)}`
+      +` Q${f(x-ln*.5)} ${f(ly-ln*.08)} ${f(x)} ${f(ly+ln*.16)} Z"/>`
+      +`<path d="M${f(x)} ${f(ly)} Q${f(x+ln*.55)} ${f(ly-ln*.24)} ${f(x+ln)} ${f(ly-ln*.64)}`
+      +` Q${f(x+ln*.5)} ${f(ly-ln*.08)} ${f(x)} ${f(ly+ln*.16)} Z"/>`;
+  }
+  out+=`<path d="M${f(x)} ${f(y-len)} Q${f(x-.95)} ${f(y-len*1.05)} ${f(x)} ${f(y-len*1.16)}`
+    +` Q${f(x+.95)} ${f(y-len*1.05)} ${f(x)} ${f(y-len)} Z"/>`;
+  return out+`</g>`;
+}
+
+/* 火山锥（巴布亚新几内亚、夏威夷、冰岛都能用）：
+   主角的读点是**山顶那个被削平的火山口**（一个向内凹的暗口），
+   而不是"一个三角形山"。给成完整尖锥就只是一座普通的山。
+   右侧坡脚要留一小块熔岩流的暗色舌 —— 这是活火山的第二读点。 */
+function _volcano(cx,b,w,h,cls,craterCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c1', K=craterCls||'lm-c3', hw=w/2, top=b-h, cw=w*.17;
+  return `<path class="${C}" d="M${f(cx-hw)} ${f(b)} Q${f(cx-hw*.62)} ${f(top+h*.36)} ${f(cx-cw)} ${f(top+h*.10)}`
+   +` L${f(cx-cw*.55)} ${f(top)} L${f(cx+cw*.85)} ${f(top+h*.045)} L${f(cx+cw)} ${f(top+h*.16)}`
+   +` Q${f(cx+hw*.60)} ${f(top+h*.44)} ${f(cx+hw)} ${f(b)} Z"/>`
+   +`<path class="${K}" d="M${f(cx-cw)} ${f(top+h*.10)} L${f(cx-cw*.55)} ${f(top)}`
+   +` L${f(cx+cw*.85)} ${f(top+h*.045)} L${f(cx+cw)} ${f(top+h*.16)}`
+   +` Q${f(cx+cw*.2)} ${f(top+h*.25)} ${f(cx-cw*.3)} ${f(top+h*.15)} Z"/>`
+   +`<path class="${K}" opacity=".42" d="M${f(cx+cw*.7)} ${f(top+h*.2)} L${f(cx+hw*.42)} ${f(b)}`
+   +` L${f(cx+hw*.24)} ${f(b)} L${f(cx+cw*.3)} ${f(top+h*.24)} Z"/>`;
+}
+
+/* 斐济 / 萨摩亚的传统茅草屋（bure）：
+   和普通房子的唯一区别是**顶远大于身** —— 茅草顶是一个鼓起来的半圆穹，
+   高度占到整体的 2/3，而且**檐口压到接近地面**。画成普通坡屋顶就成小木屋了。
+   茅草走 `.lm-clay`（这套皮肤的暖褐黄），墙走主题深档。 */
+function _bure(cx,b,w,h,cls,roofCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c1', R=roofCls||'lm-clay';
+  const wh=h*.34, wy=b-wh, rw=w*.56, rh=h*.66;
+  return `<rect class="${C}" x="${f(cx-w*.5)}" y="${f(wy)}" width="${f(w)}" height="${f(wh)}"/>`
+   +`<rect class="${C}" x="${f(cx-w*.15)}" y="${f(wy-wh*.3)}" width="${f(w*.30)}" height="${f(wh*.42)}"/>`
+   +`<path class="${R}" d="M${f(cx-rw)} ${f(wy)} C${f(cx-rw)} ${f(wy-rh*.9)} ${f(cx-rw*.56)} ${f(wy-rh)} ${f(cx)} ${f(wy-rh)}`
+   +` C${f(cx+rw*.56)} ${f(wy-rh)} ${f(cx+rw)} ${f(wy-rh*.9)} ${f(cx+rw)} ${f(wy)} Z"/>`
+   +`<g class="lm-brace" opacity=".4"><path d="M${f(cx-rw*.52)} ${f(wy-1.4)} L${f(cx)} ${f(wy-rh*.88)}`
+   +` M${f(cx+rw*.52)} ${f(wy-1.4)} L${f(cx)} ${f(wy-rh*.88)}"/></g>`;
+}
+
+/* 拉提石（关岛查莫罗人的石柱遗迹）：**两根并立的石柱 + 一块半球形的顶石**。
+   这个组合非常独特 —— 但少了顶石就只是两根柱子，少了柱子又只是个馒头。
+   两柱之间必须留出通透的空隙（画成实心块就读成一扇门了）。 */
+function _latte(x,b,w,h,cls,capCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c1', K=capCls||'lm-c0h';
+  // 柱宽给到 w*.34（两柱之间还剩 32% 的通透空隙），顶石收到 w*.98 ——
+  // 原来柱 w*.26 / 顶石 w*1.06，缩到卡片上就是"细杆撑大伞"，整排读成蘑菇。
+  // 顶石的拱高必须压到 h*.22 左右：给到 h*.46（上一版）它自己就占了整体四成，
+  // 三组并排立刻读成"三把蘑菇伞"。柱脚再加一道横向线脚，才有"石柱"的质感。
+  const hw=w/2, ch=h*.22, top=b-h+ch, pw=w*.34;
+  return `<rect class="${C}" x="${f(x-hw)}" y="${f(top)}" width="${f(pw)}" height="${f(h-ch)}"/>`
+   +`<rect class="${C}" x="${f(x+hw-pw)}" y="${f(top)}" width="${f(pw)}" height="${f(h-ch)}"/>`
+   +`<path class="${K}" d="M${f(x-hw*.98)} ${f(top)} L${f(x-hw*.98)} ${f(top-ch*.2)}`
+   +` Q${f(x)} ${f(top-ch*2.0)} ${f(x+hw*.98)} ${f(top-ch*.2)} L${f(x+hw*.98)} ${f(top)} Z"/>`
+   +`<g class="lm-c3" opacity=".32"><rect x="${f(x-hw)}" y="${f(b-h*.11)}" width="${f(pw)}" height="${f(h*.05)}"/>`
+   +`<rect x="${f(x+hw-pw)}" y="${f(b-h*.11)}" width="${f(pw)}" height="${f(h*.05)}"/></g>`;
+}
+
+/* 浑圆的花岗岩巨石（塞舌尔的 Anse Source d'Argent、英属维京群岛都用它）：
+   读点是"**像鹅卵石一样圆**"—— 顶是圆的、侧面外鼓。
+   写成一堆方石头就变成"废墟"。高光面固定给左上（光源统一）。 */
+function _boulder(x,b,w,h,cls,hiCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c1', Hi=hiCls||'lm-c0b', hw=w/2;
+  return `<path class="${C}" d="M${f(x-hw)} ${f(b)} C${f(x-hw*1.04)} ${f(b-h*.6)} ${f(x-hw*.62)} ${f(b-h)} ${f(x-hw*.06)} ${f(b-h)}`
+   +` C${f(x+hw*.72)} ${f(b-h)} ${f(x+hw*1.06)} ${f(b-h*.54)} ${f(x+hw)} ${f(b)} Z"/>`
+   +`<path class="${Hi}" d="M${f(x-hw*.64)} ${f(b-h*.28)} C${f(x-hw*.72)} ${f(b-h*.84)} ${f(x-hw*.34)} ${f(b-h*.97)} ${f(x-hw*.04)} ${f(b-h*.95)}`
+   +` C${f(x-hw*.40)} ${f(b-h*.76)} ${f(x-hw*.57)} ${f(b-h*.48)} ${f(x-hw*.64)} ${f(b-h*.28)} Z"/>`;
+}
+
 /* 泰式/缅式多层收分尖塔 */
 function _spire(x,b,w,h,layers,cls){
   const f=v=>v.toFixed(1); let out='', y=b;
@@ -5345,6 +5433,103 @@ const LM_SCENE={
      +_palm(80,70,20,'lm-c3')+_palm(221,69,13,'lm-c2')
      +_tuft(104,74,5,'lm-c3') },
 
+  /* ==================== round 8 · 大洋洲与海岛 ==================== */
+  /* 新西兰：库克山（尖峭雪山）+ 冰川湖 + 银蕨。
+     这里的雪山比阿尔卑斯更"瘦高"，而真正把新西兰和瑞士分开的是前景那丛**银蕨**
+     —— 羽片由下往上依次变短，这是国徽级的符号。 */
+  newzealand:{ sun:[64,13,7.5], clouds:[[148,11,10,2.2],[212,9,8,1.8]], birds:[176,19,2.4],
+    far:`<path d="M-12 62 L36 57 L88 61 L140 58 L186 62 L186 64 L-12 64 Z"/>`,
+    mid:
+      _snowpeak(186,54,66,46,'lm-c0b',.26)
+     +_snowpeak(132,54,34,16,'lm-c1',.25)
+     +`<path class="lm-c3" opacity=".2" d="M154 54 L186 10 L218 54 Z"/>`,
+    fore:
+      _water(62)
+     +`<path class="lm-c1" d="M-8 78 L-8 68 Q80 63.6 160 66 Q240 68.4 308 65 L308 78 Z"/>`
+     +_fern(80,63,24,-13,'lm-c0b')+_fern(116,64,18,9,'lm-c0b')+_fern(224,62,20,12,'lm-c0b')
+     +_tuft(150,68,4.6,'lm-c2')+_tuft(196,69,5,'lm-c2') },
+
+  /* 巴布亚新几内亚：活火山 + 泻湖高脚屋。
+     火山的读点是**山顶那个被削平的火山口**（向内凹的暗口）加右侧坡脚的熔岩舌；
+     光画成一个尖锥就只是"又一座山"。烟柱用两段椭圆，必须压在火山口正上方。 */
+  papua:{ sun:[58,13,7.5], clouds:[[150,11,10,2.2]], birds:[214,19,2.4],
+    far:`<path d="M-12 62 L48 56 L108 60 L168 57 L212 62 L212 64 L-12 64 Z"/>`,
+    mid:
+      _volcano(196,56,88,44,'lm-c1','lm-c3')
+     +`<g class="lm-c0b" opacity=".5"><ellipse cx="196" cy="7.8" rx="16" ry="3.4"/>`
+       +`<ellipse cx="215" cy="3.6" rx="11" ry="2.6"/></g>`
+     +`<path class="lm-c3" opacity=".5" d="M100 64 L118 50 L152 46 L182 54 L176 64 Z"/>`,
+    fore:
+      _water(64)
+     +`<path class="lm-c1" d="M-8 78 L-8 70 Q80 66 160 68 Q240 70 308 67 L308 78 Z"/>`
+     +_stilt(124,68,30,24,'lm-c1','lm-clay')
+     +_pirogue(172,72,14,'lm-c1')
+     +_palm(76,66,19,'lm-c2')+_palm(216,65,15,'lm-c2')
+     +_tuft(196,70,5,'lm-c2') },
+
+  /* 斐济：传统茅草屋（bure）+ 椰林 + 白沙泻湖。
+     bure 和普通房子的唯一区别是**顶远大于身**（拱形茅草穹占整体 2/3、檐口压到近地面），
+     画成普通坡屋顶就成小木屋了。 */
+  fiji:{ sun:[62,13,7.5], clouds:[[146,11,10,2.2],[210,9,8,1.8]], birds:[176,19,2.4],
+    far:`<path d="M-12 62 L52 58 L112 61 L172 57 L228 62 L228 64 L-12 64 Z"/>`,
+    mid:
+      _bure(146,58,40,24,'lm-c2','lm-clay')
+     +_bure(190,58,30,19,'lm-c1','lm-clay')
+     +_palm(104,60,26,'lm-c1')+_palm(212,58,20,'lm-c2'),
+    fore:
+      _water(64)
+     +`<path class="lm-c0b" opacity=".5" d="M-8 68 Q40 64 88 67 Q140 70 190 67 Q240 64 308 68 L308 71 L-8 71 Z"/>`
+     +`<path class="lm-c1" d="M-8 78 L-8 71 Q80 67 160 69.4 Q240 71.6 308 68.6 L308 78 Z"/>`
+     +_pirogue(150,72,15,'lm-c1')
+     +_palm(76,66,19,'lm-c2')
+     +_tuft(110,70,5,'lm-c2')+_tuft(230,70,4.6,'lm-c2') },
+
+  /* 关岛：拉提石柱群（查莫罗人的石柱遗迹）。
+     两柱 + 一块半球顶石，这个组合非常独特；两柱之间必须留出通透的空隙，
+     画成实心块就读成一扇门了。 */
+  guam:{ sun:[64,13,7.5], clouds:[[150,11,10,2.2]], birds:[214,19,2.4],
+    far:`<path d="M-12 62 L46 57 L106 60 L166 57 L214 62 L214 64 L-12 64 Z"/>`,
+    mid:
+      _latte(126,58,32,26,'lm-c2','lm-c0h')
+     +_latte(176,58,24,19,'lm-c1','lm-c0b')
+     +_latte(210,58,18,14,'lm-c1','lm-c0b'),
+    fore:
+      _water(64)
+     +`<path class="lm-c1" d="M-8 78 L-8 69 Q80 65 160 67.4 Q240 69.6 308 66.6 L308 78 Z"/>`
+     +`<path class="lm-c0b" opacity=".4" d="M-8 68 Q40 64 88 67 Q140 70 190 67 Q240 64 308 68 L308 70 L-8 70 Z"/>`
+     +_palm(80,66,21,'lm-c1')+_palm(218,65,16,'lm-c2')
+     +_tuft(152,70,5,'lm-c2')+_tuft(196,70,4.4,'lm-c2') },
+
+  /* 毛里求斯：Le Morne 平顶孤峰 + 泻湖椰林。
+     这座山的读点是"一座被单独放在海边的方山"（平顶 + 两侧陡壁），
+     所以周围必须**不放任何其他山**，让它孤零零地立着。 */
+  mauritius:{ sun:[60,13,7.5], clouds:[[150,11,10,2.2],[212,9,8,1.8]], birds:[178,19,2.4],
+    far:`<path d="M-12 62 L54 57 L118 60 L178 56 L232 62 L232 64 L-12 64 Z"/>`,
+    mid:
+      _mesa(192,58,68,42,'lm-c0b','lm-c1'),
+    fore:
+      _water(64)
+     +`<path class="lm-c1" d="M-8 78 L-8 69 Q80 65 160 67.4 Q240 69.6 308 66.6 L308 78 Z"/>`
+     +`<path class="lm-c0b" opacity=".42" d="M-8 68 Q40 64 88 67 Q140 70 190 67 Q240 64 308 68 L308 70 L-8 70 Z"/>`
+     +_palm(88,66,24,'lm-c0b')+_palm(214,65,18,'lm-c1')+_palm(114,68,15,'lm-c1')
+     +_tuft(150,71,5,'lm-c2') },
+
+  /* 塞舌尔：Anse Source d'Argent 的浑圆花岗岩巨石群。
+     读点是"像鹅卵石一样圆"—— 顶是圆的、侧面外鼓；写成一堆方石头就变成废墟。
+     高光面统一给左上。 */
+  seychelles:{ sun:[62,13,7.5], clouds:[[148,11,10,2.2]], birds:[212,19,2.4],
+    far:`<path d="M-12 62 L50 57 L112 60 L172 56 L226 62 L226 64 L-12 64 Z"/>`,
+    mid:
+      _boulder(152,60,50,36,'lm-c0b','lm-c0h')
+     +_boulder(196,60,36,26,'lm-c1','lm-c0b')
+     +_boulder(116,60,26,16,'lm-c1','lm-c0b'),
+    fore:
+      _water(64)
+     +`<path class="lm-c1" d="M-8 78 L-8 69 Q80 65 160 67.4 Q240 69.6 308 66.6 L308 78 Z"/>`
+     +`<path class="lm-c0h" opacity=".48" d="M-8 70 Q40 66 88 69 Q140 72 190 69 Q240 66 308 70 L308 73 L-8 73 Z"/>`
+     +_palm(92,66,22,'lm-c0b')+_palm(218,65,17,'lm-c1')
+     +_tuft(176,71,5,'lm-c2')+_tuft(210,71,4.6,'lm-c2') },
+
   /* ==================== 热带兜底 ==================== */
   tropical:{ sun:[152,14,10], clouds:[[112,12,11,2.5]], birds:[214,21,2.7],
     far:`<path d="M-14 62 L24 50 L62 62 Z"/><path d="M198 62 L242 43 L288 62 Z"/>`,
@@ -5471,7 +5656,7 @@ const DEST_THEME={
   CL:{tone:'tone-nordic',lm:'chile',tag:'狭长国度，从沙漠到冰川'},
   PE:{tone:'tone-desert',lm:'peru',tag:'马丘比丘与安第斯'},
   CO:{tone:'tone-tropical',lm:'colombia',tag:'咖啡、鲜花与加勒比'},
-  GU:{tone:'tone-tropical',lm:'oceania',tag:'西太平洋的度假岛'},
+  GU:{tone:'tone-tropical',lm:'guam',tag:'西太平洋的度假岛'},
   // 非洲
   ZA:{tone:'tone-africa',lm:'africa',tag:'桌山、好望角与彩虹之国'},
   KE:{tone:'tone-africa',lm:'kenya',tag:'野生动物大迁徙'},
@@ -5479,15 +5664,15 @@ const DEST_THEME={
   ET:{tone:'tone-africa',lm:'ethiopia',tag:'高原、咖啡发源地'},
   MA:{tone:'tone-desert',lm:'morocco',tag:'蓝色小镇与撒哈拉门户'},
   TN:{tone:'tone-desert',lm:'tunisia',tag:'迦太基与蓝白小镇'},
-  MU:{tone:'tone-tropical',lm:'oceania',tag:'印度洋的绿宝石'},
-  SC:{tone:'tone-tropical',lm:'oceania',tag:'花岗岩与珊瑚礁'},
+  MU:{tone:'tone-tropical',lm:'mauritius',tag:'印度洋的绿宝石'},
+  SC:{tone:'tone-tropical',lm:'seychelles',tag:'花岗岩与珊瑚礁'},
   NG:{tone:'tone-africa',lm:'nigeria',tag:'非洲人口第一大国'},
   GH:{tone:'tone-africa',lm:'ghana',tag:'黄金海岸'},
   // 大洋洲
   AU:{tone:'tone-oceania',lm:'oceania',tag:'歌剧院、大堡礁与旷野'},
-  NZ:{tone:'tone-tropical',lm:'oceania',tag:'中土世界的山谷与冰川'},
-  FJ:{tone:'tone-tropical',lm:'oceania',tag:'南太平洋的珊瑚岛'},
-  PG:{tone:'tone-tropical',lm:'oceania',tag:'原始部落与火山'},
+  NZ:{tone:'tone-tropical',lm:'newzealand',tag:'中土世界的山谷与冰川'},
+  FJ:{tone:'tone-tropical',lm:'fiji',tag:'南太平洋的珊瑚岛'},
+  PG:{tone:'tone-tropical',lm:'papua',tag:'原始部落与火山'},
   /* ---- 以下 8 个目的地原本没有条目，会掉进 TONE_FALLBACK（默认暖橙 + 热带场景），
      在一堆目的地里显得很突兀。先把 tone / tagline 补成终态 —— 这两项以后不用再改；
      场景暂时借用最近的大区，等各自的专属图做完再换（见 scene-plan.md round 1~4）。 */
