@@ -252,6 +252,11 @@ header::before{content:'';display:block;height:3px;
    做法是让 band2 混 58% 的陶土色：既落在暖色相上，又天然带主题色的余韵，
    所以 11 套皮肤都不会跳色。只做小面积点缀（屋顶 / 车体 / 屋墙），不承字。 */
 .lm-paint .lm-clay{fill:color-mix(in oklab,var(--tone-band2) 42%,#C1653E)}
+/* 钴蓝：地中海/北非那块"蓝"（突尼斯西迪布赛义德的门窗与栏杆、摩洛哥的马约尔蓝）。
+   同样让主题的第二色相参与混合，11 套皮肤都不会跳色 —— desert 的 --tone-2 是青蓝
+   (#4F999E)，混出来正好是海水蓝；即使落在橄榄绿的 africa 上也只是偏灰的青，
+   不会变成一块刺眼的纯蓝。只做门窗/栏杆/屋顶这类小面积点缀，不承字。 */
+.lm-paint .lm-cobalt{fill:color-mix(in oklab,var(--tone-2) 42%,#1D4E90)}
 /* 飞鸟：只描边不填充 */
 .lm-paint .lm-bird{fill:none;stroke:var(--lm3);stroke-width:.85;stroke-linecap:round;opacity:.62}
 /* 斜撑 / 线脚：**开放路径必须用 stroke**。
@@ -1331,6 +1336,14 @@ const LANDMARKS={
   chile:`<path d="M0 78 L0 52 L24 46 L48 40 L72 46 L96 52 L96 78 Z"/><path d="M112 78 L112 56 L134 56 L134 78 Z"/><path d="M124 56 Q134 34 144 56 Z"/><path d="M124 56 L124 50 L146 50 L146 56 Z"/><path d="M156 78 L156 58 L178 58 L178 78 Z"/><path d="M167 58 Q175 40 183 58 Z"/><path d="M190 78 L200 30 L212 78 Z"/><path d="M196 78 L200 48 L206 78 Z"/><path d="M226 78 L238 34 L250 78 Z"/><path d="M232 78 L238 54 L244 78 Z"/><path d="M264 78 Q272 46 282 78 Z"/><path d="M288 78 L294 52 L300 78 Z"/>`,
   peru:`<path d="M0 78 L0 52 L56 40 L96 52 L96 78 Z"/><path d="M104 78 L104 64 L136 64 L136 78 Z"/><path d="M104 64 L120 50 L136 64 Z"/><path d="M140 78 L140 62 L180 62 L180 78 Z"/><path d="M146 62 L160 46 L174 62 Z"/><path d="M184 78 L184 64 L212 64 L212 78 Z"/><path d="M188 64 L198 50 L208 64 Z"/><path d="M218 78 Q228 30 238 78 Z"/><path d="M226 78 Q232 50 240 78 Z"/><path d="M252 78 L252 62 L284 62 L284 78 Z"/><path d="M258 62 L268 46 L278 62 Z"/>`,
   colombia:`<path d="M0 78 L0 62 Q32 44 64 62 Q96 46 128 62 Q160 44 192 62 Q224 48 256 62 L256 78 Z"/><path d="M16 60 Q28 44 44 42 L48 48 Q32 52 26 62 Z"/><path d="M56 60 Q68 46 84 44 L88 50 Q72 54 66 62 Z"/><path d="M96 58 Q108 44 124 42 L128 48 Q112 52 106 60 Z"/><path d="M136 58 Q148 44 164 42 L168 48 Q152 52 146 60 Z"/><path d="M176 60 Q188 46 204 44 L208 50 Q192 54 186 62 Z"/><path d="M216 60 L216 52 L256 52 L256 60 Z"/><path d="M232 52 L232 40 L240 40 L240 52 Z"/><path d="M244 40 L244 30 L252 30 L252 40 Z"/><path d="M238 30 Q248 18 258 30 Z"/><path d="M268 78 L268 54 L296 54 L296 78 Z"/><path d="M272 54 L282 38 L292 54 Z"/>`,
+  egypt:`<path d="M0 78 L18 44 L36 78 Z"/><path d="M44 78 L60 56 L76 78 Z"/><path d="M96 78 L140 26 L184 78 Z"/><path d="M192 78 L210 50 L228 78 Z"/><path d="M240 78 L258 58 L276 78 Z"/><path d="M0 78 Q40 70 80 76 Q120 82 160 76 Q200 70 240 76 Q272 80 300 73 L300 78 Z"/>`,
+  kenya:`<path d="M0 78 L0 64 L300 64 L300 78 Z"/><path d="M8 38 C8 28 18 22 30 22 C42 22 52 28 52 38 C44 44 16 44 8 38 Z"/><path d="M28 38 L26 64 h5 Z"/><path d="M30 30 C42 32 60 38 76 42"/><path d="M30 30 C18 32 2 38 -14 42"/><path d="M126 64 h26 v-9 h-26 Z"/><path d="M152 62 l10 -8 l5 3 l-8 8 Z"/><path d="M128 55 v9 M138 55 v9 M144 55 v9 M148 55 v9"/><path d="M208 64 h26 v-9 h-26 Z"/><path d="M234 62 l10 -8 l5 3 l-8 8 Z"/><path d="M210 55 v9 M220 55 v9 M226 55 v9 M230 55 v9"/>`,
+  tanzania:`<path d="M0 78 L0 62 L300 78 Z"/><path d="M40 62 L110 20 L200 20 L264 62 Z"/><path d="M110 20 L126 10 L186 10 L200 20 Z"/>`,
+  ethiopia:`<path d="M0 78 L0 66 L300 66 L300 78 Z"/><path d="M36 66 L42 24 L50 24 L56 66 Z"/><path d="M42 24 Q46 16 50 24 Z"/><path d="M80 66 L85 36 L91 36 L96 66 Z"/><path d="M120 66 L126 28 L134 28 L140 66 Z"/><path d="M126 28 Q130 20 134 28 Z"/><path d="M170 66 L175 40 L181 40 L186 66 Z"/>`,
+  morocco:`<path d="M0 78 L0 66 L300 66 L300 78 Z"/><path d="M40 66 L44 30 L66 30 L70 66 Z"/><path d="M51 26 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0 Z"/><path d="M52 18 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0 Z"/><path d="M53 12 a2 2 0 1 0 4 0 a2 2 0 1 0 -4 0 Z"/><path d="M120 66 L124 42 L150 42 L154 66 Z"/><path d="M180 66 L184 36 L208 36 L212 66 Z"/>`,
+  tunisia:`<path d="M0 78 L0 68 L300 68 L300 78 Z"/><path d="M20 68 L20 40 L60 40 L60 68 Z"/><path d="M28 68 L28 52 q6 -6 12 0 L40 68 Z"/><path d="M70 68 L70 46 L104 46 L104 68 Z"/><path d="M114 68 L114 40 L158 40 L158 68 Z"/><path d="M120 40 a17 15 0 0 1 32 0 Z"/><path d="M170 68 L170 44 L206 44 L206 68 Z"/><path d="M212 68 L212 52 L248 52 L248 68 Z"/>`,
+  nigeria:`<path d="M0 78 L0 64 L300 78 Z"/><path d="M40 64 L40 44 L60 44 L60 30 L84 30 L84 40 L106 40 L106 22 L132 22 L132 40 L156 40 L156 34 L180 34 L180 64 Z"/><path d="M190 64 L190 48 L212 48 L212 64 Z"/><path d="M228 64 L228 38 L252 38 L252 64 Z"/>`,
+  ghana:`<path d="M0 78 L0 66 L300 66 L300 78 Z"/><path d="M20 66 L24 40 L72 40 L76 66 Z"/><path d="M28 40 v-4 h6 v4 M46 40 v-4 h6 v4 M64 40 v-4 h6 v4"/><path d="M100 66 L104 34 L140 34 L144 66 Z"/><path d="M148 66 L152 36 L172 36 L176 66 Z"/><path d="M204 66 L208 30 L232 30 L236 66 Z"/><path d="M212 30 L214 14 L228 14 L230 30 Z"/>`,
   tropical:`<path d="M0 78 L0 58 Q20 48 40 58 Q60 68 80 58 Q100 48 120 58 Q140 68 160 58 Q180 48 200 58 Q220 68 240 58 Q260 48 280 58 L280 78 Z"/><path d="M28 56 Q32 40 40 36"/><path d="M40 36 Q56 32 66 42"/><path d="M40 36 Q30 26 20 32"/><path d="M150 56 Q154 40 162 36"/><path d="M162 36 Q178 32 188 42"/><path d="M162 36 Q152 26 142 32"/><path d="M256 56 Q260 42 268 38"/><path d="M268 38 Q282 34 292 44"/>`,
 };
 
@@ -1776,6 +1789,142 @@ function _huayna(x,b,w,h,cls,hiCls){
   return `<path class="${C}" d="${d}"/>`+hi;
 }
 
+/* ==================== round 7 新增通用件（非洲）==================== */
+
+/* 光滑斜面金字塔（埃及吉萨）。
+   **必须和墨西哥的 `_pyramid` 分开**：`_pyramid` 是"阶梯式"（奇琴伊察），
+   而吉萨的读点恰恰是"斜边从底角一气通到顶点、没有任何台阶"。
+   另一个读点是**明暗分界棱**：受光面从顶点直落到底边中点偏左，
+   没有这条棱，三个金字塔缩到卡片上就是三块平色三角形。
+   底高比按真实值给 1.7:1（胡夫 230m 宽 / 146m 高），给瘦了会读成"尖帽子"。 */
+function _giza(x,b,w,h,cls,hiCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0b', Hi=hiCls||'lm-c0h', hw=w/2, top=b-h;
+  return `<path class="${C}" d="M${f(x-hw)} ${f(b)} L${f(x)} ${f(top)} L${f(x+hw)} ${f(b)} Z"/>`
+   +`<path class="${Hi}" d="M${f(x-hw)} ${f(b)} L${f(x)} ${f(top)} L${f(x-hw*.10)} ${f(b)} Z"/>`;
+}
+
+/* 草原四足兽剪影（角马 / 斑马 / 瞪羚通用）。
+   78 单位里一只兽只有 6~8 单位高，细节只能收敛到"躯干 + 四条腿 + 前伸的头颈 + 尾"。
+   三个读点缺一不可：
+     ① 躯干是**横长**的圆角块（长 ≈ 3 倍高）—— 画成方块就成了一条狗；
+     ② 四条腿**等距细柱**，腿间必须留出空隙（腿糊成一片等于没有腿）；
+     ③ 头颈从躯干前端**向前上方斜伸**，统一朝右，一排排开才有"迁徙"的方向感。 */
+function _beast(x,b,h,cls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0';
+  const bw=h*1.05, bh=h*.30, by=b-h*.64, lw=Math.max(.5,h*.075), legH=h*.30;
+  return `<g class="${C}">`
+   +`<rect x="${f(x-bw*.5)}" y="${f(by)}" width="${f(bw)}" height="${f(bh)}" rx="${f(bh*.38)}"/>`
+   +`<rect x="${f(x-bw*.38)}" y="${f(by+bh*.78)}" width="${f(lw)}" height="${f(legH)}"/>`
+   +`<rect x="${f(x-bw*.44)}" y="${f(by+bh*.78)}" width="${f(lw)}" height="${f(legH)}"/>`
+   +`<rect x="${f(x+bw*.28)}" y="${f(by+bh*.78)}" width="${f(lw)}" height="${f(legH)}"/>`
+   +`<rect x="${f(x+bw*.34)}" y="${f(by+bh*.78)}" width="${f(lw)}" height="${f(legH)}"/>`
+   +`<path d="M${f(x+bw*.40)} ${f(by+bh*.40)} L${f(x+bw*.72)} ${f(by-h*.21)}`
+   +` L${f(x+bw*.88)} ${f(by-h*.15)} L${f(x+bw*.62)} ${f(by+bh*.95)} Z"/>`
+   +`<rect x="${f(x+bw*.68)}" y="${f(by-h*.30)}" width="${f(bw*.26)}" height="${f(h*.15)}" rx="${f(h*.05)}"/>`
+   +`<rect x="${f(x-bw*.55)}" y="${f(by+bh*.16)}" width="${f(bw*.16)}" height="${f(bh*.20)}"/>`
+   +`</g>`;
+}
+
+/* 乞力马扎罗（坦桑尼亚）：**赤道上的宽缓大雪山**。
+   它跟阿尔卑斯/喜马拉雅那些"尖锥雪山"的区别全在轮廓比例：
+     · 底宽是高的 **2.2~2.6 倍**（真山 60km 基座 / 5.9km 高），给瘦了立刻变"又一座尖峰"；
+     · 山顶**被切平**（火山口），雪冠是"平顶台 + 几条下垂冰舌"，不是尖顶白帽；
+     · 山腰必须横一道云带 —— 这是乞力马扎罗最有辨识度的一笔。
+   雪帽和白冠用同一个亮档，别用纯白（会跳到画面外）。 */
+function _kili(cx,b,w,h,cls,snowCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c1', S=snowCls||'lm-c0h', hw=w/2, top=b-h;
+  return `<path class="${C}" d="M${f(cx-hw)} ${f(b)} Q${f(cx-hw*.56)} ${f(top+h*.34)} ${f(cx-hw*.28)} ${f(top+h*.20)}`
+   +` L${f(cx-hw*.08)} ${f(top)} L${f(cx+hw*.12)} ${f(top)} L${f(cx+hw*.32)} ${f(top+h*.26)}`
+   +` Q${f(cx+hw*.60)} ${f(top+h*.46)} ${f(cx+hw)} ${f(b)} Z"/>`
+   +`<path class="lm-c1" opacity=".42" d="M${f(cx+hw*.12)} ${f(top)} L${f(cx+hw)} ${f(b)}`
+   +` L${f(cx+hw*.84)} ${f(b)} L${f(cx+hw*.03)} ${f(top)} Z"/>`
+   +`<path class="${S}" d="M${f(cx-hw*.155)} ${f(top+h*.16)} L${f(cx-hw*.08)} ${f(top+.5)}`
+   +` L${f(cx+hw*.10)} ${f(top+.5)} L${f(cx+hw*.195)} ${f(top+h*.14)}`
+   +` L${f(cx+hw*.12)} ${f(top+h*.205)} L${f(cx+hw*.02)} ${f(top+h*.19)}`
+   +` L${f(cx-hw*.07)} ${f(top+h*.215)} Z"/>`
+   +`<path class="${S}" opacity=".5" d="M${f(cx+hw*.075)} ${f(top+h*.19)} L${f(cx+hw*.062)} ${f(top+h*.30)}`
+   +` L${f(cx+hw*.098)} ${f(top+h*.295)} L${f(cx+hw*.115)} ${f(top+h*.18)} Z"/>`;
+}
+
+/* 阿克苏姆方尖碑（埃塞俄比亚）。
+   和布宜诺斯艾利斯的 `_obelisk` 必须分开看，否则两张卡会一模一样：
+     · `_obelisk` 是**光滑方柱 + 顶端四棱锥收成尖**；
+     · 阿克苏姆碑是**窄长条 + 顶部收成半圆**，而且碑身上有**一层层的横向线脚**，
+       每层中间还凿着"假窗 / 假门" —— 这是它最独有的特征，也是唯一的辨识点。
+   宽高比 1:5.5（真碑 33m 高 / 2.6m 厚），给胖了读成一块路牌。 */
+function _stela(x,b,w,h,cls,darkCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0h', D=darkCls||'lm-c3', hw=w/2, top=b-h, nh=hw;
+  let out=`<path class="${C}" d="M${f(x-hw)} ${f(b)} L${f(x-hw)} ${f(top+nh)}`
+   +` Q${f(x)} ${f(top-nh*.34)} ${f(x+hw)} ${f(top+nh)} L${f(x+hw)} ${f(b)} Z"/>`;
+  const n=Math.max(4,Math.round(h/7));
+  for(let i=1;i<n;i++){
+    const y=top+nh+(b-top-nh)*(i/n);
+    out+=`<rect class="${D}" x="${f(x-hw*.80)}" y="${f(y)}" width="${f(w*.80)}" height="${f(Math.max(.32,h*.016))}"/>`
+      +`<rect class="${D}" x="${f(x-hw*.30)}" y="${f(y-Math.max(1,h*.055))}" width="${f(w*.30)}" height="${f(Math.max(.7,h*.036))}"/>`;
+  }
+  return out;
+}
+
+/* 摩洛哥方形宣礼塔（马拉喀什库图比亚）。
+   伊斯兰宣礼塔遍地都是，但摩洛哥这一支的读点是三件事，缺一就变成"通用宣礼塔"：
+     ① 塔身是**方的**（不是奥斯曼那种细圆柱），而且几乎不收分；
+     ② 正面三排**交错的小拱窗**（暗色凹进），排布要密；
+     ③ 塔顶**一串金球**（库图比亚是 3 个，由下往上依次变小）+ 最上一根短杆。
+   金球用 `.lm-clay`：它是这套皮肤里唯一"暖金"的 spot color，正好当金球。 */
+function _kutubiyya(x,b,w,h,cls,ballCls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0b', B=ballCls||'lm-clay', hw=w/2, top=b-h;
+  let out=`<path class="${C}" d="M${f(x-hw)} ${f(b)} L${f(x-hw*.93)} ${f(top)}`
+   +` L${f(x+hw*.93)} ${f(top)} L${f(x+hw)} ${f(b)} Z"/>`;
+  for(let r=0;r<3;r++){
+    const y=top+h*(.13+r*.25);
+    for(let c=-1;c<=1;c++){
+      const cx=x+c*w*.28;
+      out+=`<rect class="lm-c3" x="${f(cx-w*.072)}" y="${f(y)}" width="${f(w*.144)}" height="${f(h*.095)}" rx="${f(h*.046)}"/>`;
+    }
+  }
+  out+=`<rect class="${C}" x="${f(x-hw*1.08)}" y="${f(top-h*.04)}" width="${f(w*1.08)}" height="${f(h*.055)}"/>`;
+  // 球串的竖直预算必须锁死：塔顶到画布上缘只剩十几个单位，
+  // 三个球加一根短杆很容易顶到 y<0（第一版量到 y=-2.5，直接飞出画布）。
+  let cy=top-h*.055, r=hw*.27;
+  for(let i=0;i<3;i++){
+    out+=`<circle class="${B}" cx="${f(x)}" cy="${f(cy)}" r="${f(r)}"/>`;
+    const nr=Math.max(.6,r*.72);
+    cy-=r+nr*.8; r=nr;
+  }
+  out+=`<rect class="${B}" x="${f(x-.3)}" y="${f(cy-r*1.3)}" width=".6" height="${f(Math.max(1,r*1.6))}"/>`;
+  return out;
+}
+
+/* 楼块窗格：给一段楼体按固定步距铺横条窗。
+   现代天际线一旦改了轮廓（高低起伏），手写十几条 rect 就没法维护了 ——
+   窗格必须**跟着楼块的 x 区间与顶标高走**，所以按区间生成。
+   步距给小一点（4~5）、窗高取步距的 1/3，才会读成"密集的窗"而不是"楼层线"。 */
+function _winRows(x0,x1,ytop,ybot,step,cls,op){
+  const f=v=>v.toFixed(1); let out='';
+  for(let y=ytop+step;y<ybot-1;y+=step)
+    out+=`<rect x="${f(x0+1)}" y="${f(y)}" width="${f(x1-x0-2)}" height="${f(step*.34)}"/>`;
+  return `<g class="${cls||'lm-c0b'}" opacity="${op||.82}">${out}</g>`;
+}
+
+/* 单峰/双峰骆驼（摩洛哥、突尼斯、埃及的沙漠线都用它）。
+   读点按重要性：① **背上的驼峰**（没有它就只是一只瘦马）；
+   ② 长颈从肩部先向前再向上弯成 S 形，头小而下垂；③ 腿极细极长。 */
+function _camel(x,b,h,cls){
+  const f=v=>v.toFixed(1), C=cls||'lm-c0';
+  const bw=h*.80, bh=h*.22, by=b-h*.60, lw=Math.max(.5,h*.062), legH=h*.30;
+  return `<g class="${C}">`
+   +`<rect x="${f(x-bw*.5)}" y="${f(by)}" width="${f(bw)}" height="${f(bh)}" rx="${f(bh*.42)}"/>`
+   +`<path d="M${f(x-bw*.30)} ${f(by+.4)} Q${f(x-bw*.18)} ${f(by-bh*1.15)} ${f(x-bw*.06)} ${f(by+.4)} Z"/>`
+   +`<path d="M${f(x+bw*.06)} ${f(by+.4)} Q${f(x+bw*.18)} ${f(by-bh*.95)} ${f(x+bw*.30)} ${f(by+.4)} Z"/>`
+   +`<path d="M${f(x+bw*.42)} ${f(by+bh*.4)} Q${f(x+bw*.56)} ${f(by-bh*1.5)} ${f(x+bw*.76)} ${f(by-bh*1.9)}`
+   +` L${f(x+bw*.92)} ${f(by-bh*1.55)} Q${f(x+bw*.74)} ${f(by-bh*1.2)} ${f(x+bw*.62)} ${f(by+bh*.7)} Z"/>`
+   +`<rect x="${f(x+bw*.74)}" y="${f(by-bh*2.05)}" width="${f(bw*.26)}" height="${f(bh*.52)}" rx="${f(bh*.2)}"/>`
+   +`<rect x="${f(x-bw*.40)}" y="${f(by+bh*.8)}" width="${f(lw)}" height="${f(legH)}"/>`
+   +`<rect x="${f(x-bw*.46)}" y="${f(by+bh*.8)}" width="${f(lw)}" height="${f(legH)}"/>`
+   +`<rect x="${f(x+bw*.26)}" y="${f(by+bh*.8)}" width="${f(lw)}" height="${f(legH)}"/>`
+   +`<rect x="${f(x+bw*.32)}" y="${f(by+bh*.8)}" width="${f(lw)}" height="${f(legH)}"/>`
+   +`</g>`;
+}
 /* 泰式/缅式多层收分尖塔 */
 function _spire(x,b,w,h,layers,cls){
   const f=v=>v.toFixed(1); let out='', y=b;
@@ -2311,8 +2460,11 @@ function _fort(x,b,w,h,cls,openCls){
     for(let i=0;i<2;i++)
       out+=`<rect class="${C}" x="${f(tx-w*.075+i*w*.082)}" y="${f(top-h*.09)}" width="${f(w*.045)}" height="${f(h*.09)}"/>`;
   });
+  // 垛口必须在墙顶的 x 区间内**按跨度均分**。原来写死步长 mw*1.32，
+  // 5 个垛口的总宽必然超出墙顶右缘（w=86 时最外面那个外挑 11 个单位，冲进徽章安全线）。
+  const cw=mw*.66, span=hw*.82*2-cw;
   for(let i=0;i<5;i++)
-    out+=`<rect class="${C}" x="${f(x-hw*.82+i*mw*1.32)}" y="${f(top-h*.09)}" width="${f(mw*.66)}" height="${f(h*.09)}"/>`;
+    out+=`<rect class="${C}" x="${f(x-hw*.82+i*span/4)}" y="${f(top-h*.09)}" width="${f(cw)}" height="${f(h*.09)}"/>`;
   out+=`<path class="${O}" d="M${f(x-w*.075)} ${f(b)} v${f(-h*.32)} q${f(w*.075)} ${f(-h*.09)} ${f(w*.15)} 0 v${f(h*.32)} Z"/>`;
   [.3,.52].forEach(k=>{
     out+=`<rect class="${O}" x="${f(x-hw*.56)}" y="${f(top+h*k)}" width="${f(w*.05)}" height="${f(h*.12)}"/>`
@@ -5026,6 +5178,173 @@ const LM_SCENE={
      +_balcony(172,51,22)+_balcony(197,48,20)+_balcony(221,50,19)
      +_bush(60,72,12)+_tuft(96,75,6,'lm-c1')+_tuft(268,74,6,'lm-c1') },
 
+  /* ==================== round 7 · 非洲 ==================== */
+  /* 埃及：吉萨金字塔群（左小右大递增）+ 尼罗河与三角帆船。
+     与墨西哥那套 `_pyramid`（阶梯）必须分开 —— 吉萨的读点是"光滑斜边一气通到顶"。
+     三座塔**由左至右依次变大**这个排列本身就是吉萨的记号，所以透视统一、只改尺寸。
+     左侧那座（x68）刻意压在日头方块之外：日头被强制锚在 (100,46)，
+     任何 y∈[38.5,53.5] 且 x∈[92.5,107.5] 的形状都会啃掉半个日盘。 */
+  egypt:{ sun:[62,13,7.5], clouds:[[150,11.6,10,2.2],[216,9,8,1.8]], birds:[126,20,2.4],
+    far:`<path d="M-12 64 L34 58 L86 62 L136 64 Z"/>`,
+    mid:
+      _giza(66,54,30,18,'lm-c2','lm-c1')
+     +_giza(134,54,44,28,'lm-c1','lm-c0b')
+     +_giza(198,54,80,48,'lm-c0b','lm-c0h')
+     +`<path class="lm-c3" opacity=".16" d="M158 54 L198 6 L238 54 Z"/>`,
+    fore:
+      _water(60)
+     +_palm(72,62,21,'lm-c0b')
+     +_palm(232,60,16,'lm-c1')
+     +_sloop(112,66,18,'lm-c3','lm-c0h')
+     +_tuft(92,68,5,'lm-c3')+_tuft(156,69,4.4,'lm-c3')+_tuft(216,68,5.4,'lm-c3') },
+
+  /* 肯尼亚：金合欢 + 角马群。
+     主角不是树而是**兽群** —— 大迁徙的读点全在"一排朝同一方向前进的兽影"上。
+     兽一律用最亮的档（c0h）：它们站在 `_ground()` 那三层被压到最深的草台上，
+     中低档会整排消失（这正是 round 6 加拿大枫叶翻车的原因，同一个坑）。
+     树只做骨架，分列两侧，中间整条留白让给兽群。 */
+  kenya:{ sun:[64,13,7.5], clouds:[[152,11,10,2.2]], birds:[206,19,2.4],
+    far:`<path d="M-12 62 L40 56 L96 60 L152 57 L188 62 L188 64 L-12 64 Z"/>`,
+    mid:
+      _acacia(122,60,42,'lm-c1')
+     +_acacia(223,58,26,'lm-c2')
+     +_acacia(84,57,17,'lm-c3'),
+    fore:
+      _ground()
+     +`<g opacity=".94">`
+       +_beast(112,60,8.4,'lm-c0h')+_beast(130,60.6,7.4,'lm-c0h')+_beast(148,60,8.8,'lm-c0h')
+       +_beast(168,60.6,7.0,'lm-c0h')+_beast(186,60,8.2,'lm-c0h')+_beast(204,60.6,7.6,'lm-c0h')
+       +_beast(220,60,8.6,'lm-c0h')+_beast(236,60.6,7.2,'lm-c0h')
+     +`</g>`
+     +_tuft(102,72,5,'lm-c3')+_tuft(202,73,5.4,'lm-c3')+_tuft(240,72,4.6,'lm-c3') },
+
+  /* 坦桑尼亚：乞力马扎罗（赤道雪山）。
+     它和阿尔卑斯那批必须分开 —— 读点是**宽缓**（底宽 ≈ 2.3 倍高）+ 平顶火山口
+     + 山腰横一道云。给瘦了就是"又一座尖峰"。 */
+  tanzania:{ sun:[56,13,7.5], clouds:[[130,11,10,2.2],[206,9,8,1.8]], birds:[238,19,2.4],
+    far:`<path d="M-12 63 L40 58 L92 61 L144 63 Z"/>`,
+    mid:
+      _kili(178,56,116,48,'lm-c2','lm-c0h'),
+    fore:
+      _ground()
+     +`<g class="lm-c0b" opacity=".44">`
+       +`<ellipse cx="130" cy="46.6" rx="22" ry="3"/>`
+       +`<ellipse cx="170" cy="44.8" rx="30" ry="3.4"/>`
+       +`<ellipse cx="214" cy="46.2" rx="26" ry="3.2"/>`
+       +`<ellipse cx="242" cy="47.6" rx="18" ry="2.8"/>`
+     +`</g>`
+     +_acacia(78,64,20,'lm-c3')
+     +_tuft(112,72,5,'lm-c3')+_tuft(162,73,4.6,'lm-c3')+_tuft(216,72,5.2,'lm-c3') },
+
+  /* 埃塞俄比亚：阿克苏姆方尖碑群 + 高原台地。
+     碑身那道"层层线脚 + 每层的假窗"是唯一的辨识点
+     （布宜诺斯艾利斯的光滑方尖碑没有），少了它两张卡就会撞。 */
+  ethiopia:{ sun:[56,13,7.5], clouds:[[148,11,10,2.2]], birds:[218,19,2.4],
+    far:`<path d="M-12 60 L34 54 L86 58 L138 55 L190 60 L190 64 L-12 64 Z"/>`,
+    mid:
+      `<path class="lm-c2" d="M84 64 L100 42 L146 37 L188 44 L200 64 Z"/>`
+     +`<path class="lm-c1" d="M100 42 L146 37 L188 44 L180 64 L106 64 Z" opacity=".72"/>`
+     +_stela(206,56,13.5,48,'lm-c0b','lm-c3')
+     +_stela(231,56,9.5,26,'lm-c1','lm-c3')
+     +_stela(176,56,8.5,20,'lm-c2','lm-c3'),
+    fore:
+      _ground()
+     +_bush(104,68,9,'lm-c3')+_bush(128,67,7,'lm-c2')+_bush(150,68,8,'lm-c3')
+     +_tuft(198,72,5,'lm-c3')+_tuft(240,72,4.6,'lm-c3') },
+
+  /* 摩洛哥：库图比亚式方塔（马拉喀什）+ 清真寺侧翼 + 沙丘骆驼队。
+     方塔三读点：方（几乎不收分）/ 三排交错小拱窗 / 顶上一串金球。
+     金球走 `.lm-clay` —— 这套皮肤里唯一的暖金 spot color。 */
+  morocco:{ sun:[58,13,7.5], clouds:[[144,11,10,2.2],[214,9,8,1.8]], birds:[178,19,2.4],
+    far:`<path d="M-12 62 L46 56 L104 60 L164 57 L208 62 L208 64 L-12 64 Z"/>`,
+    mid:
+      `<rect class="lm-c1" x="104" y="42" width="76" height="16"/>`
+     +`<rect class="lm-c0b" x="102" y="40" width="80" height="3"/>`
+     +`<g class="lm-c3" opacity=".5">`
+       +`<path d="M114 58 v-9 q3 -3.4 6 0 v9 Z"/><path d="M128 58 v-9 q3 -3.4 6 0 v9 Z"/>`
+       +`<path d="M142 58 v-9 q3 -3.4 6 0 v9 Z"/><path d="M156 58 v-9 q3 -3.4 6 0 v9 Z"/>`
+     +`</g>`
+     +_kutubiyya(206,58,21,40,'lm-c0b','lm-clay'),
+    fore:
+      `<path class="lm-c2" d="M-8 78 Q42 62 98 69 Q152 76 208 68 Q254 62 308 70 L308 78 Z"/>`
+     +`<path class="lm-c3" opacity=".6" d="M-8 78 Q48 68 104 73 Q160 78 214 72 Q258 67 308 73 L308 78 Z"/>`
+     +_camel(114,64,12,'lm-c0h')+_camel(138,65,11,'lm-c0h')+_camel(162,64,12.6,'lm-c0h')
+     +_palm(82,66,20,'lm-c3')+_palm(240,64,16,'lm-c2')
+     +_tuft(192,70,5,'lm-c3') },
+
+  /* 突尼斯：西迪布赛义德的白墙蓝门窗小屋 + 迦太基石柱。
+     全站唯一用 `.lm-cobalt` 的场景 —— "蓝白"这个符号必须在色相上真的成立，
+     靠明度差是做不出来的：白墙走 c0h，门窗/穹顶/栏杆全走钴蓝。 */
+  tunisia:{ sun:[54,13,7.5], clouds:[[146,11,10,2.2]], birds:[220,19,2.4],
+    far:`<path d="M-12 63 L54 58 L120 61 L186 57 L238 63 L238 64 L-12 64 Z"/>`,
+    mid:
+      `<rect class="lm-c0h" x="100" y="36" width="46" height="24"/>`
+     +`<rect class="lm-c0h" x="146" y="42" width="30" height="18"/>`
+     +`<rect class="lm-c0h" x="176" y="30" width="38" height="30"/>`
+     +`<rect class="lm-c0b" x="174" y="28" width="42" height="3"/>`
+     +`<g class="lm-cobalt">`
+       +`<rect x="108" y="46" width="9" height="14"/>`
+       +`<rect x="126" y="40" width="8" height="9" rx="4"/>`
+       +`<rect x="154" y="47" width="8" height="13"/>`
+       +`<rect x="186" y="37" width="9" height="11" rx="4.5"/>`
+       +`<rect x="200" y="37" width="9" height="11" rx="4.5"/>`
+       +`<rect x="186" y="53" width="9" height="9"/>`
+     +`</g>`
+     +_dome(195,30,10.5,'lm-cobalt')
+     +`<g class="lm-c1"><rect x="68" y="43" width="7" height="15"/><rect x="80" y="46" width="6" height="12"/></g>`
+     +`<g class="lm-c0b"><rect x="65" y="56" width="13" height="3.6" rx="1"/>`
+       +`<rect x="78" y="56" width="11" height="3.6" rx="1"/></g>`
+     +`<g class="lm-brace" opacity=".5"><path d="M69.5 46 v11 M71.5 46 v11 M82.5 48 v9"/></g>`,
+    fore:
+      `<path class="lm-c2" d="M-8 78 L96 68 L308 68 L308 78 Z"/>`
+     +_balcony(158,68,44,'lm-cobalt')
+     +`<g class="lm-brace" opacity=".42"><path d="M100 66 h30 M104 70 h22 M182 66 h26"/></g>`
+     +_tuft(122,73,5,'lm-c3')+_tuft(232,72,4.6,'lm-c3') },
+
+  /* 尼日利亚：拉各斯滨海天际线。
+     注意："分离的竖条 + 高低落差"人眼一律读成楼群 ——
+     所以这里走**一条连续的城际轮廓线**（一整块体量 + 内部竖缝 + 窗格），
+     而不是一栋栋分开的塔；分开了就会散成一排墓碑。
+     前景是一道泻湖 + 斜拉桥（拉索是开放路径，只能走 `.lm-brace`）。 */
+  nigeria:{ sun:[52,13,7.5], clouds:[[146,11.5,10,2.2]], birds:[198,19,2.4],
+    far:`<path d="M-12 62 L60 58 L140 61 L212 57 L264 62 L264 64 L-12 64 Z"/>`,
+    mid:
+      `<path class="lm-c1" d="M114 62 L114 47 L132 47 L132 39 L150 39 L150 33 L168 33`
+     +` L168 25 L186 25 L186 34 L202 34 L202 27 L220 27 L220 43 L236 43 L236 62 Z"/>`
+     +`<g class="lm-brace" opacity=".38"><path d="M132 47 v15 M150 39 v23 M168 33 v29`
+       +` M186 25 v37 M202 34 v28 M220 27 v35"/></g>`
+     +_winRows(114,132,47,62,4.4)+_winRows(132,150,39,62,4.4)+_winRows(150,168,33,62,4.4)
+     +_winRows(168,186,25,62,4.4)+_winRows(186,202,34,62,4.4)+_winRows(202,220,27,62,4.4)
+     +_winRows(220,236,43,62,4.4)
+     +`<path class="lm-c0h" d="M170 25 L177 9 L184 25 Z"/>`
+     +`<rect class="lm-c0h" x="174.6" y="4.6" width="4.8" height="4.8"/>`,
+    fore:
+      _water(64)
+     +`<g class="lm-c3"><rect x="146" y="54" width="3.4" height="16"/>`
+       +`<rect x="196" y="54" width="3.4" height="16"/></g>`
+     +`<g class="lm-brace" opacity=".55"><path d="M147.7 56 L116 66 M147.7 56 L179 66`
+       +` M197.7 56 L166 66 M197.7 56 L229 66"/></g>`
+     +`<rect class="lm-c0b" x="108" y="65" width="132" height="3.4"/>`
+     +_pirogue(142,74,13,'lm-clay')
+     +_palm(80,70,20,'lm-c3')+_palm(238,68,16,'lm-c2') },
+
+  /* 加纳：海岸角城堡（白色海防要塞 + 灯塔）。
+     `_fort` 自带"两角塔楼 + 雉堞 + 中央拱门"，正好是城堡的三个读点；
+     塔顶再插一座灯塔（塔身 + 暖色的灯室），把"海防要塞"和"一般城堡"分开。 */
+  ghana:{ sun:[64,13,7.5], clouds:[[152,11,10,2.2]], birds:[218,19,2.4],
+    far:`<path d="M-12 62 L58 57 L128 60 L198 56 L252 62 L252 64 L-12 64 Z"/>`,
+    mid:
+      _fort(196,60,86,32,'lm-c0h','lm-c3')
+     +_tower(222,28,11,20,'lm-c0b')
+     +`<rect class="lm-c0h" x="214.9" y="4.8" width="14.2" height="3.6" rx="1.2"/>`,
+    fore:
+      _water(66)
+     +`<path class="lm-c0b" opacity=".42" d="M-8 70 Q40 66 88 69 Q140 72 190 69`
+       +` Q240 66 308 70 L308 72 L-8 72 Z"/>`
+     +_pirogue(120,74,15,'lm-clay')
+     +_palm(80,70,20,'lm-c3')+_palm(221,69,13,'lm-c2')
+     +_tuft(104,74,5,'lm-c3') },
+
   /* ==================== 热带兜底 ==================== */
   tropical:{ sun:[152,14,10], clouds:[[112,12,11,2.5]], birds:[214,21,2.7],
     far:`<path d="M-14 62 L24 50 L62 62 Z"/><path d="M198 62 L242 43 L288 62 Z"/>`,
@@ -5096,7 +5415,7 @@ const DEST_THEME={
   JO:{tone:'tone-desert',lm:'jordan',tag:'佩特拉玫瑰古城'},
   IL:{tone:'tone-desert',lm:'israel',tag:'三千年圣城'},
   IR:{tone:'tone-desert',lm:'iran',tag:'波斯波利斯的回声'},
-  EG:{tone:'tone-desert',lm:'africa',tag:'金字塔与尼罗河'},
+  EG:{tone:'tone-desert',lm:'egypt',tag:'金字塔与尼罗河'},
   IN:{tone:'tone-desert',lm:'india',tag:'泰姬陵与恒河文明'},
   NP:{tone:'tone-nordic',lm:'nepal',tag:'雪山脚下的佛国'},
   LK:{tone:'tone-tropical',lm:'srilanka',tag:'锡兰红茶与海上火车'},
@@ -5155,15 +5474,15 @@ const DEST_THEME={
   GU:{tone:'tone-tropical',lm:'oceania',tag:'西太平洋的度假岛'},
   // 非洲
   ZA:{tone:'tone-africa',lm:'africa',tag:'桌山、好望角与彩虹之国'},
-  KE:{tone:'tone-africa',lm:'africa',tag:'野生动物大迁徙'},
-  TZ:{tone:'tone-africa',lm:'africa',tag:'乞力马扎罗与桑给巴尔'},
-  ET:{tone:'tone-africa',lm:'africa',tag:'高原、咖啡发源地'},
-  MA:{tone:'tone-desert',lm:'africa',tag:'蓝色小镇与撒哈拉门户'},
-  TN:{tone:'tone-desert',lm:'africa',tag:'迦太基与蓝白小镇'},
+  KE:{tone:'tone-africa',lm:'kenya',tag:'野生动物大迁徙'},
+  TZ:{tone:'tone-africa',lm:'tanzania',tag:'乞力马扎罗与桑给巴尔'},
+  ET:{tone:'tone-africa',lm:'ethiopia',tag:'高原、咖啡发源地'},
+  MA:{tone:'tone-desert',lm:'morocco',tag:'蓝色小镇与撒哈拉门户'},
+  TN:{tone:'tone-desert',lm:'tunisia',tag:'迦太基与蓝白小镇'},
   MU:{tone:'tone-tropical',lm:'oceania',tag:'印度洋的绿宝石'},
   SC:{tone:'tone-tropical',lm:'oceania',tag:'花岗岩与珊瑚礁'},
-  NG:{tone:'tone-africa',lm:'africa',tag:'非洲人口第一大国'},
-  GH:{tone:'tone-africa',lm:'africa',tag:'黄金海岸'},
+  NG:{tone:'tone-africa',lm:'nigeria',tag:'非洲人口第一大国'},
+  GH:{tone:'tone-africa',lm:'ghana',tag:'黄金海岸'},
   // 大洋洲
   AU:{tone:'tone-oceania',lm:'oceania',tag:'歌剧院、大堡礁与旷野'},
   NZ:{tone:'tone-tropical',lm:'oceania',tag:'中土世界的山谷与冰川'},
