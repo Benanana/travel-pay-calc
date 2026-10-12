@@ -536,7 +536,13 @@ select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns=
 .src-toggle:hover{border-color:color-mix(in srgb,var(--tone) 26%,var(--line))}
 .src-toggle .st-l{min-width:0}
 .src-toggle .st-t{font-size:var(--fs-sm);font-weight:700;letter-spacing:-.01em}
-.src-toggle .st-s{font-size:var(--fs-2xs);color:var(--ink3);margin-top:2px;line-height:1.55}
+/* 次要说明行。注意：原来这条规则写成 .src-toggle .st-s（限定了祖先），
+   于是写在 .pair-row 里的两处 —— 换汇行的「举例」、DCC 的「POS 提示」——
+   一个字的样式都拿不到，继承 body 的 15px / 近黑色 #161A20，
+   比全站所有备注（11px / --ink3 灰）都大一号、特别抢眼。v16 改成全局类。
+   间距仍按场景写在各自的行内 style 上（.src-toggle 内的是 margin-top:2px）。 */
+.st-s{font-size:var(--fs-2xs);color:var(--ink3);line-height:1.6}
+.src-toggle .st-s{margin-top:2px}
 .switch{width:44px;height:25px;flex:0 0 44px;border-radius:var(--r-pill);background:#D3DAE4;position:relative;
   transition:.24s var(--ease)}
 .switch::after{content:'';position:absolute;top:3px;left:3px;width:19px;height:19px;border-radius:50%;background:#fff;
