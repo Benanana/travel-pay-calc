@@ -624,8 +624,25 @@ select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns=
 .pair-eq{display:flex;align-items:center;gap:5px}
 .pair-eq input{flex:1 1 0;min-width:0;padding:9px 6px;text-align:center;font-weight:700;font-size:var(--fs-md);
   font-variant-numeric:tabular-nums}
+/* 长汇率自动降档（v15）：14px 粗体下 8 位数字（如 0.000294）需要 75px，
+   而框里只有 ~58px 内容区 —— 与其让用户"看不见末尾"，不如缩一档字号。
+   tabular-nums 还在，位数不会跳。只在实际溢出时降档，正常值保持原字号。
+   实际降档由 JS 的 fitPairNums() 用 scrollWidth/clientWidth 量出来再加类。 */
+.pair-eq input.fit1{font-size:12.5px}
+.pair-eq input.fit2{font-size:11px}
+.pair-eq input.fit3{font-size:10px}
 .pair-eq select{flex:0 0 auto;width:62px;padding:9px 19px 9px 8px;font-size:var(--fs-2xs);font-weight:750;
   background-position:right 6px center}
+/* 换汇行的两个币种选择器比普通行多一个，内联宽度收到 58px（原来是 76px）——
+   76×2 把两个输入框各挤到 45.7px，连 "1925" 都放不下。 */
+.pair-eq select.cur-sel{width:58px;padding-right:17px}
+/* 窄屏（≤400px）再收一档：360~375px 的手机上，换汇行的两个输入框只剩 42~49px，
+   6 位以上的汇率就开始吃紧。选择器里只有 3 个字母，收到 46px 依然放得下，
+   省出来的 24px 全给输入框。 */
+@media (max-width:400px){
+  .pair-eq select{width:46px;padding:9px 13px 9px 5px;background-position:right 3px center;background-size:7px}
+  .pair-eq select.cur-sel{width:46px;padding-right:13px}
+}
 .pair-eqsign{font-size:var(--fs-lg);font-weight:800;color:var(--ink3);flex:0 0 auto;padding:0 1px}
 .curb-lock{font-size:var(--fs-2xs);font-weight:800;color:var(--ink2);background:#EEF2F7;border-radius:var(--r-sm);
   padding:9px 7px;flex:0 0 auto;letter-spacing:.02em}
@@ -2753,7 +2770,7 @@ function syncHdrH(){
   const h=document.querySelector('header');
   if(h)document.documentElement.style.setProperty('--hdr',Math.round(h.getBoundingClientRect().height)+'px');
 }
-window.addEventListener('resize',syncHdrH);
+window.addEventListener('resize',()=>{syncHdrH();fitPairNums();});
 window.addEventListener('orientationchange',()=>setTimeout(syncHdrH,120));
 function toggleAcc(id){$('#'+id).classList.toggle('open');}
 
@@ -2997,6 +3014,30 @@ function renderRates(){
 }
 
 /* ============ 渠道 ============ */
+/* 长汇率自动降档：把内容区放不下的数字缩一档字号，做到"永不截断"。
+   为什么不用 CSS 解决 —— CSS 没有"文本超宽就缩字号"的能力（text-overflow 是打省略号，
+   对数字输入框来说等于把末尾藏起来，正是用户抱怨的"显示不全"）。
+   实测：14px 粗体 tabular 下 7 位数字 ≈ 70px、8 位 ≈ 75px，而框里只有 ~58px 内容区。
+   12.5px 能放到 8 位、11px 能放到 9 位，够覆盖真实的汇率（最极端如 0.000294）。 */
+function fitNum(el){
+  if(!el||el.tagName!=='INPUT')return;
+  el.classList.remove('fit1','fit2','fit3');
+  if(el.scrollWidth<=el.clientWidth+1)return;   // 放得下就不动它
+  el.classList.add('fit1');
+  if(el.scrollWidth<=el.clientWidth+1)return;
+  el.classList.add('fit2');
+  if(el.scrollWidth<=el.clientWidth+1)return;
+  el.classList.add('fit3');
+}
+function fitPairNums(){
+  document.querySelectorAll('.pair-eq input').forEach(fitNum);
+}
+// 用捕获阶段监听，保证不管行内 oninput 怎么写都能补上降档；
+// 只处理 .pair-eq 里的输入，不打搅报价金额等其它框。
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t&&t.tagName==='INPUT'&&t.closest&&t.closest('.pair-eq'))fitNum(t);
+},true);
 function renderChannels(){
   const hcur=homeCurrency();          // 统一入口：任何时候都从报价推「当地币」
   $('#chList').innerHTML=CHANNELS.map((c,i)=>{
@@ -3028,6 +3069,8 @@ function renderChannels(){
   const addBox=$('#chAddBox');
   if(addBox) addBox.innerHTML=addChHtml();
   renderHint2();
+  // 值可能是自动带出来的长小数（如 0.000294），渲染完统一过一遍降档
+  fitPairNums();
 }
 function CUR_OK(c){return c.on;}
 function renderHint2(){
@@ -3116,13 +3159,13 @@ function feeEditor(c,i){
         <div class="pair-eq">
           <input type="number" inputmode="decimal" step="0.01" value="${aAmt}" placeholder="40"
             onclick="event.stopPropagation()" oninput="setFxPair(${i},'a',this.value)">
-          <select style="width:76px" onchange="setFxPair(${i},'aCur',this.value);renderChannels()">
+          <select class="cur-sel" onchange="setFxPair(${i},'aCur',this.value);renderChannels()">
             ${allCur.map(x=>`<option value="${x}" ${x===aCur?'selected':''}>${x}</option>`).join('')}
           </select>
           <span class="pair-eqsign">=</span>
           <input type="number" inputmode="decimal" step="0.01" value="${bAmt}" placeholder="1925"
             onclick="event.stopPropagation()" oninput="setFxPair(${i},'b',this.value)">
-          <select style="width:76px" onchange="setFxPair(${i},'bCur',this.value);renderChannels()">
+          <select class="cur-sel" onchange="setFxPair(${i},'bCur',this.value);renderChannels()">
             ${allCur.map(x=>`<option value="${x}" ${x===bCur?'selected':''}>${x}</option>`).join('')}
           </select>
         </div>
@@ -4108,7 +4151,7 @@ window.confirmAddCh=confirmAddCh;window.pickPreset=pickPreset;
 window.calc=calc;window.reset=reset;window.loadRates=loadRates;
 window.renderCal=renderCal;window.calcCalib=calcCalib;window.applyCalib=applyCalib;
 window.midRate=midRate;window.chRate=chRate;window.fmt=fmt;window.toast=toast;
-window.pickDest=pickDest;window.renderDestOptions=renderDestOptions;
+window.pickDest=pickDest;window.renderDestOptions=renderDestOptions;window.fitPairNums=fitPairNums;
 window.onDestSearch=onDestSearch;window.chooseDest=chooseDest;window.searchDests=searchDests;
 window.onDestFocus=onDestFocus;window.onDestBlur=onDestBlur;window.onDestKey=onDestKey;window.toggleDestList=toggleDestList;
 window.renderDestList=renderDestList;
